@@ -26,7 +26,7 @@
     <title>PikuFlix - Your Entertainment Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -53,7 +53,6 @@ button:focus {
             overflow-x: hidden;
         }
 
-        /* Enhanced Header */
         .header {
             position: fixed;
             top: 0;
@@ -254,7 +253,6 @@ button:focus {
             transform: translateY(-50%) scale(1.1);
         }
 
-        /* Enhanced Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(229,9,20,0.1)),
@@ -352,7 +350,6 @@ button:focus {
             box-shadow: 0 15px 40px rgba(229,9,20,0.4);
         }
 
-        /* Enhanced Content Sections */
         .content {
             padding: 80px 60px;
             min-height: 100vh;
@@ -532,7 +529,6 @@ button:focus {
             box-shadow: 0 10px 30px rgba(229,9,20,0.5);
         }
 
-        /* Enhanced Modal */
         .modal {
             display: none;
             position: fixed;
@@ -615,7 +611,6 @@ button:focus {
             border: none;
         }
 
-        /* Series Information Panel */
         .series-info {
             display: none;
             background: rgba(20,20,20,0.95);
@@ -798,7 +793,6 @@ button:focus {
             100% { transform: rotate(360deg); }
         }
 
-        /* Fullscreen styles */
         .modal.fullscreen {
             width: 100vw;
             height: 100vh;
@@ -814,7 +808,6 @@ button:focus {
             left: 0;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .header {
                 padding: 15px 20px;
@@ -882,7 +875,6 @@ button:focus {
             font-size: 1.1rem;
         }
 
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -899,8 +891,7 @@ button:focus {
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(45deg, #ff6b6b, #ffd700);
         }
-        
-   /* Invisible Swipe Area (left edge) */
+
 .settings-swipe-area {
   position: fixed;
   top: 0;
@@ -910,7 +901,6 @@ button:focus {
   z-index: 999;
 }
 
-/* Settings Button */
 .settings-button {
   position: fixed;
   top: 50%;
@@ -1061,7 +1051,7 @@ input:checked + .slider.round:before {
     }
 
     .social-buttons a.instagram i {
-      color: #E1306C; /* Instagram pink */
+      color: #E1306C; 
     }
 
     .social-buttons i:hover {
@@ -1072,11 +1062,11 @@ font-size: 32px;
   position: fixed;
   top: 10px;
   left: 0;
-  background: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+  background: rgba(0, 0, 0, 0.8); 
   color: white;
   padding: 10px 15px;
   font-size: 16px;
-  z-index: 999999; /* ensures it's above everything */
+  z-index: 999999; 
   border-bottom-right-radius: 8px;
         }
     </style>
@@ -1093,12 +1083,10 @@ font-size: 32px;
       <i class="fab fa-discord"></i>
     </a>
 
- 
     <a href="https://instagram.com/kavyant1" target="_blank" class="instagram">
       <i class="fab fa-instagram"></i>
     </a>
   </div>
-
 
     <!-- Swipe Settings Button -->
 <div class="settings-swipe-area"></div>
@@ -1131,7 +1119,7 @@ font-size: 32px;
     <p>(Placeholder for stream settings like quality, subtitles, etc.)</p>
   </div>
 </div>
-    
+
     <header class="header" id="header">
         <nav class="nav">
             <div class="nav-top">
@@ -1157,8 +1145,7 @@ font-size: 32px;
                 Start Watching
             </button>
         </div>
-        
-        
+
     </section>
     <div id="historyList" class="history-list" style="display: none; margin-top: 20px;">
   <h3>Watch History</h3>
@@ -1167,7 +1154,7 @@ font-size: 32px;
 
     <main class="content" id="content">
         <h2 class="section-title">Popular Content</h2>
-        
+
         <div class="category-tabs">
             <button class="tab-btn active" data-type="trending">🔥 Trending</button>
             <button class="tab-btn" data-type="popular-movies">🎬 Popular Movies</button>
@@ -1209,13 +1196,11 @@ font-size: 32px;
     </footer>
 
     <script>
-        
-   
+
   const historyToggle = document.getElementById('historyToggle');
   const historyList = document.getElementById('historyList');
   const historyItems = document.getElementById('historyItems');
 
-  // Load history from localStorage
   function loadHistory() {
     const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
     historyItems.innerHTML = "";
@@ -1232,7 +1217,6 @@ font-size: 32px;
     });
   }
 
-  // Save to history
   function saveToHistory(title) {
     const now = new Date();
     const formattedTime = now.toLocaleString();
@@ -1240,18 +1224,15 @@ font-size: 32px;
 
     history.unshift({ title, time: formattedTime });
 
-    // Optional: Limit history size
     if (history.length > 50) history.pop();
 
     localStorage.setItem('watchHistory', JSON.stringify(history));
 
-    // Update history view if toggle is ON
     if (historyToggle.checked) {
       loadHistory();
     }
   }
 
-  // Toggle show/hide history section
   historyToggle.addEventListener('change', () => {
     if (historyToggle.checked) {
       historyList.style.display = 'block';
@@ -1261,7 +1242,6 @@ font-size: 32px;
     }
   });
 
-  // Example: simulate watch event (replace this with your real player logic)
   document.querySelectorAll('.watchable').forEach(item => {
     item.addEventListener('click', () => {
       const title = item.dataset.title;
@@ -1269,7 +1249,6 @@ font-size: 32px;
     });
   });
 
-     
   let startX = 0;
   let isSwiping = false;
   const settingsBtn = document.getElementById('settingsBtn');
@@ -1294,22 +1273,19 @@ font-size: 32px;
     }
   }
 
-  // Show on swipe from left
   swipeArea.addEventListener('touchstart', handleTouchStart);
   swipeArea.addEventListener('touchmove', handleTouchMove);
   swipeArea.addEventListener('mousedown', handleTouchStart);
   document.addEventListener('mousemove', handleTouchMove);
 
-  // Hide when clicking anywhere else
   document.addEventListener('click', (e) => {
     if (!settingsBtn.contains(e.target)) {
       settingsBtn.classList.remove('visible');
     }
   });
 
-  // Optional: Settings action
   settingsBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent hiding on its own click
+    e.stopPropagation(); 
     alert("Open settings panel here");
   });
 
@@ -1318,13 +1294,11 @@ font-size: 32px;
   const guestId = Math.floor(Math.random() * (999999 - 293802 + 1)) + 293802;
   document.getElementById('guestId').textContent = guestId;
 
-  // Open settings panel from settings button
   settingsBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     settingsPanel.classList.add('visible');
   });
 
-  // Close settings panel when tapping elsewhere
   document.addEventListener('click', (e) => {
     if (!settingsPanel.contains(e.target) && !settingsBtn.contains(e.target)) {
       settingsPanel.classList.remove('visible');
@@ -1332,7 +1306,6 @@ font-size: 32px;
     }
   });
 
-  // Stream settings button
   document.getElementById('openStreamSettings').addEventListener('click', () => {
     streamPanel.style.display = 'block';
   });
@@ -1341,21 +1314,15 @@ font-size: 32px;
     streamPanel.style.display = 'none';
   });
 
-  // Show history toggle (default is off)
   document.getElementById('historyToggle').checked = false;
 
-
-
-        // Configuration
         const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
         const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
         const VIDSRC_BASE = 'https://vidsrc.xyz/embed';
 
-        // State
         let currentContent = [];
         let isSearching = false;
 
-        // DOM Elements
         const header = document.getElementById('header');
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
@@ -1365,15 +1332,13 @@ font-size: 32px;
         const modalTitle = document.getElementById('modalTitle');
         const videoContainer = document.getElementById('videoContainer');
 
-        // Initialize app
         window.addEventListener('DOMContentLoaded', () => {
             loadTrendingContent();
             setupEventListeners();
         });
 
-        // Event Listeners
         function setupEventListeners() {
-            // Header scroll effect
+
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 100) {
                     header.classList.add('scrolled');
@@ -1382,14 +1347,12 @@ font-size: 32px;
                 }
             });
 
-            // Search functionality with better UX
             searchInput.addEventListener('input', (e) => {
-                // Clear previous timeout
+
                 if (window.searchTimeout) {
                     clearTimeout(window.searchTimeout);
                 }
-                
-                // Add small delay for better UX
+
                 window.searchTimeout = setTimeout(() => {
                     if (e.target.value.trim()) {
                         performSearch();
@@ -1410,7 +1373,6 @@ font-size: 32px;
 
             searchBtn.addEventListener('click', performSearch);
 
-            // Navigation links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1419,7 +1381,6 @@ font-size: 32px;
                 });
             });
 
-            // Tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const type = e.target.dataset.type;
@@ -1427,7 +1388,6 @@ font-size: 32px;
                 });
             });
 
-            // Modal close on outside click
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeModal();
@@ -1441,9 +1401,9 @@ document.addEventListener('click', function(e) {
         console.log('Blocked a tab-opening ad link:', target.href);
     }
 }, true);
-        // Extended movie and TV database
+
         const movieDatabase = [
-            // Action Movies
+
             {
                 id: 299534,
                 title: "Avengers: Endgame",
@@ -1525,7 +1485,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // More Action/Adventure
+
             {
                 id: 315635,
                 title: "Spider-Man: Homecoming",
@@ -1571,7 +1531,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // Horror/Thriller
+
             {
                 id: 346364,
                 title: "It",
@@ -1599,7 +1559,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // Comedy
+
             {
                 id: 324857,
                 title: "Spider-Man: Into the Spider-Verse",
@@ -1627,7 +1587,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // Drama
+
             {
                 id: 278,
                 title: "The Shawshank Redemption",
@@ -1664,7 +1624,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // Recent Popular Movies
+
             {
                 id: 507089,
                 title: "Five Nights at Freddy's",
@@ -1710,7 +1670,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // TV Shows
+
             {
                 id: 1399,
                 name: "Game of Thrones",
@@ -1846,7 +1806,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "tv"
             },
-            // More Recent Movies
+
             {
                 id: 634649,
                 title: "Spider-Man: No Way Home",
@@ -1901,7 +1861,7 @@ document.addEventListener('click', function(e) {
                 poster_path: null,
                 media_type: "movie"
             },
-            // Classic Movies
+
             {
                 id: 122,
                 title: "The Lord of the Rings: The Return of the King",
@@ -2045,8 +2005,8 @@ movieDatabase.push(
     id: 9740,
     title: "Hannibal",
     overview: "After having successfully eluded the authorities for years, Hannibal peacefully lives in Italy in disguise as an art scholar. Trouble strikes again when he's discovered leaving a deserving few dead in the process.",
-    release_date: "2001-02-09",  // US wide release around early February 2001
-    vote_average: null,  // (vote average not provided in your context)
+    release_date: "2001-02-09",  
+    vote_average: null,  
     poster_path: null,
     media_type: "movie"
   },
@@ -2078,10 +2038,10 @@ movieDatabase.push(
     media_type: "movie"
   }
 );
-        // Content Loading Functions
+
         async function loadTrendingContent() {
             showLoading();
-            // Use sample trending content
+
             currentContent = [...movieDatabase].sort(() => Math.random() - 0.5).slice(0, 16);
             displayContent(currentContent);
             hideLoading();
@@ -2089,7 +2049,7 @@ movieDatabase.push(
 
         async function loadPopularMovies() {
             showLoading();
-            // Filter movies from database
+
             currentContent = movieDatabase.filter(item => item.media_type === 'movie');
             displayContent(currentContent);
             hideLoading();
@@ -2097,7 +2057,7 @@ movieDatabase.push(
 
         async function loadPopularTV() {
             showLoading();
-            // Filter TV shows from database
+
             currentContent = movieDatabase.filter(item => item.media_type === 'tv');
             displayContent(currentContent);
             hideLoading();
@@ -2105,7 +2065,7 @@ movieDatabase.push(
 
         async function loadTopRated() {
             showLoading();
-            // Use highest rated content
+
             currentContent = [...movieDatabase].sort((a, b) => b.vote_average - a.vote_average).slice(0, 15);
             displayContent(currentContent);
             hideLoading();
@@ -2120,8 +2080,7 @@ movieDatabase.push(
 
             isSearching = true;
             showLoading();
-            
-            // Search through movie database
+
             const searchResults = movieDatabase.filter(item => {
                 const title = (item.title || item.name || '').toLowerCase();
                 const overview = (item.overview || '').toLowerCase();
@@ -2133,7 +2092,6 @@ movieDatabase.push(
             hideLoading();
         }
 
-        // Display Functions
         function displayContent(items) {
             if (!items || items.length === 0) {
                 contentGrid.innerHTML = `
@@ -2178,7 +2136,6 @@ movieDatabase.push(
             `;
         }
 
-        // Navigation Functions
         function switchCategory(category) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -2226,18 +2183,16 @@ movieDatabase.push(
             }
         }
 
-        // Video Player Functions
         function playContent(tmdbId, mediaType, title) {
             modalTitle.textContent = title;
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
 
-            // Create embed URL based on media type
             let embedUrl;
             if (mediaType === 'movie') {
                 embedUrl = `${VIDSRC_BASE}/movie?tmdb=${tmdbId}&autoplay=1`;
             } else {
-                // For TV shows, default to season 1 episode 1
+
                 embedUrl = `${VIDSRC_BASE}/tv?tmdb=${tmdbId}&season=1&episode=1&autoplay=1&autonext=1`;
             }
 
@@ -2255,7 +2210,6 @@ movieDatabase.push(
             `;
         }
 
-        // Utility Functions
         function showLoading() {
             loading.style.display = 'flex';
             contentGrid.style.display = 'none';
@@ -2266,28 +2220,23 @@ movieDatabase.push(
             contentGrid.style.display = 'grid';
         }
 
-        // Handle ESC key for modal
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.style.display === 'block') {
                 closeModal();
             }
         });
 
-        // Note: This app now works with an extensive movie database!
         console.log('🎬 StreamFlix App Loaded - Enhanced with 50+ movies and TV shows!');
         console.log('🔍 Search functionality works with expanded content database');
         console.log('📱 Search bar now positioned below StreamFlix logo');
-        
 
 (function() {
     'use strict';
-
 
     window.open = function() {
         console.warn('Blocked window.open attempt');
         return null;
     };
-
 
     document.addEventListener('click', function(e) {
         let link = e.target.closest('a');
@@ -2301,12 +2250,10 @@ movieDatabase.push(
         }
     }, true);
 
-    // Watch for fake "video click" triggers (common on pirated/streaming sites)
     document.addEventListener('mousedown', function(e) {
         e.stopImmediatePropagation();
     }, true);
 
-    // Stop window.open inside setTimeout or click handlers
     const originalSetTimeout = window.setTimeout;
     window.setTimeout = function(callback, delay) {
         if (typeof callback === 'function') {
@@ -2328,7 +2275,6 @@ movieDatabase.push(
         return originalSetTimeout(callback, delay);
     };
 
-    // Prevent known redirect scripts
     Object.defineProperty(window, 'open', {
         configurable: false,
         writable: false,
@@ -2340,16 +2286,15 @@ movieDatabase.push(
 })();
 
 document.getElementById("nextEpisodeBtn").addEventListener("click", () => {
-  // Try to load the next episode
+
   currentEpisode++;
 
-  // Check if next episode exists in the episode list
   const nextEpisodeExists = episodes.find(ep => ep.season_number === currentSeason && ep.episode_number === currentEpisode);
 
   if (nextEpisodeExists) {
     loadVideo(currentShowId, currentSeason, currentEpisode);
   } else {
-    // Try to move to the next season
+
     const nextSeasonNumber = currentSeason + 1;
     const firstEpisodeNextSeason = episodes.find(ep => ep.season_number === nextSeasonNumber && ep.episode_number === 1);
 
@@ -2359,7 +2304,7 @@ document.getElementById("nextEpisodeBtn").addEventListener("click", () => {
       loadVideo(currentShowId, currentSeason, currentEpisode);
     } else {
       alert("No more episodes available.");
-      currentEpisode--; // revert since we added blindly above
+      currentEpisode--; 
     }
   }
 });
@@ -2478,7 +2423,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 445566,  // ID lookup
+    id: 445566,  
     title: "Boo! A Madea Halloween",
     overview: "Madea watches over her great-niece for a night of Halloween pranks and chaos.",
     release_date: "2016-10-21",
@@ -2505,7 +2450,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 778899,  // lookup
+    id: 778899,  
     title: "A Madea Homecoming",
     overview: "Madea hosts her great‑grandson’s college graduation party and family chaos ensues.",
     release_date: "2022-02-25",
@@ -2514,7 +2459,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 990011,  // lookup
+    id: 990011,  
     title: "Madea's Destination Wedding",
     overview: "Madea travels to the Bahamas for her grandniece’s wedding and family surprises.",
     release_date: "2025-07-11",
@@ -2525,7 +2470,7 @@ movieDatabase.push(
 );
         movieDatabase.push(
   {
-    id: 100923,                 // TMDb ID for Haikyu!! The Arrival of Lev (OVA)
+    id: 100923,                 
     name: "Haikyu!! OVA 1: The Arrival of Lev",
     overview: "A 22‑minute extra focusing on Lev and Kenma learning teamwork ahead of the main plot.",
     first_air_date: "2015-03-04",
@@ -2534,7 +2479,7 @@ movieDatabase.push(
     media_type: "tv"
   },
   {
-    id: 105142,                 // TMDb ID for Haikyu!! OVA 2: VS Failing Grades
+    id: 105142,                 
     name: "Haikyu!! OVA 2: VS Failing Grades",
     overview: "An expanded look at Kageyama studying and Tanaka trying to get a ride with his sister.",
     first_air_date: "2016-05-02",
@@ -2543,7 +2488,7 @@ movieDatabase.push(
     media_type: "tv"
   },
   {
-    id: 155081,                 // TMDb IDs for both OVAs in Jan 2020 batch (may differ)
+    id: 155081,                 
     name: "Haikyu!! OVA 3: Land vs. Sky",
     overview: "First of two Tokyo‑Nationals qualifier OVAs adapting Haru‑ko Volley arc.",
     first_air_date: "2020-01-22",
@@ -2561,16 +2506,16 @@ movieDatabase.push(
     media_type: "tv"
   },
   {
-    id: 397466,                 // TMDb ID for The End and the Beginning (Movie 1)
+    id: 397466,                 
     title: "Haikyu!! Movie 1: The End and the Beginning",
     overview: "Recap of first half Season 1 with added bonus scenes like Karasuno mop repairs.",
-    release_date: "2015-03-14", // Japan disc initially
+    release_date: "2015-03-14", 
     vote_average: null,
     poster_path: null,
     media_type: "movie"
   },
   {
-    id: 397467,                 // TMDb ID for Winners and Losers (Movie 2)
+    id: 397467,                 
     title: "Haikyu!! Movie 2: The Winner and the Loser",
     overview: "Recap of second half of Season 1, with extra flashback scenes for Date Tech.",
     release_date: "2015-10-03",
@@ -2579,7 +2524,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 422375,                 // TMDb ID for Talent and Sense (Movie 3)
+    id: 422375,                 
     title: "Haikyu!! Movie 3: Talent and Sense",
     overview: "Recap of Season 2 / Seijoh match with bonus side scenes and character arcs.",
     release_date: "2017-02-18",
@@ -2588,7 +2533,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 450982,                 // TMDb ID for Battle of Concepts (Movie 4)
+    id: 450982,                 
     title: "Haikyu!! Movie 4: Battle of Concepts",
     overview: "Recap of Season 3 action with added advice scenes featuring Ushijima and others.",
     release_date: "2017-11-03",
@@ -2597,7 +2542,7 @@ movieDatabase.push(
     media_type: "movie"
   },
   {
-    id: 1028453,                // TMDb ID for Final Film: The Dumpster Battle
+    id: 1028453,                
     title: "Haikyu!! The Dumpster Battle",
     overview: "The 2024 theatrical sequel film where Karasuno faces Nekoma in the Spring Nationals.",
     release_date: "2024-02-16",
@@ -2619,7 +2564,7 @@ movieDatabase.push(
 );
         movieDatabase.push(
   {
-    id: 14164730,       // approximate TMDb ID for New Blood
+    id: 14164730,       
     name: "Dexter: New Blood",
     overview: "Set ten years after Dexter’s presumed death in Miami, he lives under a false identity in upstate New York until his estranged son appears and draws him back into darkness.",
     first_air_date: "2021-11-07",
@@ -2628,7 +2573,7 @@ movieDatabase.push(
     media_type: "tv"
   },
   {
-    id: 219937,        // TMDb ID for Original Sin
+    id: 219937,        
     name: "Dexter: Original Sin",
     overview: "A prequel set in 1991 Miami: young Dexter learns to channel his bloodthirsty urges with guidance from his father, while working a forensics internship at Miami Metro PD.",
     first_air_date: "2024-12-13",
@@ -2637,7 +2582,7 @@ movieDatabase.push(
     media_type: "tv"
   },
   {
-    id: 259909,        // TMDb ID for Resurrection
+    id: 259909,        
     name: "Dexter: Resurrection",
     overview: "Weeks after New Blood, Dexter wakes from a coma and heads to New York to find his son Harrison—only to discover dark secrets, FBI characters, and legacy he can’t escape.",
     first_air_date: "2025-07-11",
@@ -2717,4 +2662,4 @@ movieDatabase.push(
 );
     </script>
 </body>
-</html>
+    </html>
