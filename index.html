@@ -1067,12 +1067,28 @@ input:checked + .slider.round:before {
     .social-buttons i:hover {
       transform: scale(1.1);
     }
+        .overlay-top-left {
+font-size: 32px;
+  position: fixed;
+  top: 10px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  z-index: 999999; /* ensures it's above everything */
+  border-bottom-right-radius: 8px;
+        }
     </style>
 </head>
 
 <body>
 <div class="social-buttons">
-  
+  <div class="overlay-top-left">
+  <a href="guide-book.html" class="overlay-top-left" title="Open Guide Book">
+  <i class="fas fa-book"></i>
+</a>
+  </div>
     <a href="https://discord.gg/zMwSVESyFA" target="_blank" class="discord">
       <i class="fab fa-discord"></i>
     </a>
