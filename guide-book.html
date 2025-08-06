@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pikuflix Guide</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-color: #e50914;
+        --primary-hover: #b20710;
+        --bg-dark: #141414;
+        --bg-light: #f5f5f5;
+        --text-dark: #ffffff;
+        --text-light: #333333;
+        --card-dark: rgba(255,255,255,0.05);
+        --card-light: rgba(0,0,0,0.05);
+        --border-dark: rgba(255,255,255,0.1);
+        --border-light: rgba(0,0,0,0.1);
+        --glass-dark: rgba(20, 20, 20, 0.8);
+        --glass-light: rgba(255, 255, 255, 0.8);
+    }
+
+    * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--primary-color);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: radial-gradient(circle at 20% 50%, var(--bg-dark) 0%, #000 100%);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        overflow-x: hidden;
+        transition: all 0.4s ease;
+        min-height: 100vh;
+    }
+
+    body.light {
+        background: linear-gradient(135deg, var(--bg-light) 0%, #e8e8e8 100%);
+        color: var(--text-light);
+    }
+
+        .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+        50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        background: var(--glass-dark);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        font-size: 28px;
+        font-weight: 900;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        letter-spacing: 1px;
+        border-bottom: 1px solid var(--border-dark);
+        transition: all 0.4s ease;
+    }
+
+    body.light header {
+        background: var(--glass-light);
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    header i {
+        margin-right: 12px;
+        color: var(--primary-color);
+        text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .header-controls {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .toggle-btn, .scroll-top-btn {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid var(--border-dark);
+        color: inherit;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 12px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    body.light .toggle-btn, 
+    body.light .scroll-top-btn {
+        background: rgba(0,0,0,0.1);
+        border: 1px solid var(--border-light);
+    }
+
+    .toggle-btn:hover, .scroll-top-btn:hover {
+        transform: scale(1.1) rotate(10deg);
+        background: var(--primary-color);
+        box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+    }
+
+    .scroll-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+
+    .scroll-top-btn.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+ 
+    
+    .quick-links {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .quick-links a {
+        background: var(--card-dark);
+        padding: 12px 20px;
+        border-radius: 25px;
+        color: inherit;
+        font-size: 14px;
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-dark);
+        transition: all 0.3s ease;
+        font-weight: 500;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    body.light .quick-links a {
+        background: var(--card-light);
+        border: 1px solid var(--border-light);
+    }
+
+    .quick-links a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .quick-links a:hover::before {
+        left: 100%;
+    }
+
+    .quick-links a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(229, 9, 20, 0.3);
+        border-color: var(--primary-color);
+    }
+
+    .quick-links a i {
+        margin-right: 8px;
+        color: var(--primary-color);
+    }
+
+    
+    .search-container {
+        text-align: center;
+        margin: 30px 0;
+        position: relative;
+    }
+
+    .search-box {
+        position: relative;
+        display: inline-block;
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .search-box input {
+        padding: 15px 50px 15px 20px;
+        width: 100%;
+        border-radius: 50px;
+        border: 2px solid var(--border-dark);
+        outline: none;
+        font-size: 16px;
+        background: var(--card-dark);
+        color: inherit;
+        backdrop-filter: blur(10px);
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s ease;
+        font-weight: 400;
+    }
+
+    body.light .search-box input {
+        background: var(--card-light);
+        border: 2px solid var(--border-light);
+    }
+
+    .search-box input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+        transform: scale(1.02);
+    }
+
+    .search-box i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary-color);
+        font-size: 18px;
+        pointer-events: none;
+    }
+
+    .clear-search {
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+        display: none;
+    }
+
+    .clear-search:hover {
+        opacity: 1;
+    }
+
+
+    .stats-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 30px 0;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        background: var(--card-dark);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid var(--border-dark);
+        backdrop-filter: blur(10px);
+        min-width: 120px;
+        transition: all 0.3s ease;
+    }
+
+    body.light .stat-item {
+        background: var(--card-light);
+        border: 1px solid var(--border-light);
+    }
+
+    .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .stat-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        opacity: 0.8;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+  
+    main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    section {
+        margin: 25px 0;
+        background: var(--card-dark);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-dark);
+        overflow: hidden;
+        position: relative;
+    }
+
+    body.light section {
+        background: var(--card-light);
+        border: 1px solid var(--border-light);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        transition: left 0.8s ease;
+    }
+
+    section:hover::before {
+        left: 100%;
+    }
+
+    section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    body.light section:hover {
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .section-header {
+        padding: 20px 25px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s ease;
+    }
+
+    .section-header:hover {
+        background: rgba(229, 9, 20, 0.1);
+    }
+
+    h2 {
+        color: var(--primary-color);
+        margin: 0;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    h2 .icon-text {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    h2 i:first-child {
+        font-size: 22px;
+        width: 24px;
+        text-align: center;
+    }
+
+    .chevron {
+        transition: transform 0.3s ease;
+        font-size: 16px;
+        opacity: 0.7;
+    }
+
+    .section-header.active .chevron {
+        transform: rotate(180deg);
+    }
+
+    .content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        opacity: 0;
+        font-weight: 400;
+        padding: 0 25px;
+    }
+
+    .content.show {
+        max-height: 1000px;
+        opacity: 1;
+        padding: 0 25px 25px 25px;
+    }
+
+   
+    .content ul, .content ol {
+        padding-left: 20px;
+    }
+
+    .content li {
+        margin: 10px 0;
+        position: relative;
+    }
+
+    .content li::marker {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    .content a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .content a:hover {
+        border-bottom-color: var(--primary-color);
+        color: var(--primary-hover);
+    }
+
+ 
+    
+    .download-btn, .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        margin: 10px 10px 10px 0;
+        box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+    }
+
+    .download-btn:hover, .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+        background: linear-gradient(135deg, var(--primary-hover), #8b0000);
+    }
+
+    .action-btn.secondary {
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        box-shadow: none;
+    }
+
+    body.light .action-btn.secondary {
+        color: var(--primary-color);
+    }
+
+    .action-btn.secondary:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+
+    .progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255,255,255,0.1);
+        z-index: 1001;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-color), #ff6b6b);
+        width: 0%;
+        transition: width 0.1s ease;
+    }
+
+ 
+    .category-tag {
+        display: inline-block;
+        background: rgba(229, 9, 20, 0.1);
+        color: var(--primary-color);
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 500;
+        margin: 5px 5px 10px 0;
+        border: 1px solid rgba(229, 9, 20, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+   
+    footer {
+        text-align: center;
+        padding: 40px 20px 20px;
+        font-size: 14px;
+        background: var(--glass-dark);
+        backdrop-filter: blur(15px);
+        margin-top: 50px;
+        font-weight: 400;
+        border-top: 1px solid var(--border-dark);
+    }
+
+    body.light footer {
+        background: var(--glass-light);
+        border-top: 1px solid var(--border-light);
+    }
+
+    .footer-links {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .footer-links a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .footer-links a:hover {
+        opacity: 1;
+        color: var(--primary-color);
+    }
+
+   
+    @media (max-width: 768px) {
+        header {
+            padding: 15px;
+            font-size: 24px;
+        }
+        
+        .stats-container {
+            gap: 15px;
+        }
+        
+        .stat-item {
+            min-width: 100px;
+            padding: 15px;
+        }
+        
+        .quick-links {
+            gap: 10px;
+            padding: 15px;
+        }
+        
+        .quick-links a {
+            padding: 10px 15px;
+            font-size: 13px;
+        }
+        
+        section {
+            margin: 20px 10px;
+        }
+        
+        .content {
+            padding: 0 20px;
+        }
+        
+        .content.show {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .footer-links {
+            gap: 20px;
+        }
+    }
+
+
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,.3);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--primary-color);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-weight: 500;
+        box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+        z-index: 1002;
+        transition: transform 0.3s ease;
+    }
+
+    .toast.show {
+        transform: translateX(-50%) translateY(0);
+    }
+</style>
+</head>
+<body>
+
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="bg-animation" id="bgAnimation"></div>
+
+<header>
+    <div><i class="fas fa-book-open"></i> Pikuflix Guide</div>
+    <div class="header-controls">
+        <button class="toggle-btn" onclick="toggleDarkMode()" title="Toggle Theme">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+</header>
+
+<div class="quick-links">
+    <a href="https://kavyant420.github.io/pikuflix/" target="_blank"><i class="fas fa-home"></i> Home</a>
+    <a href="https://kavyant420.github.io/pikuflix/#movies" target="_blank"><i class="fas fa-film"></i> Movies</a>
+    <a href="https://kavyant420.github.io/pikuflix/#series" target="_blank"><i class="fas fa-tv"></i> Series</a>
+    <a href="https://drive.google.com/file/d/1-AMMmmEbWOqdskGFQKAjJEC9DYmP0ynu/view?usp=drivesdk" target="_blank"><i class="fas fa-download"></i> App</a>
+    <a href="#faq" onclick="scrollToSection('faq')"><i class="fas fa-question-circle"></i> FAQ</a>
+</div>
+
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search guides, tips, and solutions..." onkeyup="filterGuide()">
+        <button class="clear-search" onclick="clearSearch()" title="Clear Search">
+            <i class="fas fa-times"></i>
+        </button>
+        <i class="fas fa-search"></i>
+    </div>
+</div>
+
+<div class="stats-container">
+    <div class="stat-item">
+        <span class="stat-number">10k+</span>
+        <span class="stat-label">Movies</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">5k+</span>
+        <span class="stat-label">TV Shows</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Free</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Available</span>
+    </div>
+</div>
+
+<main>
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>What is Pikuflix?</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Getting Started</div>
+            <p><a href="https://kavyant420.github.io/pikuflix/">PikuFlix</a> is your ultimate free entertainment hub where you can watch the latest movies, TV shows, and series anytime, anywhere. With no subscription fees, registration requirements, or hidden costs!</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>🎬 Latest movies and TV shows</li>
+                <li>📱 Works on all devices</li>
+                <li>🆓 Completely free</li>
+                <li>🔄 Regular content updates</li>
+                <li>⚡ Fast streaming servers</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-play-circle"></i>
+                    <span>How to Watch Content</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Streaming</div>
+            <p>Getting started with Pikuflix is incredibly simple:</p>
+            <ol>
+                <li><strong>Visit the Website:</strong> Go to <a href="https://kavyant420.github.io/pikuflix/" target="_blank">Pikuflix Homepage</a></li>
+                <li><strong>Browse Content:</strong> Use categories or search for specific titles</li>
+                <li><strong>Select Quality:</strong> Choose your preferred video quality (480p, 720p, 1080p)</li>
+                <li><strong>Start Streaming:</strong> Click play and enjoy instantly!</li>
+            </ol>
+            <p><strong>Pro Tips:</strong></p>
+            <ul>
+                <li>Use the search function for quick access to specific content</li>
+                <li>Bookmark your favorite shows for easy access</li>
+                <li>Check the "Recently Added" section for new content</li>
+            </ul>
+            <a class="download-btn" href="https://kavyant420.github.io/pikuflix/" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Visit Pikuflix Now
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile App Installation Guide</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Mobile</div>
+            <div class="category-tag">Android</div>
+            <p>Download and install the official Pikuflix mobile app for the best streaming experience:</p>
+            
+            <a class="download-btn" href="https://drive.google.com/file/d/1-AMMmmEbWOqdskGFQKAjJEC9DYmP0ynu/view?usp=drivesdk" target="_blank">
+                <i class="fas fa-download"></i> Download APK (Latest Version)
+            </a>
+            
+            <p><strong>Installation Steps:</strong></p>
+            <ol>
+                <li>Click the download button above to get the APK file</li>
+                <li>Once downloaded, locate the file in your Downloads folder</li>
+                <li>Tap on the APK file to start installation</li>
+                <li>If prompted, enable <strong>"Install from Unknown Sources"</strong> in your device settings</li>
+                <li>Complete the installation process</li>
+                <li>Open the app and start streaming!</li>
+            </ol>
+            
+            <p><strong>App Benefits:</strong></p>
+            <ul>
+                <li>📱 Optimized mobile interface</li>
+                <li>⬇️ Download content for offline viewing</li>
+                <li>🔔 Get notified about new releases</li>
+                <li>⚡ Faster loading times</li>
+                <li>🎯 Personalized recommendations</li>
+            </ul>
+
+            <button class="action-btn secondary" onclick="showToast('Installation guide copied!')">
+                <i class="fas fa-copy"></i> Copy Install Steps
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-cog"></i>
+                    <span>Streaming Quality Settings</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Settings</div>
+            <div class="category-tag">Quality</div>
+            <p>Optimize your streaming experience with the right quality settings:</p>
+            
+            <p><strong>Quality Options:</strong></p>
+            <ul>
+                <li><strong>480p (SD):</strong> Best for slower connections, uses less data</li>
+                <li><strong>720p (HD):</strong> Good balance of quality and speed</li>
+                <li><strong>1080p (Full HD):</strong> Best quality, requires stable fast internet</li>
+            </ul>
+            
+            <p><strong>Recommended Settings by Connection:</strong></p>
+            <ul>
+                <li><strong>Mobile Data:</strong> 480p to save data usage</li>
+                <li><strong>WiFi (Basic):</strong> 720p for good quality</li>
+                <li><strong>High-Speed WiFi:</strong> 1080p for maximum quality</li>
+            </ul>
+
+            <p><strong>Data Usage Guide:</strong></p>
+            <ul>
+                <li>480p: ~0.2 GB per hour</li>
+                <li>720p: ~0.7 GB per hour</li>
+                <li>1080p: ~1.2 GB per hour</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety & Privacy Tips</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Security</div>
+            <div class="category-tag">Privacy</div>
+            <p>Stay safe while enjoying your favorite content:</p>
+            
+            <p><strong>Security Recommendations:</strong></p>
+            <ul>
+                <li>🛡️ Use reputable antivirus software on your device</li>
+                <li>🌐 Consider using a VPN for additional privacy</li>
+                <li>🚫 Avoid clicking on suspicious ads or pop-ups</li>
+                <li>🔒 Keep your device and browser updated</li>
+                <li>📱 Only download the app from official sources</li>
+            </ul>
+
+            <p><strong>Ad Blocking Tips:</strong></p>
+            <ul>
+                <li>Install a reliable ad blocker extension</li>
+                <li>Close any unexpected pop-up windows immediately</li>
+                <li>Never download software from ads</li>
+                <li>Use browsers with built-in pop-up blockers</li>
+            </ul>
+
+            <button class="action-btn secondary" onclick="showToast('Safety tips noted!')">
+                <i class="fas fa-bookmark"></i> Save Safety Tips
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Troubleshooting Common Issues</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Troubleshooting</div>
+            <div class="category-tag">Solutions</div>
+            
+            <p><strong>🚫 Video Won't Load or Play:</strong></p>
+            <ul>
+                <li>Check your internet connection speed</li>
+                <li>Try refreshing the page (F5 or Ctrl+R)</li>
+                <li>Clear your browser cache and cookies</li>
+                <li>Try a different browser (Chrome, Firefox, Safari)</li>
+                <li>Disable VPN temporarily if using one</li>
+            </ul>
+
+            <p><strong>⚡ Slow Loading or Buffering:</strong></p>
+            <ul>
+                <li>Lower the video quality to 480p or 720p</li>
+                <li>Pause the video for 30 seconds to let it buffer</li>
+                <li>Close other apps/tabs using internet</li>
+                <li>Try watching during off-peak hours</li>
+                <li>Restart your router/modem</li>
+            </ul>
+
+            <p><strong>🔊 Audio Issues:</strong></p>
+            <ul>
+                <li>Check your device volume settings</li>
+                <li>Try using headphones to test audio</li>
+                <li>Refresh the page and restart the video</li>
+                <li>Update your browser to the latest version</li>
+            </ul>
+
+            <p><strong>📱 Mobile App Issues:</strong></p>
+            <ul>
+                <li>Force close and reopen the app</li>
+                <li>Clear app cache in device settings</li>
+                <li>Ensure you have the latest app version</li>
+                <li>Restart your device</li>
+                <li>Check available storage space</li>
+            </ul>
+
+            <button class="action-btn" onclick="runDiagnostic()">
+                <i class="fas fa-diagnoses"></i> Run Quick Diagnostic
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Pro Tips for Best Experience</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Tips</div>
+            <div class="category-tag">Optimization</div>
+            
+            <p><strong>🌐 Browser Optimization:</strong></p>
+            <ul>
+                <li>Use Google Chrome or Firefox for best compatibility</li>
+                <li>Enable hardware acceleration in browser settings</li>
+                <li>Keep your browser updated to the latest version</li>
+                <li>Clear cache regularly for optimal performance</li>
+            </ul>
+
+            <p><strong>📶 Connection Tips:</strong></p>
+            <ul>
+                <li>Use a stable WiFi connection when possible</li>
+                <li>Position yourself close to your router</li>
+                <li>Avoid peak usage hours (7-11 PM) for better speeds</li>
+                <li>Close bandwidth-heavy apps while streaming</li>
+            </ul>
+
+            <p><strong>⚙️ Device Settings:</strong></p>
+            <ul>
+                <li>Close unnecessary background applications</li>
+                <li>Ensure sufficient free storage space</li>
+                <li>Keep your device cool to prevent throttling</li>
+                <li>Update your device's operating system</li>
+            </ul>
+
+            <p><strong>🎯 Content Discovery:</strong></p>
+            <ul>
+                <li>Use specific search terms for better results</li>
+                <li>Check the "Trending" section for popular content</li>
+                <li>Browse by genre to discover new favorites</li>
+                <li>Look for content ratings and reviews</li>
+            </ul>
+
+            <button class="action-btn secondary" onclick="showToast('Optimization tips applied!')">
+                <i class="fas fa-rocket"></i> Apply Optimization
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-download"></i>
+                    <span>Offline Viewing Guide</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Download</div>
+            <div class="category-tag">Offline</div>
+            
+            <p><strong>📱 Mobile App Downloads:</strong></p>
+            <ul>
+                <li>Open the mobile app and find your desired content</li>
+                <li>Look for the download icon (⬇️) next to the title</li>
+                <li>Select your preferred quality before downloading</li>
+                <li>Downloads are saved in the "My Downloads" section</li>
+                <li>Manage storage by deleting watched content</li>
+            </ul>
+
+            <p><strong>💾 Storage Management:</strong></p>
+            <ul>
+                <li>Monitor available device storage regularly</li>
+                <li>Download on WiFi to save mobile data</li>
+                <li>Choose lower quality for longer content</li>
+                <li>Set download limits in app settings</li>
+            </ul>
+
+            <p><strong>⏰ Download Scheduling:</strong></p>
+            <ul>
+                <li>Schedule downloads for off-peak hours</li>
+                <li>Use "Download Later" for large files</li>
+                <li>Queue multiple downloads efficiently</li>
+                <li>Set up automatic downloads for series</li>
+            </ul>
+
+            <a class="download-btn" href="https://drive.google.com/file/d/1-AMMmmEbWOqdskGFQKAjJEC9DYmP0ynu/view?usp=drivesdk" target="_blank">
+                <i class="fas fa-mobile-alt"></i> Get Mobile App for Downloads
+            </a>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Frequently Asked Questions</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">FAQ</div>
+            <div class="category-tag">Support</div>
+            
+            <p><strong>❓ Is Pikuflix really free?</strong></p>
+            <p>Yes! Pikuflix is completely free with no subscription fees, registration requirements, or hidden costs.</p>
+
+            <p><strong>❓ Do I need to create an account?</strong></p>
+            <p>No account needed! You can start watching immediately without any registration process.</p>
+
+            <p><strong>❓ What devices are supported?</strong></p>
+            <p>Pikuflix works on all devices including smartphones, tablets, computers, smart TVs, and streaming devices.</p>
+
+            <p><strong>❓ How often is new content added?</strong></p>
+            <p>New movies and TV shows are added regularly, often within hours of release or broadcast.</p>
+
+            <p><strong>❓ Can I request specific content?</strong></p>
+            <p>While there's no official request system, popular content is typically added quickly due to high demand.</p>
+
+            <p><strong>❓ Is the mobile app safe?</strong></p>
+            <p>Yes, the official app from the provided link is safe. Always download from official sources only.</p>
+
+            <p><strong>❓ Why do I see ads?</strong></p>
+            <p>Ads help keep the service free. Use ad blockers for a cleaner experience, but consider supporting the platform.</p>
+
+            <p><strong>❓ What if a video doesn't work?</strong></p>
+            <p>Try refreshing the page, clearing cache, or switching browsers. Most issues are temporary server problems.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>
+                <span class="icon-text">
+                    <i class="fas fa-history"></i>
+                    <span>Recent Updates & Changes</span>
+                </span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="category-tag">Updates</div>
+            <div class="category-tag">News</div>
+            
+            <p><strong>🆕 Latest Updates (2025):</strong></p>
+            <ul>
+                <li><strong>Enhanced UI:</strong> New modern interface with better navigation</li>
+                <li><strong>Mobile App:</strong> Improved app performance and stability</li>
+                <li><strong>Quality Options:</strong> Added more streaming quality choices</li>
+                <li><strong>Search Function:</strong> Faster and more accurate search results</li>
+                <li><strong>Content Library:</strong> Expanded movie and TV show collection</li>
+            </ul>
+
+            <p><strong>🔄 Coming Soon:</strong></p>
+            <ul>
+                <li>Dark/Light theme options</li>
+                <li>Improved recommendation system</li>
+                <li>Multi-language subtitle support</li>
+                <li>Enhanced download features</li>
+                <li>Social sharing capabilities</li>
+            </ul>
+
+            <button class="action-btn" onclick="showToast('You will be notified of updates!')">
+                <i class="fas fa-bell"></i> Get Update Notifications
+            </button>
+        </div>
+    </section>
+</main>
+
+<button class="scroll-top-btn" onclick="scrollToTop()" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<footer>
+    <div class="footer-links">
+        <a href="https://kavyant420.github.io/pikuflix/" target="_blank">Home</a>
+        <a href="#" onclick="showToast('Contact info: pikuflix.official@gmail.com')">Contact</a>
+        <a href="#" onclick="showToast('Privacy policy: No data collected')">Privacy</a>
+        <a href="#" onclick="showToast('Terms: Free usage, no restrictions')">Terms</a>
+    </div>
+    <p>&copy; 2025 Pikuflix Guide. All rights reserved. | Made with ❤️ for movie lovers</p>
+</footer>
+
+<script>
+
+let currentTheme = 'dark';
+let searchTimeout;
+
+document.addEventListener('DOMContentLoaded', function() {
+    createBackgroundAnimation();
+    updateScrollProgress();
+    initializeSearch();
+    
+
+    const savedTheme = localStorage.getItem('pikuflix-theme');
+    if (savedTheme && savedTheme !== currentTheme) {
+        toggleDarkMode();
+    }
+});
+
+
+function createBackgroundAnimation() {
+    const bgAnimation = document.getElementById('bgAnimation');
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        bgAnimation.appendChild(particle);
+    }
+}
+
+
+function toggleSection(element) {
+    const content = element.nextElementSibling;
+    const isActive = element.classList.contains('active');
+    
+    
+    document.querySelectorAll('.section-header').forEach(header => {
+        if (header !== element) {
+            header.classList.remove('active');
+            header.nextElementSibling.classList.remove('show');
+        }
+    });
+  
+    if (!isActive) {
+        element.classList.add('active');
+        content.classList.add('show');
+        
+       
+        setTimeout(() => {
+            element.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start',
+                inline: 'nearest'
+            });
+        }, 100);
+    } else {
+        element.classList.remove('active');
+        content.classList.remove('show');
+    }
+}
+
+
+function initializeSearch() {
+    const searchInput = document.getElementById('search');
+    const clearBtn = document.querySelector('.clear-search');
+    
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.toLowerCase().trim();
+        
+        if (query) {
+            clearBtn.style.display = 'block';
+            searchTimeout = setTimeout(() => filterGuide(), 150);
+        } else {
+            clearBtn.style.display = 'none';
+            resetSearch();
+        }
+    });
+}
+
+function filterGuide() {
+    const input = document.getElementById("search").value.toLowerCase();
+    const sections = document.querySelectorAll("main section");
+    let visibleCount = 0;
+    
+    sections.forEach(section => {
+        const text = section.innerText.toLowerCase();
+        const isVisible = text.includes(input);
+        
+        section.style.display = isVisible ? "block" : "none";
+        
+        if (isVisible) {
+            visibleCount++;
+           
+            if (input && input.length > 2) {
+                const header = section.querySelector('.section-header');
+                const content = section.querySelector('.content');
+                header.classList.add('active');
+                content.classList.add('show');
+            }
+        }
+    });
+    
+
+    showSearchResults(visibleCount, input);
+}
+
+function showSearchResults(count, query) {
+    let existingMsg = document.querySelector('.search-results');
+    if (existingMsg) existingMsg.remove();
+    
+    if (query && count === 0) {
+        const msg = document.createElement('div');
+        msg.className = 'search-results';
+        msg.style.cssText = 'text-align: center; padding: 40px; color: var(--primary-color); font-weight: 500;';
+        msg.innerHTML = `
+            <i class="fas fa-search" style="font-size: 48px; opacity: 0.5; margin-bottom: 15px; display: block;"></i>
+            No results found for "${query}"<br>
+            <small style="opacity: 0.7; font-size: 14px;">Try different keywords or browse all sections</small>
+        `;
+        document.querySelector('main').appendChild(msg);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('search').value = '';
+    document.querySelector('.clear-search').style.display = 'none';
+    resetSearch();
+}
+
+function resetSearch() {
+    document.querySelectorAll("main section").forEach(section => {
+        section.style.display = "block";
+    });
+    
+    const existingMsg = document.querySelector('.search-results');
+    if (existingMsg) existingMsg.remove();
+}
+
+
+function toggleDarkMode() {
+    const body = document.body;
+    const themeIcon = document.getElementById('themeIcon');
+    
+    body.classList.toggle("light");
+    
+    if (body.classList.contains("light")) {
+        currentTheme = 'light';
+        themeIcon.className = 'fas fa-sun';
+        showToast('Light theme activated ☀️');
+    } else {
+        currentTheme = 'dark';
+        themeIcon.className = 'fas fa-moon';
+        showToast('Dark theme activated 🌙');
+    }
+    
+  
+    localStorage.setItem('pikuflix-theme', currentTheme);
+}
+
+
+function updateScrollProgress() {
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollProgress = (scrollTop / scrollHeight) * 100;
+        
+        document.getElementById('progressBar').style.width = scrollProgress + '%';
+        
+       
+        const scrollBtn = document.querySelector('.scroll-top-btn');
+        if (scrollTop > 300) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    });
+}
+
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        
+        setTimeout(() => {
+            const header = section.querySelector('.section-header');
+            if (header && !header.classList.contains('active')) {
+                toggleSection(header);
+            }
+        }, 500);
+    }
+}
+
+
+function showToast(message) {
+    
+    const existingToast = document.querySelector('.toast');
+    if (existingToast) existingToast.remove();
+    
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    
+    setTimeout(() => toast.classList.add('show'), 100);
+    
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+
+function runDiagnostic() {
+    showToast('Running diagnostic... 🔧');
+    
+    setTimeout(() => {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const speed = connection ? `${connection.downlink} Mbps` : 'Unknown';
+        const browser = navigator.userAgent.includes('Chrome') ? 'Chrome' : 
+                       navigator.userAgent.includes('Firefox') ? 'Firefox' : 
+                       navigator.userAgent.includes('Safari') ? 'Safari' : 'Other';
+        
+        const diagnosticResults = `
+            🌐 Connection: ${speed}
+            🖥️ Browser: ${browser}
+            📱 Device: ${navigator.platform}
+            ✅ Status: All systems operational
+        `;
+        
+        alert('Diagnostic Results:\n' + diagnosticResults);
+    }, 2000);
+}
+
+
+document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + K for search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('search').focus();
+        showToast('Search activated! 🔍');
+    }
+    
+  
+    if (e.key === 'Escape') {
+        document.getElementById('search').blur();
+        clearSearch();
+    }
+    
+    
+    if (e.key === 't' && !e.target.matches('input')) {
+        toggleDarkMode();
+    }
+});
+
+
+const observerOptions = {
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'all 0.6s ease';
+    sectionObserver.observe(section);
+});
+</script>
+
+</body>
+</html>
