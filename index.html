@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    
     <meta name='dmca-site-verification' content='RHZyeDVRRURvV2dubFpWWitWZjV1b2lxUUxXTEpDL29QbmFENlN1cTk2dz01' />
     <link rel="icon" href="pikuflix.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -25,6 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PikuFlix - Your Entertainment Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
 
 * {
@@ -35,6 +37,2643 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 15px 60px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .header.scrolled {
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #e50914, #ff6b6b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(229,9,20,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e50914;
+            background: rgba(229,9,20,0.1);
+            transform: translateY(-2px);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(229,9,20,0.6);
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background: rgba(20,20,20,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 200px;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-dropdown.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .profile-menu {
+            list-style: none;
+        }
+
+        .profile-menu li {
+            margin-bottom: 10px;
+        }
+
+        .profile-menu a {
+            color: #ccc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-menu a:hover {
+            background: rgba(229,9,20,0.1);
+            color: #e50914;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 60px 15px 25px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            background: rgba(255,255,255,0.15);
+            border-color: #e50914;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(229,9,20,0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            color: #e50914;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(229,9,20,0.1)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ff6b6b;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23000;stop-opacity:0.8"/></radialGradient></defs><rect fill="url(%23grad1)" width="1200" height="800"/><circle fill="%23333" cx="200" cy="200" r="100" opacity="0.3"/><circle fill="%23e50914" cx="800" cy="400" r="150" opacity="0.1"/><circle fill="%23ff6b6b" cx="1000" cy="600" r="80" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(229,9,20,0.1), transparent);
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            margin-top: 100px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #e50914, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255,255,255,0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(229,9,20,0.6)); }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #ccc;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #e50914, #ff6b6b, #ffd700);
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229,9,20,0.4);
+        }
+
+        .content {
+            padding: 80px 60px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(45deg, #ffffff, #e50914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(229,9,20,0.3);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .content-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .content-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(229,9,20,0.5);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .content-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-year {
+            color: #999;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-rating {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-overview {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .content-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(229,9,20,0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            max-width: 1400px;
+            height: 90%;
+            background: #111;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 100px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 35px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #e50914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .fullscreen-btn, .close-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover, .close-btn:hover {
+            background: rgba(229,9,20,0.8);
+            transform: scale(1.1);
+        }
+
+        .video-container {
+            flex: 1;
+            position: relative;
+            background: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .series-info {
+            display: none;
+            background: rgba(20,20,20,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin: 30px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .series-info.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .series-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .series-poster {
+            width: 200px;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .series-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .series-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #e50914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .series-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: rgba(229,9,20,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(229,9,20,0.3);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .series-overview {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .seasons-container {
+            margin-top: 30px;
+        }
+
+        .season-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .season-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .season-btn:hover, .season-btn.active {
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(229,9,20,0.3);
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .episode-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .episode-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: rgba(229,9,20,0.5);
+        }
+
+        .episode-number {
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .episode-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .episode-overview {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #ccc;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid #e50914;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .modal.fullscreen {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .modal.fullscreen .modal-content {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            border-radius: 0;
+            transform: none;
+            top: 0;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .nav-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .modal-content {
+                width: 98%;
+                height: 95%;
+            }
+
+            .series-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .series-poster {
+                width: 150px;
+                height: 225px;
+            }
+
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: #999;
+        }
+
+        .no-results h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .no-results p {
+            font-size: 1.1rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e50914, #ff6b6b);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+        }
+
+.settings-swipe-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100vh;
+  z-index: 999;
+}
+
+.settings-button {
+  position: fixed;
+  top: 50%;
+  left: -60px;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: #e50914;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.settings-button.visible {
+  left: 10px;
+}
+.settings-panel {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: #1c1c1c;
+  color: white;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  transition: bottom 0.3s ease;
+  z-index: 3000;
+}
+
+.settings-panel.visible {
+  bottom: 0;
+}
+
+.panel-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.panel-options li {
+  list-style: none;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.stream-settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #111;
+  color: white;
+  padding: 20px;
+  display: none;
+  z-index: 4000;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider.round {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 22px;
+}
+
+.slider.round:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider.round {
+  background-color: #2196F3;
+}
+
+input:checked + .slider.round:before {
+  transform: translateX(18px);
+}
+.history-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.history-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+  font-size: 15px;
+}
+#historyList {
+  margin-top: 15px;
+}
+
+   .social-buttons {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 9999;
+    }
+
+    .social-buttons a {
+      text-decoration: none;
+    }
+
+    .social-buttons i {
+      font-size: 32px;
+      color: #5865F2;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .social-buttons a.instagram i {
+      color: #E1306C; 
+    }
+
+    .social-buttons i:hover {
+      transform: scale(1.1);
+    }
+        .overlay-top-left {
+font-size: 32px;
+  position: fixed;
+  top: 10px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8); 
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  z-index: 999999; 
+  border-bottom-right-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="social-buttons">
+  <div class="overlay-top-left">
+  <a href="guide-book.html" class="overlay-top-left" title="Open Guide Book">
+  <i class="fas fa-book"></i>
+</a>
+  </div>
+    <a href="https://discord.gg/zMwSVESyFA" target="_blank" class="discord">
+      <i class="fab fa-discord"></i>
+    </a>
+
+    <a href="https://instagram.com/kavyant1" target="_blank" class="instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+    <!-- Swipe Settings Button -->
+<div class="settings-swipe-area"></div>
+<div class="settings-button" id="settingsBtn">
+  <i class="fa-solid fa-gear"></i>
+</div>
+<!-- Settings Panel -->
+<div id="settingsPanel" class="settings-panel">
+  <div class="panel-header">Settings</div>
+  <ul class="panel-options">
+    <li>Account: Guest <span id="guestId"></span></li>
+    <li><button id="openStreamSettings">Stream Settings</button></li>
+    <li>
+      Show History: 
+      <label class="switch">
+        <input type="checkbox" id="historyToggle">
+        <span class="slider round"></span>
+      </label>
+    </li>
+  </ul>
+</div>
+
+<!-- Stream Settings Overlay -->
+<div id="streamSettingsPanel" class="stream-settings-overlay">
+  <div class="panel-header">
+    Stream Settings
+    <button id="closeStreamSettings" style="float: right;">✖</button>
+  </div>
+  <div class="panel-body">
+    <p>(Placeholder for stream settings like quality, subtitles, etc.)</p>
+  </div>
+</div>
+
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-top">
+                <div class="logo">PikuFlix</div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-category="trending">Trending</a>
+                    <a href="#" class="nav-link" data-category="movies">Movies</a>
+                    <a href="#" class="nav-link" data-category="tv">TV Shows</a>
+                </div>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search movies and TV shows...">
+                <button class="search-btn" id="searchBtn">🔍</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlimited Entertainment</h1>
+            <p>Stream thousands of movies and TV shows in HD quality</p>
+            <button class="cta-button" onclick="document.getElementById('content').scrollIntoView({behavior: 'smooth'})">
+                Start Watching
+            </button>
+        </div>
+
+    </section>
+    <div id="historyList" class="history-list" style="display: none; margin-top: 20px;">
+  <h3>Watch History</h3>
+  <ul id="historyItems"></ul>
+</div>
+
+    <main class="content" id="content">
+        <h2 class="section-title">Popular Content</h2>
+
+        <div class="category-tabs">
+            <button class="tab-btn active" data-type="trending">🔥 Trending</button>
+            <button class="tab-btn" data-type="popular-movies">🎬 Popular Movies</button>
+            <button class="tab-btn" data-type="popular-tv">📺 Popular TV</button>
+            <button class="tab-btn" data-type="top-rated">⭐ Top Rated</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            Loading content...
+        </div>
+
+        <div class="content-grid" id="contentGrid"></div>
+    </main>
+
+    <!-- Modal for video player -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Loading...</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="video-container" id="videoContainer">
+                <div style="text-align: right; margin-top: 10px;">
+  <button id="nextEpisodeBtn" style="padding: 8px 16px; font-size: 16px;">⏭️ Next Episode</button>
+</div>
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading video...
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+  <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
+    <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
+  </a>
+  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+    </footer>
+
+    <script>
+
+  const currentHost = window.location.hostname;
+  const observer = new MutationObserver(() => {
+    if (window.location.hostname !== currentHost) {
+      console.warn('Redirect attempt blocked');
+      window.stop(); // stop redirect
+    }
+  });
+  observer.observe(document, { subtree: true, childList: true });
+
+  const historyToggle = document.getElementById('historyToggle');
+  const historyList = document.getElementById('historyList');
+  const historyItems = document.getElementById('historyItems');
+
+  function loadHistory() {
+    const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
+    historyItems.innerHTML = "";
+
+    if (history.length === 0) {
+      historyItems.innerHTML = "<li>No history available.</li>";
+      return;
+    }
+
+    history.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.title} - ${item.time}`;
+      historyItems.appendChild(li);
+    });
+  }
+
+  function saveToHistory(title) {
+    const now = new Date();
+    const formattedTime = now.toLocaleString();
+    const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
+
+    history.unshift({ title, time: formattedTime });
+
+    if (history.length > 50) history.pop();
+
+    localStorage.setItem('watchHistory', JSON.stringify(history));
+
+    if (historyToggle.checked) {
+      loadHistory();
+    }
+  }
+
+  historyToggle.addEventListener('change', () => {
+    if (historyToggle.checked) {
+      historyList.style.display = 'block';
+      loadHistory();
+    } else {
+      historyList.style.display = 'none';
+    }
+  });
+
+  document.querySelectorAll('.watchable').forEach(item => {
+    item.addEventListener('click', () => {
+      const title = item.dataset.title;
+      saveToHistory(title);
+    });
+  });
+
+  let startX = 0;
+  let isSwiping = false;
+  const settingsBtn = document.getElementById('settingsBtn');
+  const swipeArea = document.querySelector('.settings-swipe-area');
+
+  function handleTouchStart(e) {
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+    isSwiping = true;
+  }
+
+  function handleTouchMove(e) {
+    if (!isSwiping) return;
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const diffX = currentX - startX;
+
+    if (diffX > 40) {
+      settingsBtn.classList.add('visible');
+      isSwiping = false;
+    } else if (diffX < -40) {
+      settingsBtn.classList.remove('visible');
+      isSwiping = false;
+    }
+  }
+
+  swipeArea.addEventListener('touchstart', handleTouchStart);
+  swipeArea.addEventListener('touchmove', handleTouchMove);
+  swipeArea.addEventListener('mousedown', handleTouchStart);
+  document.addEventListener('mousemove', handleTouchMove);
+
+  document.addEventListener('click', (e) => {
+    if (!settingsBtn.contains(e.target)) {
+      settingsBtn.classList.remove('visible');
+    }
+  });
+
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    alert("Open settings panel here");
+  });
+
+  const settingsPanel = document.getElementById('settingsPanel');
+  const streamPanel = document.getElementById('streamSettingsPanel');
+  const guestId = Math.floor(Math.random() * (999999 - 293802 + 1)) + 293802;
+  document.getElementById('guestId').textContent = guestId;
+
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsPanel.classList.add('visible');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!settingsPanel.contains(e.target) && !settingsBtn.contains(e.target)) {
+      settingsPanel.classList.remove('visible');
+      streamPanel.style.display = 'none';
+    }
+  });
+
+  document.getElementById('openStreamSettings').addEventListener('click', () => {
+    streamPanel.style.display = 'block';
+  });
+
+  document.getElementById('closeStreamSettings').addEventListener('click', () => {
+    streamPanel.style.display = 'none';
+  });
+
+  document.getElementById('historyToggle').checked = false;
+
+        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+        const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+        const VIDSRC_BASE = 'https://vidsrc.xyz/embed';
+
+        let currentContent = [];
+        let isSearching = false;
+
+        const header = document.getElementById('header');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const contentGrid = document.getElementById('contentGrid');
+        const loading = document.getElementById('loading');
+        const modal = document.getElementById('videoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const videoContainer = document.getElementById('videoContainer');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadTrendingContent();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            searchInput.addEventListener('input', (e) => {
+
+                if (window.searchTimeout) {
+                    clearTimeout(window.searchTimeout);
+                }
+
+                window.searchTimeout = setTimeout(() => {
+                    if (e.target.value.trim()) {
+                        performSearch();
+                    } else {
+                        loadTrendingContent();
+                    }
+                }, 300);
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    if (window.searchTimeout) {
+                        clearTimeout(window.searchTimeout);
+                    }
+                    performSearch();
+                }
+            });
+
+            searchBtn.addEventListener('click', performSearch);
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = e.target.dataset.category;
+                    switchCategory(category);
+                });
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const type = e.target.dataset.type;
+                    switchTab(type);
+                });
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+document.addEventListener('click', function(e) {
+    let target = e.target.closest('a');
+    if (target && target.target === '_blank' && /ads|redirect/.test(target.href)) {
+        e.preventDefault();
+        console.log('Blocked a tab-opening ad link:', target.href);
+    }
+}, true);
+
+        const movieDatabase = [
+
+            {
+                id: 299534,
+                title: "Avengers: Endgame",
+                overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos.",
+                release_date: "2019-04-24",
+                vote_average: 8.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 550,
+                title: "Fight Club",
+                overview: "An insomniac office worker and a devil-may-care soapmaker form an underground fight club.",
+                release_date: "1999-10-15",
+                vote_average: 8.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 155,
+                title: "The Dark Knight",
+                overview: "Batman raises the stakes in his war on crime with the help of Lt. Jim Gordon and DA Harvey Dent.",
+                release_date: "2008-07-16",
+                vote_average: 9.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 27205,
+                title: "Inception",
+                overview: "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction.",
+                release_date: "2010-07-15",
+                vote_average: 8.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 299536,
+                title: "Avengers: Infinity War",
+                overview: "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle.",
+                release_date: "2018-04-25",
+                vote_average: 8.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 11,
+                title: "Star Wars",
+                overview: "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire.",
+                release_date: "1977-05-25",
+                vote_average: 8.6,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 680,
+                title: "Pulp Fiction",
+                overview: "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge.",
+                release_date: "1994-09-10",
+                vote_average: 8.9,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 13,
+                title: "Forrest Gump",
+                overview: "A man with a low IQ has accomplished great things in his life and been present during significant historic events.",
+                release_date: "1994-06-23",
+                vote_average: 8.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 497,
+                title: "The Green Mile",
+                overview: "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder.",
+                release_date: "1999-12-10",
+                vote_average: 8.5,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 315635,
+                title: "Spider-Man: Homecoming",
+                overview: "Peter Parker tries to stop the Vulture from selling weapons made with advanced Chitauri technology.",
+                release_date: "2017-07-05",
+                vote_average: 7.4,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 335983,
+                title: "Venom",
+                overview: "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth.",
+                release_date: "2018-09-28",
+                vote_average: 6.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 181808,
+                title: "Star Wars: The Last Jedi",
+                overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker.",
+                release_date: "2017-12-13",
+                vote_average: 7.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 284054,
+                title: "Black Panther",
+                overview: "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people.",
+                release_date: "2018-02-13",
+                vote_average: 7.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 363088,
+                title: "Ant-Man and the Wasp",
+                overview: "Just when his time under house arrest is about to end, Scott Lang puts his freedom at risk.",
+                release_date: "2018-07-04",
+                vote_average: 7.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 346364,
+                title: "It",
+                overview: "In a small town in Maine, seven children known as The Losers Club come face to face with life problems.",
+                release_date: "2017-09-05",
+                vote_average: 7.2,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 419704,
+                title: "Ad Astra",
+                overview: "The near future, a time when both hope and hardships drive humanity to look to the stars and beyond.",
+                release_date: "2019-09-17",
+                vote_average: 6.1,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 586347,
+                title: "The Invisible Man",
+                overview: "When Cecilia's abusive ex takes his own life and leaves her his fortune, she suspects his death was a hoax.",
+                release_date: "2020-02-26",
+                vote_average: 7.1,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 324857,
+                title: "Spider-Man: Into the Spider-Verse",
+                overview: "Miles Morales becomes the Spider-Man of his universe and joins other Spider-People from other dimensions.",
+                release_date: "2018-12-06",
+                vote_average: 8.4,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 454626,
+                title: "Sonic the Hedgehog",
+                overview: "Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world's speediest hedgehog.",
+                release_date: "2020-02-12",
+                vote_average: 7.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 181812,
+                title: "Star Wars: The Rise of Skywalker",
+                overview: "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues.",
+                release_date: "2019-12-18",
+                vote_average: 6.4,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 278,
+                title: "The Shawshank Redemption",
+                overview: "Two imprisoned men bond over a number of years, finding solace and eventual redemption.",
+                release_date: "1994-09-23",
+                vote_average: 9.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 238,
+                title: "The Godfather",
+                overview: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
+                release_date: "1972-03-14",
+                vote_average: 9.2,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 424,
+                title: "Schindler's List",
+                overview: "In German-occupied Poland during World War II, industrialist Oskar Schindler becomes concerned for his Jewish workforce.",
+                release_date: "1993-11-30",
+                vote_average: 9.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 389,
+                title: "12 Angry Men",
+                overview: "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
+                release_date: "1957-04-10",
+                vote_average: 8.9,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 507089,
+                title: "Five Nights at Freddy's",
+                overview: "A troubled security guard begins working at Freddy Fazbear's Pizza.",
+                release_date: "2023-10-25",
+                vote_average: 7.5,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 678512,
+                title: "Sound of Freedom",
+                overview: "The story of Tim Ballard, a former US government agent.",
+                release_date: "2023-07-04",
+                vote_average: 8.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 298618,
+                title: "The Flash",
+                overview: "Barry Allen uses his super speed to change the past.",
+                release_date: "2023-06-13",
+                vote_average: 6.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 447365,
+                title: "Guardians of the Galaxy Vol. 3",
+                overview: "Peter Quill must rally his team around him to defend the universe.",
+                release_date: "2023-05-03",
+                vote_average: 8.1,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 502356,
+                title: "The Super Mario Bros. Movie",
+                overview: "A plumber named Mario travels through an underground labyrinth.",
+                release_date: "2023-04-05",
+                vote_average: 7.3,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 1399,
+                name: "Game of Thrones",
+                overview: "Seven noble families fight for control of the mythical land of Westeros.",
+                first_air_date: "2011-04-17",
+                vote_average: 9.3,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 1396,
+                name: "Breaking Bad",
+                overview: "A high school chemistry teacher turned methamphetamine producer.",
+                first_air_date: "2008-01-20",
+                vote_average: 9.5,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 2316,
+                name: "The Office",
+                overview: "A mockumentary on a group of typical office workers.",
+                first_air_date: "2005-03-24",
+                vote_average: 8.9,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 1418,
+                name: "The Big Bang Theory",
+                overview: "A comedy about brilliant physicists and their social awkwardness.",
+                first_air_date: "2007-09-24",
+                vote_average: 8.2,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 19885,
+                name: "Sherlock",
+                overview: "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
+                first_air_date: "2010-07-25",
+                vote_average: 9.1,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 94605,
+                name: "Arcane",
+                overview: "Set in utopian Piltover and the oppressed underground of Zaun.",
+                first_air_date: "2021-11-06",
+                vote_average: 9.0,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 85271,
+                name: "WandaVision",
+                overview: "Wanda Maximoff and Vision are living their ideal suburban lives.",
+                first_air_date: "2021-01-15",
+                vote_average: 8.2,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 71712,
+                name: "The Good Place",
+                overview: "Eleanor Shellstrop awakens to find herself in the afterlife.",
+                first_air_date: "2016-09-19",
+                vote_average: 8.2,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 1402,
+                name: "The Walking Dead",
+                overview: "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies.",
+                first_air_date: "2010-10-31",
+                vote_average: 8.1,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 60625,
+                name: "Rick and Morty",
+                overview: "An alcoholic scientist and his easily influenced grandson go on insane adventures across the universe.",
+                first_air_date: "2013-12-02",
+                vote_average: 8.7,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 1405,
+                name: "Dexter",
+                overview: "He's smart, he's good looking, and he's got a great sense of humor. He's Dexter Morgan, everyone's favorite serial killer.",
+                first_air_date: "2006-10-01",
+                vote_average: 8.6,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 46648,
+                name: "Brooklyn Nine-Nine",
+                overview: "A single-camera ensemble comedy following the lives of an eclectic group of detectives.",
+                first_air_date: "2013-09-17",
+                vote_average: 8.4,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 1405,
+                name: "Lost",
+                overview: "Stripped of everything, the survivors of a horrific plane crash must work together to survive.",
+                first_air_date: "2004-09-22",
+                vote_average: 8.1,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 95057,
+                name: "The Mandalorian",
+                overview: "After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy.",
+                first_air_date: "2019-11-12",
+                vote_average: 8.4,
+                poster_path: null,
+                media_type: "tv"
+            },
+            {
+                id: 88396,
+                name: "The Falcon and the Winter Soldier",
+                overview: "Following the events of Avengers: Endgame, Sam Wilson/Falcon and Bucky Barnes/Winter Soldier team up.",
+                first_air_date: "2021-03-19",
+                vote_average: 7.6,
+                poster_path: null,
+                media_type: "tv"
+            },
+
+            {
+                id: 634649,
+                title: "Spider-Man: No Way Home",
+                overview: "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a superhero.",
+                release_date: "2021-12-15",
+                vote_average: 8.1,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 524434,
+                title: "Eternals",
+                overview: "The Eternals are a team of ancient aliens who have been living on Earth in secret for thousands of years.",
+                release_date: "2021-11-03",
+                vote_average: 7.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 566525,
+                title: "Shang-Chi and the Legend of the Ten Rings",
+                overview: "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
+                release_date: "2021-09-01",
+                vote_average: 7.4,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 580489,
+                title: "Venom: Let There Be Carnage",
+                overview: "Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady.",
+                release_date: "2021-09-30",
+                vote_average: 6.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 460465,
+                title: "Mortal Kombat",
+                overview: "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior.",
+                release_date: "2021-04-07",
+                vote_average: 7.0,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 791373,
+                title: "Zack Snyder's Justice League",
+                overview: "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince.",
+                release_date: "2021-03-18",
+                vote_average: 8.1,
+                poster_path: null,
+                media_type: "movie"
+            },
+
+            {
+                id: 122,
+                title: "The Lord of the Rings: The Return of the King",
+                overview: "Aragorn is revealed as the heir to the ancient kings as he, Gandalf and the other members of the broken fellowship struggle to save Gondor.",
+                release_date: "2003-12-01",
+                vote_average: 8.9,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 120,
+                title: "The Lord of the Rings: The Fellowship of the Ring",
+                overview: "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring.",
+                release_date: "2001-12-18",
+                vote_average: 8.8,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 121,
+                title: "The Lord of the Rings: The Two Towers",
+                overview: "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally.",
+                release_date: "2002-12-18",
+                vote_average: 8.7,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 539,
+                title: "Psycho",
+                overview: "When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life.",
+                release_date: "1960-06-16",
+                vote_average: 8.4,
+                poster_path: null,
+                media_type: "movie"
+            },
+            {
+                id: 429,
+                title: "The Good, the Bad and the Ugly",
+                overview: "While the Civil War rages between the Union and the Confederacy, three men – a quiet loner, a ruthless hit man and a Mexican bandit.",
+                release_date: "1966-12-23",
+                vote_average: 8.8,
+                poster_path: null,
+                media_type: "movie"
+            }
+        ];
+movieDatabase.push(
+    {
+        id: 335977,
+        title: "Joker",
+        overview: "In Gotham's fractured society, mentally-troubled comedian Arthur Fleck embarks on a downward spiral.",
+        release_date: "2019-10-02",
+        vote_average: 8.5,
+        poster_path: null,
+        media_type: "movie"
+    },
+    {
+        id: 615457,
+        title: "Nobody",
+        overview: "A bystander intervenes to help a woman being harassed by a group of men, and becomes the target of a vengeful drug lord.",
+        release_date: "2021-03-18",
+        vote_average: 7.8,
+        poster_path: null,
+        media_type: "movie"
+    },
+    {
+        id: 438631,
+        title: "Dune",
+        overview: "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet.",
+        release_date: "2021-10-22",
+        vote_average: 8.2,
+        poster_path: null,
+        media_type: "movie"
+    },
+    {
+        id: 80752,
+        name: "Stranger Things",
+        overview: "When a young boy disappears, his mother and friends confront terrifying supernatural forces to get him back.",
+        first_air_date: "2016-07-15",
+        vote_average: 8.8,
+        poster_path: null,
+        media_type: "tv"
+    },
+    {
+        id: 1622,
+        name: "Supernatural",
+        overview: "Two brothers follow their father's footsteps as 'hunters', fighting evil supernatural beings of many kinds.",
+        first_air_date: "2005-09-13",
+        vote_average: 8.4,
+        poster_path: null,
+        media_type: "tv"
+    },
+    {
+        id: 93405,
+        name: "Squid Game",
+        overview: "Hundreds of cash-strapped players accept a strange invitation to compete in children’s games for a tempting prize.",
+        first_air_date: "2021-09-17",
+        vote_average: 8.0,
+        poster_path: null,
+        media_type: "tv"
+    },
+    {
+        id: 81329,
+        name: "Money Heist",
+        overview: "An enigmatic criminal mastermind known as The Professor plans the biggest heist in recorded history.",
+        first_air_date: "2017-05-02",
+        vote_average: 8.3,
+        poster_path: null,
+        media_type: "tv"
+    },
+    {
+        id: 460465,
+        title: "Mortal Kombat Legends: Scorpion's Revenge",
+        overview: "After the slaughter of his family by mercenary Sub-Zero, Hanzo Hasashi is exiled to the torturous Netherrealm.",
+        release_date: "2020-04-14",
+        vote_average: 7.5,
+        poster_path: null,
+        media_type: "movie"
+    },
+    {
+        id: 274,
+        title: "The Silence of the Lambs",
+        overview: "A young FBI cadet must confide in an incarcerated and manipulative killer to receive his help.",
+        release_date: "1991-02-14",
+        vote_average: 8.6,
+        poster_path: null,
+        media_type: "movie"
+    },
+    {
+        id: 49026,
+        title: "The Dark Knight Rises",
+        overview: "Eight years after the Joker's reign, Batman encounters a new threat in the form of Bane.",
+        release_date: "2012-07-16",
+        vote_average: 8.4,
+        poster_path: null,
+        media_type: "movie"
+    }
+);
+        movieDatabase.push(
+  {
+    id: 9740,
+    title: "Hannibal",
+    overview: "After having successfully eluded the authorities for years, Hannibal peacefully lives in Italy in disguise as an art scholar. Trouble strikes again when he's discovered leaving a deserving few dead in the process.",
+    release_date: "2001-02-09",  
+    vote_average: null,  
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 8966,
+    title: "Twilight",
+    overview: "When Bella Swan moves to a small town in the Pacific Northwest, she falls in love with Edward Cullen, a mysterious classmate who reveals himself to be a 108‑year‑old vampire.",
+    release_date: "2008-11-21",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 157336,
+    title: "Interstellar",
+    overview: "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+    release_date: "2014-11-05",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 296096,
+    title: "Me Before You",
+    overview: "A small town girl is caught between dead‑end jobs. A high‑profile, successful man becomes wheelchair bound following an accident.",
+    release_date: "2016-06-03",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+
+        async function loadTrendingContent() {
+            showLoading();
+
+            currentContent = [...movieDatabase].sort(() => Math.random() - 0.5).slice(0, 16);
+            displayContent(currentContent);
+            hideLoading();
+        }
+
+        async function loadPopularMovies() {
+            showLoading();
+
+            currentContent = movieDatabase.filter(item => item.media_type === 'movie');
+            displayContent(currentContent);
+            hideLoading();
+        }
+
+        async function loadPopularTV() {
+            showLoading();
+
+            currentContent = movieDatabase.filter(item => item.media_type === 'tv');
+            displayContent(currentContent);
+            hideLoading();
+        }
+
+        async function loadTopRated() {
+            showLoading();
+
+            currentContent = [...movieDatabase].sort((a, b) => b.vote_average - a.vote_average).slice(0, 15);
+            displayContent(currentContent);
+            hideLoading();
+        }
+
+        async function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                loadTrendingContent();
+                return;
+            }
+
+            isSearching = true;
+            showLoading();
+
+            const searchResults = movieDatabase.filter(item => {
+                const title = (item.title || item.name || '').toLowerCase();
+                const overview = (item.overview || '').toLowerCase();
+                return title.includes(query) || overview.includes(query);
+            });
+
+            currentContent = searchResults;
+            displayContent(currentContent);
+            hideLoading();
+        }
+
+        function displayContent(items) {
+            if (!items || items.length === 0) {
+                contentGrid.innerHTML = `
+                    <div class="no-results">
+                        <h3>No results found</h3>
+                        <p>Try searching for something else</p>
+                    </div>
+                `;
+                return;
+            }
+
+            contentGrid.innerHTML = items.map(item => createContentCard(item)).join('');
+        }
+
+        function createContentCard(item) {
+            const title = item.title || item.name;
+            const year = (item.release_date || item.first_air_date || '').split('-')[0];
+            const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N/A';
+            const overview = item.overview || 'No description available.';
+            const posterPath = item.poster_path ? `${TMDB_IMAGE_BASE}${item.poster_path}` : '';
+            const mediaType = item.media_type || (item.title ? 'movie' : 'tv');
+
+            return `
+                <div class="content-card" onclick="playContent(${item.id}, '${mediaType}', '${title.replace(/'/g, "\\'")}')">
+                    <div class="card-image">
+                        ${posterPath ? `<img src="${posterPath}" alt="${title}" onerror="this.style.display='none'">` : '🎬'}
+                        <div class="play-overlay">
+                            <button class="play-btn">
+                                ▶️ Play Now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${title}</h3>
+                        <div class="card-info">
+                            <span class="card-year">${year}</span>
+                            <span class="card-rating">⭐ ${rating}</span>
+                        </div>
+                        <p class="card-overview">${overview}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function switchCategory(category) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+
+            isSearching = false;
+            searchInput.value = '';
+
+            switch(category) {
+                case 'trending':
+                    loadTrendingContent();
+                    break;
+                case 'movies':
+                    loadPopularMovies();
+                    break;
+                case 'tv':
+                    loadPopularTV();
+                    break;
+            }
+        }
+
+        function switchTab(type) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('active');
+
+            isSearching = false;
+            searchInput.value = '';
+
+            switch(type) {
+                case 'trending':
+                    loadTrendingContent();
+                    break;
+                case 'popular-movies':
+                    loadPopularMovies();
+                    break;
+                case 'popular-tv':
+                    loadPopularTV();
+                    break;
+                case 'top-rated':
+                    loadTopRated();
+                    break;
+            }
+        }
+
+        function playContent(tmdbId, mediaType, title) {
+            modalTitle.textContent = title;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            let embedUrl;
+            if (mediaType === 'movie') {
+                embedUrl = `${VIDSRC_BASE}/movie?tmdb=${tmdbId}&autoplay=1`;
+            } else {
+
+                embedUrl = `${VIDSRC_BASE}/tv?tmdb=${tmdbId}&season=1&episode=1&autoplay=1&autonext=1`;
+            }
+
+            videoContainer.innerHTML = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            videoContainer.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading video...
+                </div>
+            `;
+        }
+
+        function showLoading() {
+            loading.style.display = 'flex';
+            contentGrid.style.display = 'none';
+        }
+
+        function hideLoading() {
+            loading.style.display = 'none';
+            contentGrid.style.display = 'grid';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        console.log('🎬 StreamFlix App Loaded - Enhanced with 50+ movies and TV shows!');
+        console.log('🔍 Search functionality works with expanded content database');
+        console.log('📱 Search bar now positioned below StreamFlix logo');
+
+(function() {
+    'use strict';
+
+    window.open = function() {
+        console.warn('Blocked window.open attempt');
+        return null;
+    };
+
+    document.addEventListener('click', function(e) {
+        let link = e.target.closest('a');
+        if (link && link.target === '_blank') {
+            const href = link.href.toLowerCase();
+            if (/ads|redirect|click|pop|doubleclick|exit/.test(href)) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.warn('Blocked suspicious link:', href);
+            }
+        }
+    }, true);
+
+    document.addEventListener('mousedown', function(e) {
+        e.stopImmediatePropagation();
+    }, true);
+
+    const originalSetTimeout = window.setTimeout;
+    window.setTimeout = function(callback, delay) {
+        if (typeof callback === 'function') {
+            const wrapped = function() {
+                try {
+                    const before = window.open;
+                    window.open = function() {
+                        console.warn('Blocked timed window.open');
+                        return null;
+                    };
+                    callback();
+                    window.open = before;
+                } catch (err) {
+                    console.warn('Error in blocked setTimeout callback:', err);
+                }
+            };
+            return originalSetTimeout(wrapped, delay);
+        }
+        return originalSetTimeout(callback, delay);
+    };
+
+    Object.defineProperty(window, 'open', {
+        configurable: false,
+        writable: false,
+        value: function() {
+            console.warn('Blocked all forced open() calls');
+            return null;
+        }
+    });
+})();
+
+document.getElementById("nextEpisodeBtn").addEventListener("click", () => {
+
+  currentEpisode++;
+
+  const nextEpisodeExists = episodes.find(ep => ep.season_number === currentSeason && ep.episode_number === currentEpisode);
+
+  if (nextEpisodeExists) {
+    loadVideo(currentShowId, currentSeason, currentEpisode);
+  } else {
+
+    const nextSeasonNumber = currentSeason + 1;
+    const firstEpisodeNextSeason = episodes.find(ep => ep.season_number === nextSeasonNumber && ep.episode_number === 1);
+
+    if (firstEpisodeNextSeason) {
+      currentSeason = nextSeasonNumber;
+      currentEpisode = 1;
+      loadVideo(currentShowId, currentSeason, currentEpisode);
+    } else {
+      alert("No more episodes available.");
+      currentEpisode--; 
+    }
+  }
+});
+movieDatabase.push(
+  {
+    id: 950387,
+    title: "A Minecraft Movie",
+    overview: "Four misfits are mysteriously transported to the cubic 'Overworld', where with the help of Steve they must navigate a magical quest to return home.",
+    release_date: "2025-04-04",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 771,
+    title: "Home Alone",
+    overview: "Eight‑year‑old Kevin McCallister is accidentally left behind when his family flies to Paris for Christmas. He defends his home against two bungling burglars.",
+    release_date: "1990-11-16",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 772,
+    title: "Home Alone 2: Lost in New York",
+    overview: "Kevin ends up alone in New York, checks into the Plaza Hotel with his dad's credit card, and faces his old nemeses planning to rob a toy store.",
+    release_date: "1992-11-19",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 9714,
+    title: "Home Alone 3",
+    overview: "A new kid, Alex Pruitt, is home alone and must stop international spies trying to steal a microchip hidden in a toy car.",
+    release_date: "1997-12-12",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 12536,
+    title: "Home Alone 4: Taking Back the House",
+    overview: "Kevin McCallister now stays with his dad’s new fiancée in a mansion. Marv and Vera plot a heist but Kevin steps in to stop them.",
+    release_date: "2002-11-03",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 134375,
+    title: "Home Alone: The Holiday Heist",
+    overview: "Finn Baxter is left home alone during the holidays and must defend his new family's mansion from thieves trying to steal an heirloom.",
+    release_date: "2012-11-25",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 654974,
+    title: "Home Sweet Home Alone",
+    overview: "10‑year‑old Max Mercer is accidentally left behind and must defend his home from a married couple attempting to reclaim a valuable heirloom.",
+    release_date: "2021-11-12",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+
+        movieDatabase.push(
+  {
+    id: 123456,  
+    title: "Diary of a Mad Black Woman",
+    overview: "Helen retreats to her grandmother Madea’s house after being thrown out by her husband on their wedding anniversary.",
+    release_date: "2005-02-25",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 16781,
+    title: "Madea's Family Reunion",
+    overview: "Madea must keep her family together amidst drama during a family reunion.",
+    release_date: "2006-02-24",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 15670,
+    title: "Madea Goes to Jail",
+    overview: "After a high-speed chase, Madea ends up in prison and looks out for a young incarcerated prostitute.",
+    release_date: "2009-02-20",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 654321,
+    title: "Madea's Big Happy Family",
+    overview: "Madea helps reunite the family when a crisis hits her niece Shirley.",
+    release_date: "2011-04-22",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 112233,  
+    title: "Madea's Witness Protection",
+    overview: "Madea welcomes a family under FBI protection after being framed in a Ponzi scheme.",
+    release_date: "2012-06-29",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 445566,  
+    title: "Boo! A Madea Halloween",
+    overview: "Madea watches over her great-niece for a night of Halloween pranks and chaos.",
+    release_date: "2016-10-21",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 459202,
+    title: "Boo 2! A Madea Halloween",
+    overview: "Madea goes on a wild journey to a haunted campground to rescue Tiffany.",
+    release_date: "2017-10-20",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 464504,
+    title: "A Madea Family Funeral",
+    overview: "A family reunion turns into a hilarious nightmare when a funeral reveals unwanted truths.",
+    release_date: "2019-03-01",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 778899,  
+    title: "A Madea Homecoming",
+    overview: "Madea hosts her great‑grandson’s college graduation party and family chaos ensues.",
+    release_date: "2022-02-25",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 990011,  
+    title: "Madea's Destination Wedding",
+    overview: "Madea travels to the Bahamas for her grandniece’s wedding and family surprises.",
+    release_date: "2025-07-11",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 100923,                 
+    name: "Haikyu!! OVA 1: The Arrival of Lev",
+    overview: "A 22‑minute extra focusing on Lev and Kenma learning teamwork ahead of the main plot.",
+    first_air_date: "2015-03-04",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 105142,                 
+    name: "Haikyu!! OVA 2: VS Failing Grades",
+    overview: "An expanded look at Kageyama studying and Tanaka trying to get a ride with his sister.",
+    first_air_date: "2016-05-02",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 155081,                 
+    name: "Haikyu!! OVA 3: Land vs. Sky",
+    overview: "First of two Tokyo‑Nationals qualifier OVAs adapting Haru‑ko Volley arc.",
+    first_air_date: "2020-01-22",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 155082,
+    name: "Haikyu!! OVA 4: The Path of the Ball",
+    overview: "Second Tokyo‑Nationals qualifier OVA released alongside ‘Land vs. Sky’.",
+    first_air_date: "2020-01-22",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 397466,                 
+    title: "Haikyu!! Movie 1: The End and the Beginning",
+    overview: "Recap of first half Season 1 with added bonus scenes like Karasuno mop repairs.",
+    release_date: "2015-03-14", 
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 397467,                 
+    title: "Haikyu!! Movie 2: The Winner and the Loser",
+    overview: "Recap of second half of Season 1, with extra flashback scenes for Date Tech.",
+    release_date: "2015-10-03",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 422375,                 
+    title: "Haikyu!! Movie 3: Talent and Sense",
+    overview: "Recap of Season 2 / Seijoh match with bonus side scenes and character arcs.",
+    release_date: "2017-02-18",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 450982,                 
+    title: "Haikyu!! Movie 4: Battle of Concepts",
+    overview: "Recap of Season 3 action with added advice scenes featuring Ushijima and others.",
+    release_date: "2017-11-03",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 1028453,                
+    title: "Haikyu!! The Dumpster Battle",
+    overview: "The 2024 theatrical sequel film where Karasuno faces Nekoma in the Spring Nationals.",
+    release_date: "2024-02-16",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 125988,
+    name: "Silo",
+    overview: "In a ruined and toxic future, thousands live in a giant silo deep underground. After the sheriff breaks a cardinal rule and residents die mysteriously, engineer Juliette starts to uncover shocking secrets about the silo's origins and purpose.",
+    release_date: "2023-05-05",
+    vote_average: 8.2,
+    poster_path: null,
+    media_type: "tv"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 14164730,       
+    name: "Dexter: New Blood",
+    overview: "Set ten years after Dexter’s presumed death in Miami, he lives under a false identity in upstate New York until his estranged son appears and draws him back into darkness.",
+    first_air_date: "2021-11-07",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 219937,        
+    name: "Dexter: Original Sin",
+    overview: "A prequel set in 1991 Miami: young Dexter learns to channel his bloodthirsty urges with guidance from his father, while working a forensics internship at Miami Metro PD.",
+    first_air_date: "2024-12-13",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  },
+  {
+    id: 259909,        
+    name: "Dexter: Resurrection",
+    overview: "Weeks after New Blood, Dexter wakes from a coma and heads to New York to find his son Harrison—only to discover dark secrets, FBI characters, and legacy he can’t escape.",
+    first_air_date: "2025-07-11",
+    vote_average: null,
+    poster_path: null,
+    media_type: "tv"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 245891,
+    title: "John Wick",
+    overview: "A retired hitman comes out of retirement to avenge the theft of his vintage car and the killing of his dog.",
+    release_date: "2014-10-24",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 324552,
+    title: "John Wick: Chapter 2",
+    overview: "Wick is forced back into retirement to repay a debt and becomes the target of every hitman in the world.",
+    release_date: "2017-02-10",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 458156,
+    title: "John Wick: Chapter 3 - Parabellum",
+    overview: "Declared excommunicado, John Wick must battle an army of assassins after a global contract is placed on him.",
+    release_date: "2019-05-15",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 60,
+    title: "John Wick: Chapter 4",
+    overview: "Wick fights to defeat the High Table across the globe, confronting powerful new enemies and terrifying alliances.",
+    release_date: "2023-03-24",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 1265,
+    title: "Bridge to Terabithia",
+    overview: "Adolescent friends Jess and Leslie create a magical kingdom called Terabithia to escape their troubles, only to face tragedy that tests their imagination and courage.",
+    release_date: "2007-02-16",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  },
+  {
+    id: 45214,
+    title: "Bridge to Terabithia (TV Movie)",
+    overview: "A 1985 television adaptation in which two children form a bond and a fantasy friendship that leads them to a hidden world called Terabithia.",
+    release_date: "1985-02-04",
+    vote_average: null,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+        movieDatabase.push(
+  {
+    id: 1124,
+    title: "The Prestige",
+    overview: "In 19th‑century London, two intensely competitive magicians seek to outdo one another through a deadly battle of obsession, deceit, and illusion, culminating in a dangerous teleportation trick.",
+    release_date: "2006‑10‑20",
+    vote_average: 8.2,
+    poster_path: null,
+    media_type: "movie"
+  }
+);
+    </script>
+</body>
+</html>button:focus {
   outline: none;
   box-shadow: none;
   -webkit-box-shadow: none;
