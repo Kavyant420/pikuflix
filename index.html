@@ -1317,6 +1317,7 @@ button:focus {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
     </style>
 </head>
 
@@ -1696,121 +1697,116 @@ button:focus {
 
         
         const movieDatabase = [
-            {
-                id: 299534,
-                title: "Avengers: Endgame",
-                overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos.",
-                release_date: "2019-04-24",
-                vote_average: 8.3,
-                poster_path: null,
-                media_type: "movie",
-                runtime: 181,
-                genres: ["Action", "Adventure", "Drama"],
-                views: "12.5M",
-                quality: "4K",
-                tmdb_rating: 8.3
-            },
-            {
-                id: 550,
-                title: "Fight Club",
-                overview: "An insomniac office worker and a devil-may-care soapmaker form an underground fight club.",
-                release_date: "1999-10-15",
-                vote_average: 8.8,
-                poster_path: null,
-                media_type: "movie",
-                runtime: 139,
-                genres: ["Drama", "Thriller"],
-                views: "8.9M",
-                quality: "HD",
-                tmdb_rating: 8.8
-            },
-            {
-                id: 155,
-                title: "The Dark Knight",
-                overview: "Batman raises the stakes in his war on crime with the help of Lt. Jim Gordon and DA Harvey Dent.",
-                release_date: "2008-07-16",
-                vote_average: 9.0,
-                poster_path: null,
-                media_type: "movie",
-                runtime: 152,
-                genres: ["Action", "Crime", "Drama"],
-                views: "15.2M",
-                quality: "4K",
-                tmdb_rating: 9.0
-            },
-            {
-                id: 27205,
-                title: "Inception",
-                overview: "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction.",
-                release_date: "2010-07-15",
-                vote_average: 8.8,
-                poster_path: null,
-                media_type: "movie",
-                runtime: 148,
-                genres: ["Action", "Sci-Fi", "Thriller"],
-                views: "11.7M",
-                quality: "4K",
-                tmdb_rating: 8.8
-            },
-            {
-                id: 1399,
-                name: "Game of Thrones",
-                overview: "Seven noble families fight for control of the mythical land of Westeros.",
-                first_air_date: "2011-04-17",
-                vote_average: 9.3,
-                poster_path: null,
-                media_type: "tv",
-                genres: ["Drama", "Fantasy", "Action"],
-                views: "25.8M",
-                quality: "4K",
-                tmdb_rating: 9.3
-            },
-            {
-                id: 1396,
-                name: "Breaking Bad",
-                overview: "A high school chemistry teacher turned methamphetamine producer.",
-                first_air_date: "2008-01-20",
-                vote_average: 9.5,
-                poster_path: null,
-                media_type: "tv",
-                genres: ["Drama", "Crime", "Thriller"],
-                views: "18.4M",
-                quality: "HD",
-                tmdb_rating: 9.5
-            }
-        ];
-
-        // Add more enhanced entries to database
-        movieDatabase.push(
-            {
-                id: 80752,
-                name: "Stranger Things",
-                overview: "When a young boy disappears, his mother and friends confront terrifying supernatural forces to get him back.",
-                first_air_date: "2016-07-15",
-                vote_average: 8.8,
-                poster_path: null,
-                media_type: "tv",
-                genres: ["Drama", "Fantasy", "Horror"],
-                views: "22.1M",
-                quality: "4K",
-                tmdb_rating: 8.8
-            },
-            {
-                id: 335977,
-                title: "Joker",
-                overview: "In Gotham's fractured society, mentally-troubled comedian Arthur Fleck embarks on a downward spiral.",
-                release_date: "2019-10-02",
-                vote_average: 8.5,
-                poster_path: null,
-                media_type: "movie",
-                runtime: 122,
-                genres: ["Crime", "Drama", "Thriller"],
-                views: "14.3M",
-                quality: "4K",
-                tmdb_rating: 8.5
-            }
-        );
-
+    {
+        id: 299534,
+        title: "Avengers: Endgame",
+        overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos.",
+        release_date: "2019-04-24",
+        vote_average: 8.3,
+        poster_path: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+        media_type: "movie",
+        runtime: 181,
+        genres: ["Action", "Adventure", "Drama"],
+        views: "12.5M",
+        quality: "4K",
+        tmdb_rating: 8.3
+    },
+    {
+        id: 550,
+        title: "Fight Club",
+        overview: "An insomniac office worker and a devil-may-care soapmaker form an underground fight club.",
+        release_date: "1999-10-15",
+        vote_average: 8.8,
+        poster_path: "https://image.tmdb.org/t/p/original/t1K1Ljxc988VhIbU7gV2GK58Re3.jpg",
+        media_type: "movie",
+        runtime: 139,
+        genres: ["Drama", "Thriller"],
+        views: "8.9M",
+        quality: "HD",
+        tmdb_rating: 8.8
+    },
+    {
+        id: 155,
+        title: "The Dark Knight",
+        overview: "Batman raises the stakes in his war on crime with the help of Lt. Jim Gordon and DA Harvey Dent.",
+        release_date: "2008-07-16",
+        vote_average: 9.0,
+        poster_path: "https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+        media_type: "movie",
+        runtime: 152,
+        genres: ["Action", "Crime", "Drama"],
+        views: "15.2M",
+        quality: "4K",
+        tmdb_rating: 9.0
+    },
+    {
+        id: 27205,
+        title: "Inception",
+        overview: "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction.",
+        release_date: "2010-07-15",
+        vote_average: 8.8,
+        poster_path: "https://image.tmdb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+        media_type: "movie",
+        runtime: 148,
+        genres: ["Action", "Sci-Fi", "Thriller"],
+        views: "11.7M",
+        quality: "4K",
+        tmdb_rating: 8.8
+    },
+    {
+        id: 1399,
+        name: "Game of Thrones",
+        overview: "Seven noble families fight for control of the mythical land of Westeros.",
+        first_air_date: "2011-04-17",
+        vote_average: 9.3,
+        poster_path: "https://image.tmdb.org/t/p/original/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+        media_type: "tv",
+        genres: ["Drama", "Fantasy", "Action"],
+        views: "25.8M",
+        quality: "4K",
+        tmdb_rating: 9.3
+    },
+    {
+        id: 1396,
+        name: "Breaking Bad",
+        overview: "A high school chemistry teacher turned methamphetamine producer.",
+        first_air_date: "2008-01-20",
+        vote_average: 9.5,
+        poster_path: "https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+        media_type: "tv",
+        genres: ["Drama", "Crime", "Thriller"],
+        views: "18.4M",
+        quality: "HD",
+        tmdb_rating: 9.5
+    },
+    {
+        id: 80752,
+        name: "Stranger Things",
+        overview: "When a young boy disappears, his mother and friends confront terrifying supernatural forces to get him back.",
+        release_date: "2016-07-15",
+        vote_average: 8.8,
+        poster_path: "https://image.tmdb.org/t/p/original/uKYUR8GPkKRCksczYDJb3pwZauo.jpg",
+        media_type: "tv",
+        genres: ["Drama", "Fantasy", "Horror"],
+        views: "22.1M",
+        quality: "4K",
+        tmdb_rating: 8.8
+    },
+    {
+        id: 335977,
+        title: "Joker",
+        overview: "In Gotham's fractured society, mentally-troubled comedian Arthur Fleck embarks on a downward spiral.",
+        release_date: "2019-10-02",
+        vote_average: 8.5,
+        poster_path: "https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+        media_type: "movie",
+        runtime: 122,
+        genres: ["Crime", "Drama", "Thriller"],
+        views: "14.3M",
+        quality: "4K",
+        tmdb_rating: 8.5
+    }
+];
         async function loadTrendingContent() {
             showLoading();
             currentContent = [...movieDatabase].sort(() => Math.random() - 0.5).slice(0, 16);
@@ -1964,69 +1960,79 @@ button:focus {
        }
 
        function createContentCard(item) {
-           const title = item.title || item.name;
-           const year = new Date(item.release_date || item.first_air_date).getFullYear();
-           const rating = item.vote_average?.toFixed(1) || 'N/A';
-           const isLiked = getUserInteraction(item.id, 'liked');
-           const isFavorited = getUserInteraction(item.id, 'favorited');
-           
-           // Generate random counts for demo
-           const likeCount = Math.floor(Math.random() * 10000);
-           const shareCount = Math.floor(Math.random() * 5000);
+    const title = item.title || item.name;
+    const year = new Date(item.release_date || item.first_air_date).getFullYear();
+    const rating = item.vote_average?.toFixed(1) || 'N/A';
+    const isLiked = getUserInteraction(item.id, 'liked');
+    const isFavorited = getUserInteraction(item.id, 'favorited');
+    
+    // Generate random counts for demo
+    const likeCount = Math.floor(Math.random() * 10000);
+    const shareCount = Math.floor(Math.random() * 5000);
 
-           return `
-               <div class="content-card" onclick="playContent(${item.id}, '${item.media_type}', '${title.replace(/'/g, "\\'")}')">
-                   <div class="card-image">
-                       ${item.quality ? `<div class="quality-badge">${item.quality}</div>` : ''}
-                       ${item.runtime ? `<div class="duration-badge">${item.runtime}m</div>` : ''}
-                       <i class="fas fa-${item.media_type === 'movie' ? 'film' : 'tv'}"></i>
-                       <div class="play-overlay">
-                           <button class="play-btn">
-                               <i class="fas fa-play"></i>
-                               Play Now
-                           </button>
-                       </div>
-                   </div>
-                   <div class="card-content">
-                       <h3 class="card-title">${title}</h3>
-                       <div class="card-info">
-                           <span class="card-year">${year}</span>
-                           <div class="tmdb-rating">
-                               <i class="fas fa-star"></i>
-                               ${rating}
-                           </div>
-                       </div>
-                       ${item.genres ? `
-                           <div class="card-genre">
-                               ${item.genres.slice(0, 3).map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
-                           </div>
-                       ` : ''}
-                       <p class="card-overview">${item.overview || 'No description available.'}</p>
-                       <div class="card-stats">
-                           <div class="card-views">
-                               <i class="fas fa-eye"></i>
-                               ${item.views || '0'}
-                           </div>
-                           <div class="card-actions">
-                               <button class="action-btn like-btn ${isLiked ? 'liked' : ''}" data-item-id="${item.id}" title="Like">
-                                   <i class="fas fa-heart"></i>
-                               </button>
-                               <span class="like-count">${formatCount(likeCount)}</span>
-                               
-                               <button class="action-btn favorite-btn ${isFavorited ? 'favorited' : ''}" data-item-id="${item.id}" title="Add to Favorites">
-                                   <i class="fas fa-bookmark"></i>
-                               </button>
-                               
-                               <button class="action-btn share-btn" data-item-id="${item.id}" data-title="${title}" title="Share">
-                                   <i class="fas fa-share"></i>
-                               </button>
-                               <span class="share-count">${formatCount(shareCount)}</span>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           `;
-       }
+    // Fix for poster image display
+    let cardImageContent;
+    if (item.poster_path) {
+        // If poster_path exists, use it as an image
+        cardImageContent = `<img src="${item.poster_path}" alt="${title}" />`;
+    } else {
+        // If no poster, show the icon as fallback
+        cardImageContent = `<i class="fas fa-${item.media_type === 'movie' ? 'film' : 'tv'}"></i>`;
+    }
+
+    return `
+        <div class="content-card" onclick="playContent(${item.id}, '${item.media_type}', '${title.replace(/'/g, "\\'")}')">
+            <div class="card-image">
+                ${item.quality ? `<div class="quality-badge">${item.quality}</div>` : ''}
+                ${item.runtime ? `<div class="duration-badge">${item.runtime}m</div>` : ''}
+                ${cardImageContent}
+                <div class="play-overlay">
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i>
+                        Play Now
+                    </button>
+                </div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${title}</h3>
+                <div class="card-info">
+                    <span class="card-year">${year}</span>
+                    <div class="tmdb-rating">
+                        <i class="fas fa-star"></i>
+                        ${rating}
+                    </div>
+                </div>
+                ${item.genres ? `
+                    <div class="card-genre">
+                        ${item.genres.slice(0, 3).map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
+                    </div>
+                ` : ''}
+                <p class="card-overview">${item.overview || 'No description available.'}</p>
+                <div class="card-stats">
+                    <div class="card-views">
+                        <i class="fas fa-eye"></i>
+                        ${item.views || '0'}
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn like-btn ${isLiked ? 'liked' : ''}" data-item-id="${item.id}" title="Like">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <span class="like-count">${formatCount(likeCount)}</span>
+                        
+                        <button class="action-btn favorite-btn ${isFavorited ? 'favorited' : ''}" data-item-id="${item.id}" title="Add to Favorites">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        
+                        <button class="action-btn share-btn" data-item-id="${item.id}" data-title="${title}" title="Share">
+                            <i class="fas fa-share"></i>
+                        </button>
+                        <span class="share-count">${formatCount(shareCount)}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
        function switchCategory(category) {
            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -2330,826 +2336,849 @@ button:focus {
 
        console.log('PikuFlix initialized successfully! 🚀');
        movieDatabase.push(
-  {
-    id: 950387,
-    title: "A Minecraft Movie",
-    overview: "Four misfits are mysteriously transported to the cubic Overworld where with Steve’s help they embark on a magical quest to return home.",
-    release_date: "2025-04-04",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 101,
-    genres: ["Adventure", "Family", "Fantasy", "Comedy"],
-    views: "8M",
-    quality: "4K",
-    tmdb_rating: null
-  },
-  {
-    id: 771,
-    title: "Home Alone",
-    overview: "Eight‑year‑old Kevin McCallister is accidentally left behind when his family flies to Paris for Christmas. He defends his home against two bungling burglars.",
-    release_date: "1990-11-16",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 103,
-    genres: ["Comedy", "Family"],
-    views: "15M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 772,
-    title: "Home Alone 2: Lost in New York",
-    overview: "Kevin ends up alone in New York, checks into the Plaza Hotel with his dad's credit card, and faces his old nemeses planning to rob a toy store.",
-    release_date: "1992-11-19",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 120,
-    genres: ["Comedy", "Family"],
-    views: "13M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 9714,
-    title: "Home Alone 3",
-    overview: "A new kid, Alex Pruitt, is home alone and must stop international spies trying to steal a microchip hidden in a toy car.",
-    release_date: "1997-12-12",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 102,
-    genres: ["Comedy", "Family"],
-    views: "4M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 12536,
-    title: "Home Alone 4: Taking Back the House",
-    overview: "Kevin McCallister now stays with his dad’s new fiancée in a mansion. Marv and Vera plot a heist but Kevin steps in to stop them.",
-    release_date: "2002-11-03",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 90,
-    genres: ["Comedy", "Family"],
-    views: "2M",
-    quality: "DVD",
-    tmdb_rating: null
-  },
-  {
-    id: 134375,
-    title: "Home Alone: The Holiday Heist",
-    overview: "Finn Baxter is left home alone during the holidays and must defend his new family's mansion from thieves trying to steal an heirloom.",
-    release_date: "2012-11-25",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 90,
-    genres: ["Comedy", "Family"],
-    views: "3M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 654974,
-    title: "Home Sweet Home Alone",
-    overview: "10‑year‑old Max Mercer is accidentally left behind and must defend his home from a married couple attempting to reclaim a valuable heirloom.",
-    release_date: "2021-11-12",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 93,
-    genres: ["Comedy", "Family"],
-    views: "5M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 16781,
-    title: "Madea's Family Reunion",
-    overview: "Madea must keep her family together amidst drama during a family reunion.",
-    release_date: "2006-02-24",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 122,
-    genres: ["Comedy", "Drama"],
-    views: "10M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 15670,
-    title: "Madea Goes to Jail",
-    overview: "After a high-speed chase, Madea ends up in prison and looks out for a young incarcerated prostitute.",
-    release_date: "2009-02-20",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 118,
-    genres: ["Comedy", "Crime"],
-    views: "8M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 654321,
-    title: "Madea's Big Happy Family",
-    overview: "Madea helps reunite the family when a crisis hits her niece Shirley.",
-    release_date: "2011-04-22",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 107,
-    genres: ["Comedy", "Family"],
-    views: "6M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 112233,
-    title: "Madea's Witness Protection",
-    overview: "Madea welcomes a family under FBI protection after being framed in a Ponzi scheme.",
-    release_date: "2012-06-29",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 110,
-    genres: ["Comedy", "Crime"],
-    views: "5M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 445566,
-    title: "Boo! A Madea Halloween",
-    overview: "Madea watches over her great‑niece for a night of Halloween pranks and chaos.",
-    release_date: "2016-10-21",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 90,
-    genres: ["Comedy", "Horror"],
-    views: "4M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 459202,
-    title: "Boo 2! A Madea Halloween",
-    overview: "Madea goes on a wild journey to a haunted campground to rescue Tiffany.",
-    release_date: "2017-10-20",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 95,
-    genres: ["Comedy", "Horror"],
-    views: "4.5M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 464504,
-    title: "A Madea Family Funeral",
-    overview: "A family reunion turns into a hilarious nightmare when a funeral reveals unwanted truths.",
-    release_date: "2019-03-01",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 103,
-    genres: ["Comedy"],
-    views: "3.5M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 778899,
-    title: "A Madea Homecoming",
-    overview: "Madea hosts her great‑grandson’s college graduation party and family chaos ensues.",
-    release_date: "2022-02-25",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 100,
-    genres: ["Comedy"],
-    views: "2M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 990011,
-    title: "Madea's Destination Wedding",
-    overview: "Madea travels to the Bahamas for her grandniece’s wedding and family surprises.",
-    release_date: "2025-07-11",
-    vote_average: null,
-    media_type: "movie",
-    runtime: 95,
-    genres: ["Comedy", "Romance"],
-    views: "1.8M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 1124,
-    title: "The Prestige",
-    overview: "In 19th‑century London, two intensely competitive magicians seek to outdo one another through a deadly battle of obsession, deceit, and illusion.",
-    release_date: "2006-10-20",
-    vote_average: 8.2,
-    media_type: "movie",
-    runtime: 130,
-    genres: ["Drama", "Mystery", "Sci-Fi"],
-    views: "18M",
-    quality: "HD",
-    tmdb_rating: 8.2
-  }
+{
+id: 950387,
+title: "A Minecraft Movie",
+overview: "Four misfits are mysteriously transported to the cubic Overworld where with Steve’s help they embark on a magical quest to return home.",
+release_date: "2025-04-04",
+vote_average: null,
+poster_path: 'https://image.tmdb.org/t/p/original/nhcNm2u8iCL6BbrZmRMUxvHJNor.jpg',
+media_type: "movie",
+runtime: 101,
+genres: ["Adventure", "Family", "Fantasy", "Comedy"],
+views: "8M",
+quality: "4K",
+tmdb_rating: null
+},
+{
+id: 771,
+title: "Home Alone",
+overview: "Eight‑year‑old Kevin McCallister is accidentally left behind when his family flies to Paris for Christmas. He defends his home against two bungling burglars.",
+release_date: "1990-11-16",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/i5We88HdO9Nsrv8xLyo4toNsLUM.jpg",
+media_type: "movie",
+runtime: 103,
+genres: ["Comedy", "Family"],
+views: "15M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 772,
+title: "Home Alone 2: Lost in New York",
+overview: "Kevin ends up alone in New York, checks into the Plaza Hotel with his dad's credit card, and faces his old nemeses planning to rob a toy store.",
+release_date: "1992-11-19",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/zeFwa64oN3TQn9dZWE9gcXiuzeg.jpg",
+media_type: "movie",
+runtime: 120,
+genres: ["Comedy", "Family"],
+views: "13M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 9714,
+title: "Home Alone 3",
+overview: "A new kid, Alex Pruitt, is home alone and must stop international spies trying to steal a microchip hidden in a toy car.",
+release_date: "1997-12-12",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/6uOadrCfle0n2LOOxHbgWEdnrm2.jpg",
+media_type: "movie",
+runtime: 102,
+genres: ["Comedy", "Family"],
+views: "4M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 12536,
+title: "Home Alone 4: Taking Back the House",
+overview: "Kevin McCallister now stays with his dad’s new fiancée in a mansion. Marv and Vera plot a heist but Kevin steps in to stop them.",
+release_date: "2002-11-03",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/qRktvMOO2QaCL7gvNyvZDoxPOZj.jpg",
+media_type: "movie",
+runtime: 90,
+genres: ["Comedy", "Family"],
+views: "2M",
+quality: "DVD",
+tmdb_rating: null
+},
+{
+id: 134375,
+title: "Home Alone: The Holiday Heist",
+overview: "Finn Baxter is left home alone during the holidays and must defend his new family's mansion from thieves trying to steal an heirloom.",
+release_date: "2012-11-25",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/aP6NPJeiv30d82lZF1baZ3qRBcZ.jpg",
+media_type: "movie",
+runtime: 90,
+genres: ["Comedy", "Family"],
+views: "3M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 654974,
+title: "Home Sweet Home Alone",
+overview: "10‑year‑old Max Mercer is accidentally left behind and must defend his home from a married couple attempting to reclaim a valuable heirloom.",
+release_date: "2021-11-12",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/a8tH0jl37366bLVyPB08dncgqqd.jpg",
+media_type: "movie",
+runtime: 93,
+genres: ["Comedy", "Family"],
+views: "5M",
+quality: "HD",
+tmdb_rating: null
+},
+
+{
+id: 16781,
+title: "Madea's Family Reunion",
+overview: "Madea must keep her family together amidst drama during a family reunion.",
+release_date: "2006-02-24",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/lAzrDS5bJJSSdPAUxuctCoomXUc.jpg",
+media_type: "movie",
+runtime: 122,
+genres: ["Comedy", "Drama"],
+views: "10M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 15670,
+title: "Madea Goes to Jail",
+overview: "After a high-speed chase, Madea ends up in prison and looks out for a young incarcerated prostitute.",
+release_date: "2009-02-20",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/qiXNNmSFXsfUdKDkylBF2LfX0DR.jpg",
+media_type: "movie",
+runtime: 118,
+genres: ["Comedy", "Crime"],
+views: "8M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 654321,
+title: "Madea's Big Happy Family",
+overview: "Madea helps reunite the family when a crisis hits her niece Shirley.",
+release_date: "2011-04-22",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/jHW53TCxH7A3FTdjE7z1rZs6Dxm.jpg",
+media_type: "movie",
+runtime: 107,
+genres: ["Comedy", "Family"],
+views: "6M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 112233,
+title: "Madea's Witness Protection",
+overview: "Madea welcomes a family under FBI protection after being framed in a Ponzi scheme.",
+release_date: "2012-06-29",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/4P6d7kVDB60Ydmk9WAhrPCWrARI.jpg",
+media_type: "movie",
+runtime: 110,
+genres: ["Comedy", "Crime"],
+views: "5M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 445566,
+title: "Boo! A Madea Halloween",
+overview: "Madea watches over her great‑niece for a night of Halloween pranks and chaos.",
+release_date: "2016-10-21",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/izTnuH11pj2L5dlYgWlppTAezcR.jpg",
+media_type: "movie",
+runtime: 90,
+genres: ["Comedy", "Horror"],
+views: "4M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 459202,
+title: "Boo 2! A Madea Halloween",
+overview: "Madea goes on a wild journey to a haunted campground to rescue Tiffany.",
+release_date: "2017-10-20",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/5nvP4etJ8ecQv8qZM08dK4BAzdK.jpg",
+media_type: "movie",
+runtime: 95,
+genres: ["Comedy", "Horror"],
+views: "4.5M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 464504,
+title: "A Madea Family Funeral",
+overview: "A family reunion turns into a hilarious nightmare when a funeral reveals unwanted truths.",
+release_date: "2019-03-01",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/sFvOTUlZrIxCLdmz1fC16wK0lme.jpg",
+media_type: "movie",
+runtime: 103,
+genres: ["Comedy"],
+views: "3.5M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 778899,
+title: "A Madea Homecoming",
+overview: "Madea hosts her great‑grandson’s college graduation party and family chaos ensues.",
+release_date: "2022-02-25",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/fWJXNc0Q0qIXU8O8hcUmH0iCYzu.jpg",
+media_type: "movie",
+runtime: 100,
+genres: ["Comedy"],
+views: "2M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 990011,
+title: "Madea's Destination Wedding",
+overview: "Madea travels to the Bahamas for her grandniece’s wedding and family surprises.",
+release_date: "2025-07-11",
+vote_average: null,
+poster_path: "https://image.tmdb.org/t/p/original/zuSicyCG1TmzHSM8YHJkySQwms8.jpg",
+media_type: "movie",
+runtime: 95,
+genres: ["Comedy", "Romance"],
+views: "1.8M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 1124,
+title: "The Prestige",
+overview: "In 19th‑century London, two intensely competitive magicians seek to outdo one another through a deadly battle of obsession, deceit, and illusion.",
+release_date: "2006-10-20",
+vote_average: 8.2,
+poster_path: "https://image.tmdb.org/t/p/original/bdN3gXuIZYaJP7ftKK2sU0nPtEA.jpg",
+media_type: "movie",
+runtime: 130,
+genres: ["Drama", "Mystery", "Sci-Fi"],
+views: "18M",
+quality: "HD",
+tmdb_rating: 8.2
+}
+);
+movieDatabase.push({
+id: 1402,
+title: "The Walking Dead",
+overview: "Sheriff's deputy Rick Grimes wakes up from a coma to learn the world is overrun by zombies. He sets out to find his family and encounters many survivors along the way.",
+release_date: "2010-10-31",
+vote_average: 8.1,
+poster_path: "https://image.tmdb.org/t/p/original/reKs8y4mPwPkZG99ZpbKRhBPKsX.jpg",
+media_type: "tv",
+runtime: null,
+genres: ["Drama", "Horror", "Thriller"],
+views: "19.3M",
+quality: "HD",
+tmdb_rating: 8.1
+});
+movieDatabase.push(
+{
+id: 11036,
+title: "The Notebook",
+overview: "An elderly man reads a story from a faded notebook to a woman with Alzheimer’s, recounting the passionate romance of Noah and Allie.",
+release_date: "2004-06-25",
+vote_average: 7.9,
+poster_path: "https://image.tmdb.org/t/p/original/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg",
+media_type: "movie",
+runtime: 124,
+genres: ["Romance", "Drama"],
+views: "45M",
+quality: "HD",
+tmdb_rating: 7.9
+},
+{
+id: 155,
+title: "John Wick",
+overview: "A retired hitman comes out of retirement to avenge the theft of his vintage car and the killing of his dog.",
+release_date: "2014-10-24",
+vote_average: 7.4,
+poster_path: "https://image.tmdb.org/t/p/original/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
+media_type: "movie",
+runtime: 101,
+genres: ["Action", "Thriller", "Crime"],
+views: "28M",
+quality: "HD",
+tmdb_rating: 7.4
+},
+{
+id: 511,
+title: "John Wick: Chapter 2",
+overview: "Bound by a blood oath to help a former associate, John Wick travels to Rome to face off against some of the world’s deadliest killers.",
+release_date: "2017-02-10",
+vote_average: 7.3,
+poster_path: "https://image.tmdb.org/t/p/original/hXWBc0ioZP3cN4zCu6SN3YHXZVO.jpg",
+media_type: "movie",
+runtime: 122,
+genres: ["Action", "Thriller", "Crime"],
+views: "24M",
+quality: "HD",
+tmdb_rating: 7.3
+},
+{
+id: 6494,
+title: "John Wick: Chapter 3 – Parabellum",
+overview: "John Wick is on the run with a $14 million price tag on his head and an army of bounty-hunting killers on his trail.",
+release_date: "2019-05-15",
+vote_average: 7.5,
+poster_path: "https://image.tmdb.org/t/p/original/ejODG5DtqCVJm85XVt2BOxMrHxF.jpg",
+media_type: "movie",
+runtime: 131,
+genres: ["Action", "Thriller", "Crime"],
+views: "31M",
+quality: "4K",
+tmdb_rating: 7.5
+},
+{
+id: 131523,
+title: "John Wick: Chapter 4",
+overview: "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table, facing powerful new enemies across the globe.",
+release_date: "2023-03-24",
+vote_average: 8.1,
+poster_path: "https://image.tmdb.org/t/p/original/uzHPb0rITwa44KkhX5Z27cXwmL1.jpg",
+media_type: "movie",
+runtime: 169,
+genres: ["Action", "Thriller", "Crime"],
+views: "37M",
+quality: "4K",
+tmdb_rating: 8.1
+},
+{
+id: 315635,
+title: "Spider‑Man: Homecoming",
+overview: "Following the events of Civil War, high-schooler Peter Parker balances teenage life in Queens and fighting crime as Spider‑Man while facing a new threat in the Vulture.",
+release_date: "2017-07-07",
+vote_average: 7.4,
+poster_path: "https://image.tmdb.org/t/p/original/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
+media_type: "movie",
+runtime: 133,
+genres: ["Action", "Adventure", "Sci-Fi"],
+views: "50M",
+quality: "4K",
+tmdb_rating: 7.4
+},
+{
+id: 429617,
+title: "Spider‑Man: Far From Home",
+overview: "On a European school trip, Peter Parker is recruited by Nick Fury to battle elemental threats while wrestling with grief and responsibility.",
+release_date: "2019-07-02",
+vote_average: 7.4,
+poster_path: "https://image.tmdb.org/t/p/original/zrNKUa5SBUwue39coJArNdDgQJM.jpg",
+media_type: "movie",
+runtime: 129,
+genres: ["Action", "Adventure", "Sci-Fi"],
+views: "55M",
+quality: "4K",
+tmdb_rating: 7.4
+},
+{
+id: 634649,
+title: "Spider‑Man: No Way Home",
+overview: "After his identity is revealed, Peter seeks Doctor Strange’s help—but a spell gone wrong causes villains from multiple universes to arrive, forcing Peter to face his greatest challenge.",
+release_date: "2021-12-17",
+vote_average: 8.2,
+poster_path: "https://image.tmdb.org/t/p/original/x8AOx0zIfpNKZ1eVW4fhmUiZNqU.jpg",
+media_type: "movie",
+runtime: 148,
+genres: ["Action", "Adventure", "Sci-Fi"],
+views: "110M",
+quality: "4K",
+tmdb_rating: 8.2
+},
+{
+id: 911430,
+title: "F1: The Movie",
+overview: "Veteran driver Sonny Hayes (Brad Pitt) returns to Formula 1 racing to save a struggling team owned by former rival Ruben Cervantes, while mentoring a rising star, Joshua Pearce.",
+release_date: "2025-06-27",
+vote_average: null,
+poster_path: "",
+media_type: "movie",
+runtime: 125,
+genres: ["Drama", "Sport", "Action"],
+views: "5M",
+quality: "4K",
+tmdb_rating: null
+},
+{
+id: 1265,
+title: "Bridge to Terabithia",
+overview: "Adolescent friends Jess and Leslie create a magical kingdom called Terabithia to escape their troubles, only to face tragedy that tests their courage.",
+release_date: "2007-02-16",
+vote_average: null,
+poster_path: null,
+media_type: "movie",
+runtime: 95,
+genres: ["Family", "Fantasy", "Drama"],
+views: "12M",
+quality: "HD",
+tmdb_rating: null
+},
+{
+id: 45214,
+title: "Bridge to Terabithia (TV Movie)",
+overview: "A 1985 television adaptation in which two children form a bond and a fantasy friendship that leads them to a hidden world called Terabithia.",
+release_date: "1985-02-04",
+vote_average: null,
+poster_path: null,
+media_type: "movie",
+runtime: 100,
+genres: ["Family", "Fantasy", "Drama"],
+views: "2M",
+quality: "HD",
+tmdb_rating: null
+},
+
+// …(more entries like Madea films, etc. can be added similarly)
 );
 movieDatabase.push(
-  {
-    id: 11036,
-    title: "The Notebook",
-    overview: "An elderly man reads a story from a faded notebook to a woman with Alzheimer’s, recounting the passionate romance of Noah and Allie.",
-    release_date: "2004-06-25",
-    vote_average: 7.9,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 124,
-    genres: ["Romance", "Drama"],
-    views: "45M",
-    quality: "HD",
-    tmdb_rating: 7.9
-  },
-  {
-    id: 155,
-    title: "John Wick",
-    overview: "A retired hitman comes out of retirement to avenge the theft of his vintage car and the killing of his dog.",
-    release_date: "2014-10-24",
-    vote_average: 7.4,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 101,
-    genres: ["Action", "Thriller", "Crime"],
-    views: "28M",
-    quality: "HD",
-    tmdb_rating: 7.4
-  },
-  {
-    id: 511,
-    title: "John Wick: Chapter 2",
-    overview: "Bound by a blood oath to help a former associate, John Wick travels to Rome to face off against some of the world’s deadliest killers.",
-    release_date: "2017-02-10",
-    vote_average: 7.3,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 122,
-    genres: ["Action", "Thriller", "Crime"],
-    views: "24M",
-    quality: "HD",
-    tmdb_rating: 7.3
-  },
-  {
-    id: 6494,
-    title: "John Wick: Chapter 3 – Parabellum",
-    overview: "John Wick is on the run with a $14 million price tag on his head and an army of bounty-hunting killers on his trail.",
-    release_date: "2019-05-15",
-    vote_average: 7.5,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 131,
-    genres: ["Action", "Thriller", "Crime"],
-    views: "31M",
-    quality: "4K",
-    tmdb_rating: 7.5
-  },
-  {
-    id: 131523,
-    title: "John Wick: Chapter 4",
-    overview: "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table, facing powerful new enemies across the globe.",
-    release_date: "2023-03-24",
-    vote_average: 8.1,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 169,
-    genres: ["Action", "Thriller", "Crime"],
-    views: "37M",
-    quality: "4K",
-    tmdb_rating: 8.1
-  },
-  {
-    id: 315635,
-    title: "Spider‑Man: Homecoming",
-    overview: "Following the events of Civil War, high-schooler Peter Parker balances teenage life in Queens and fighting crime as Spider‑Man while facing a new threat in the Vulture.",
-    release_date: "2017-07-07",
-    vote_average: 7.4,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 133,
-    genres: ["Action", "Adventure", "Sci-Fi"],
-    views: "50M",
-    quality: "4K",
-    tmdb_rating: 7.4
-  },
-  {
-    id: 429617,
-    title: "Spider‑Man: Far From Home",
-    overview: "On a European school trip, Peter Parker is recruited by Nick Fury to battle elemental threats while wrestling with grief and responsibility.",
-    release_date: "2019-07-02",
-    vote_average: 7.4,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 129,
-    genres: ["Action", "Adventure", "Sci-Fi"],
-    views: "55M",
-    quality: "4K",
-    tmdb_rating: 7.4
-  },
-  {
-    id: 634649,
-    title: "Spider‑Man: No Way Home",
-    overview: "After his identity is revealed, Peter seeks Doctor Strange’s help—but a spell gone wrong causes villains from multiple universes to arrive, forcing Peter to face his greatest challenge.",
-    release_date: "2021-12-17",
-    vote_average: 8.2,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 148,
-    genres: ["Action", "Adventure", "Sci-Fi"],
-    views: "110M",
-    quality: "4K",
-    tmdb_rating: 8.2
-  },
-  {
-    id: 911430,
-    title: "F1: The Movie",
-    overview: "Veteran driver Sonny Hayes (Brad Pitt) returns to Formula 1 racing to save a struggling team owned by former rival Ruben Cervantes, while mentoring a rising star, Joshua Pearce.",
-    release_date: "2025-06-27",
-    vote_average: null,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 125,
-    genres: ["Drama", "Sport", "Action"],
-    views: "5M",
-    quality: "4K",
-    tmdb_rating: null
-  },
-  {
-    id: 1265,
-    title: "Bridge to Terabithia",
-    overview: "Adolescent friends Jess and Leslie create a magical kingdom called Terabithia to escape their troubles, only to face tragedy that tests their courage.",
-    release_date: "2007-02-16",
-    vote_average: null,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 95,
-    genres: ["Family", "Fantasy", "Drama"],
-    views: "12M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 45214,
-    title: "Bridge to Terabithia (TV Movie)",
-    overview: "A 1985 television adaptation in which two children form a bond and a fantasy friendship that leads them to a hidden world called Terabithia.",
-    release_date: "1985-02-04",
-    vote_average: null,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 100,
-    genres: ["Family", "Fantasy", "Drama"],
-    views: "2M",
-    quality: "HD",
-    tmdb_rating: null
-  },
-  {
-    id: 1124,
-    title: "The Prestige",
-    overview: "In 19th‑century London, two intensely competitive magicians seek to outdo one another through a deadly battle of obsession, deceit, and illusion, culminating in a dangerous teleportation trick.",
-    release_date: "2006-10-20",
-    vote_average: 8.2,
-    poster_path: null,
-    media_type: "movie",
-    runtime: 130,
-    genres: ["Drama", "Mystery", "Sci-Fi"],
-    views: "18M",
-    quality: "HD",
-    tmdb_rating: 8.2
-  }
-  // …(more entries like Madea films, etc. can be added similarly)
+{
+id: 1405,
+title: "Dexter",
+overview: "Dexter Morgan, a Miami-based blood spatter analyst for the police department, leads a secret life as a serial killer targeting criminals who have escaped justice.",
+first_air_date: "2006-10-01",
+vote_average: 8.2,
+
+media_type: "tv", runtime: 55, genres: ["Crime", "Drama", "Mystery"], views: "25M", quality: "HD", tmdb_rating: 8.2 ,
+poster_path:"https://image.tmdb.org/t/p/original/v4AiIeD8OViyqUghKepXQgFQpKw.jpg"
+
+},
+{
+id: 14164730,
+title: "Dexter: New Blood",
+overview: "Set ten years after Dexter’s presumed death in Miami, he lives under a false identity in upstate New York until his estranged son appears and draws him back into darkness.",
+first_air_date: "2021-11-07",
+vote_average: 7.2,
+media_type: "tv",
+runtime: 52,
+genres: ["Crime", "Drama", "Mystery"],
+views: "8M",
+quality: "HD",
+tmdb_rating: 7.2,
+poster_path: "https://image.tmdb.org/t/p/original/9EBKgrFIsCFSV1RZKWhYUdbtGiv.jpg"
+},
+{
+id: 219937,
+title: "Dexter: Original Sin",
+overview: "A prequel set in 1991 Miami: young Dexter learns to channel his bloodthirsty urges with guidance from his father, while working a forensics internship at Miami Metro PD.",
+first_air_date: "2024-12-13",
+vote_average: 6.6,
+media_type: "tv",
+runtime: 52,
+genres: ["Crime", "Drama", "Mystery"],
+views: "3M",
+quality: "HD",
+tmdb_rating: 6.6,
+poster_path: "https://image.tmdb.org/t/p/original/jmbtI8hhNkw5Hpksr34x3gCCmjS.jpg"
+},
+{
+id: 259909,
+title: "Dexter: Resurrection",
+overview: "Weeks after New Blood, Dexter wakes from a coma and heads to New York to find his son Harrison—only to discover dark secrets, FBI intrigue, and a legacy he can’t escape.",
+first_air_date: "2025-07-11",
+vote_average: 9.0,
+media_type: "tv",
+runtime: 54,
+genres: ["Crime", "Drama", "Mystery"],
+views: "3.1M",
+quality: "4K",
+tmdb_rating: 9.0,
+poster_path:"https://www.themoviedb.org/tv/259909-dexter-resurrection"
+}
 );
 movieDatabase.push(
-  {
-    id: 1405,
-    title: "Dexter",
-    overview: "Dexter Morgan, a Miami-based blood spatter analyst for the police department, leads a secret life as a serial killer targeting criminals who have escaped justice.",
-    first_air_date: "2006-10-01",
-    vote_average: 8.2,
-    media_type: "tv",
-    runtime: 55,
-    genres: ["Crime", "Drama", "Mystery"],
-    views: "25M",
-    quality: "HD",
-    tmdb_rating: 8.2
-  },
-  {
-    id: 14164730,
-    title: "Dexter: New Blood",
-    overview: "Set ten years after Dexter’s presumed death in Miami, he lives under a false identity in upstate New York until his estranged son appears and draws him back into darkness.",
-    first_air_date: "2021-11-07",
-    vote_average: 7.2,
-    media_type: "tv",
-    runtime: 52,
-    genres: ["Crime", "Drama", "Mystery"],
-    views: "8M",
-    quality: "HD",
-    tmdb_rating: 7.2
-  },
-  {
-    id: 219937,
-    title: "Dexter: Original Sin",
-    overview: "A prequel set in 1991 Miami: young Dexter learns to channel his bloodthirsty urges with guidance from his father, while working a forensics internship at Miami Metro PD.",
-    first_air_date: "2024-12-13",
-    vote_average: 6.6,
-    media_type: "tv",
-    runtime: 52,
-    genres: ["Crime", "Drama", "Mystery"],
-    views: "3M",
-    quality: "HD",
-    tmdb_rating: 6.6
-  },
-  {
-    id: 259909,
-    title: "Dexter: Resurrection",
-    overview: "Weeks after New Blood, Dexter wakes from a coma and heads to New York to find his son Harrison—only to discover dark secrets, FBI intrigue, and a legacy he can’t escape.",
-    first_air_date: "2025-07-11",
-    vote_average: 9.0,
-    media_type: "tv",
-    runtime: 54,
-    genres: ["Crime", "Drama", "Mystery"],
-    views: "3.1M",
-    quality: "4K",
-    tmdb_rating: 9.0
-  }
+{
+id: 680,
+title: "Pulp Fiction",
+overview: "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge.",
+release_date: "1994-09-10",
+vote_average: 8.9,
+media_type: "movie",
+runtime: 154,
+genres: ["Crime", "Drama"],
+views: "45.2M",
+quality: "HD",
+tmdb_rating: 8.9
+},
+{
+id: 13,
+title: "Forrest Gump",
+overview: "A man with a low IQ has accomplished great things in his life and been present during significant historic events.",
+release_date: "1994-06-23",
+vote_average: 8.8,
+media_type: "movie",
+runtime: 142,
+genres: ["Comedy", "Drama", "Romance"],
+views: "52.8M",
+quality: "HD",
+tmdb_rating: 8.8
+},
+{
+id: 497,
+title: "The Green Mile",
+overview: "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder.",
+release_date: "1999-12-10",
+vote_average: 8.5,
+media_type: "movie",
+runtime: 189,
+genres: ["Drama", "Fantasy", "Crime"],
+views: "39.4M",
+quality: "HD",
+tmdb_rating: 8.5
+},
+{
+id: 315635,
+title: "Spider-Man: Homecoming",
+overview: "Peter Parker tries to stop the Vulture from selling weapons made with advanced Chitauri technology.",
+release_date: "2017-07-05",
+vote_average: 7.4,
+media_type: "movie",
+runtime: 133,
+genres: ["Action", "Adventure", "Science Fiction"],
+views: "71.6M",
+quality: "4K",
+tmdb_rating: 7.4
+},
+{
+id: 335983,
+title: "Venom",
+overview: "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth.",
+release_date: "2018-09-28",
+vote_average: 6.8,
+media_type: "movie",
+runtime: 112,
+genres: ["Science Fiction", "Action"],
+views: "64.7M",
+quality: "4K",
+tmdb_rating: 6.8
+},
+{
+id: 181808,
+title: "Star Wars: The Last Jedi",
+overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker.",
+release_date: "2017-12-13",
+vote_average: 7.0,
+media_type: "movie",
+runtime: 152,
+genres: ["Science Fiction", "Action", "Adventure"],
+views: "83.9M",
+quality: "4K",
+tmdb_rating: 7.0
+},
+{
+id: 284054,
+title: "Black Panther",
+overview: "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people.",
+release_date: "2018-02-13",
+vote_average: 7.3,
+media_type: "movie",
+runtime: 134,
+genres: ["Action", "Adventure", "Science Fiction"],
+views: "95.3M",
+quality: "4K",
+tmdb_rating: 7.3
+},
+{
+id: 363088,
+title: "Ant-Man and the Wasp",
+overview: "Just when his time under house arrest is about to end, Scott Lang puts his freedom at risk.",
+release_date: "2018-07-04",
+vote_average: 7.0,
+media_type: "movie",
+runtime: 118,
+genres: ["Action", "Adventure", "Science Fiction"],
+views: "72.5M",
+quality: "4K",
+tmdb_rating: 7.0
+},
+{
+id: 346364,
+title: "It",
+overview: "In a small town in Maine, seven children known as The Losers Club come face to face with life problems.",
+release_date: "2017-09-05",
+vote_average: 7.2,
+media_type: "movie",
+runtime: 135,
+genres: ["Horror", "Thriller"],
+views: "61.8M",
+quality: "4K",
+tmdb_rating: 7.2
+},
+{
+id: 419704,
+title: "Ad Astra",
+overview: "The near future, a time when both hope and hardships drive humanity to look to the stars and beyond.",
+release_date: "2019-09-17",
+vote_average: 6.1,
+media_type: "movie",
+runtime: 123,
+genres: ["Science Fiction", "Drama", "Adventure"],
+views: "32.4M",
+quality: "4K",
+tmdb_rating: 6.1
+},
+{
+id: 586347,
+title: "The Invisible Man",
+overview: "When Cecilia's abusive ex takes his own life and leaves her his fortune, she suspects his death was a hoax.",
+release_date: "2020-02-26",
+vote_average: 7.1,
+media_type: "movie",
+runtime: 124,
+genres: ["Horror", "Science Fiction", "Thriller"],
+views: "48.7M",
+quality: "4K",
+tmdb_rating: 7.1
+},
+{
+id: 324857,
+title: "Spider-Man: Into the Spider-Verse",
+overview: "Miles Morales becomes the Spider-Man of his universe and joins other Spider-People from other dimensions.",
+release_date: "2018-12-06",
+vote_average: 8.4,
+media_type: "movie",
+runtime: 117,
+genres: ["Animation", "Action", "Adventure"],
+views: "89.5M",
+quality: "4K",
+tmdb_rating: 8.4
+},
+{
+id: 454626,
+title: "Sonic the Hedgehog",
+overview: "Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world's speediest hedgehog.",
+release_date: "2020-02-12",
+vote_average: 7.3,
+media_type: "movie",
+runtime: 99,
+genres: ["Action", "Science Fiction", "Comedy"],
+views: "63.2M",
+quality: "4K",
+tmdb_rating: 7.3
+},
+{
+id: 181812,
+title: "Star Wars: The Rise of Skywalker",
+overview: "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues.",
+release_date: "2019-12-18",
+vote_average: 6.4,
+media_type: "movie",
+runtime: 142,
+genres: ["Science Fiction", "Action", "Adventure"],
+views: "77.8M",
+quality: "4K",
+tmdb_rating: 6.4
+}
 );
 movieDatabase.push(
-    {
-        id: 680,
-        title: "Pulp Fiction",
-        overview: "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge.",
-        release_date: "1994-09-10",
-        vote_average: 8.9,
-        media_type: "movie",
-        runtime: 154,
-        genres: ["Crime", "Drama"],
-        views: "45.2M",
-        quality: "HD",
-        tmdb_rating: 8.9
-    },
-    {
-        id: 13,
-        title: "Forrest Gump",
-        overview: "A man with a low IQ has accomplished great things in his life and been present during significant historic events.",
-        release_date: "1994-06-23",
-        vote_average: 8.8,
-        media_type: "movie",
-        runtime: 142,
-        genres: ["Comedy", "Drama", "Romance"],
-        views: "52.8M",
-        quality: "HD",
-        tmdb_rating: 8.8
-    },
-    {
-        id: 497,
-        title: "The Green Mile",
-        overview: "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder.",
-        release_date: "1999-12-10",
-        vote_average: 8.5,
-        media_type: "movie",
-        runtime: 189,
-        genres: ["Drama", "Fantasy", "Crime"],
-        views: "39.4M",
-        quality: "HD",
-        tmdb_rating: 8.5
-    },
-    {
-        id: 315635,
-        title: "Spider-Man: Homecoming",
-        overview: "Peter Parker tries to stop the Vulture from selling weapons made with advanced Chitauri technology.",
-        release_date: "2017-07-05",
-        vote_average: 7.4,
-        media_type: "movie",
-        runtime: 133,
-        genres: ["Action", "Adventure", "Science Fiction"],
-        views: "71.6M",
-        quality: "4K",
-        tmdb_rating: 7.4
-    },
-    {
-        id: 335983,
-        title: "Venom",
-        overview: "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth.",
-        release_date: "2018-09-28",
-        vote_average: 6.8,
-        media_type: "movie",
-        runtime: 112,
-        genres: ["Science Fiction", "Action"],
-        views: "64.7M",
-        quality: "4K",
-        tmdb_rating: 6.8
-    },
-    {
-        id: 181808,
-        title: "Star Wars: The Last Jedi",
-        overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker.",
-        release_date: "2017-12-13",
-        vote_average: 7.0,
-        media_type: "movie",
-        runtime: 152,
-        genres: ["Science Fiction", "Action", "Adventure"],
-        views: "83.9M",
-        quality: "4K",
-        tmdb_rating: 7.0
-    },
-    {
-        id: 284054,
-        title: "Black Panther",
-        overview: "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people.",
-        release_date: "2018-02-13",
-        vote_average: 7.3,
-        media_type: "movie",
-        runtime: 134,
-        genres: ["Action", "Adventure", "Science Fiction"],
-        views: "95.3M",
-        quality: "4K",
-        tmdb_rating: 7.3
-    },
-    {
-        id: 363088,
-        title: "Ant-Man and the Wasp",
-        overview: "Just when his time under house arrest is about to end, Scott Lang puts his freedom at risk.",
-        release_date: "2018-07-04",
-        vote_average: 7.0,
-        media_type: "movie",
-        runtime: 118,
-        genres: ["Action", "Adventure", "Science Fiction"],
-        views: "72.5M",
-        quality: "4K",
-        tmdb_rating: 7.0
-    },
-    {
-        id: 346364,
-        title: "It",
-        overview: "In a small town in Maine, seven children known as The Losers Club come face to face with life problems.",
-        release_date: "2017-09-05",
-        vote_average: 7.2,
-        media_type: "movie",
-        runtime: 135,
-        genres: ["Horror", "Thriller"],
-        views: "61.8M",
-        quality: "4K",
-        tmdb_rating: 7.2
-    },
-    {
-        id: 419704,
-        title: "Ad Astra",
-        overview: "The near future, a time when both hope and hardships drive humanity to look to the stars and beyond.",
-        release_date: "2019-09-17",
-        vote_average: 6.1,
-        media_type: "movie",
-        runtime: 123,
-        genres: ["Science Fiction", "Drama", "Adventure"],
-        views: "32.4M",
-        quality: "4K",
-        tmdb_rating: 6.1
-    },
-    {
-        id: 586347,
-        title: "The Invisible Man",
-        overview: "When Cecilia's abusive ex takes his own life and leaves her his fortune, she suspects his death was a hoax.",
-        release_date: "2020-02-26",
-        vote_average: 7.1,
-        media_type: "movie",
-        runtime: 124,
-        genres: ["Horror", "Science Fiction", "Thriller"],
-        views: "48.7M",
-        quality: "4K",
-        tmdb_rating: 7.1
-    },
-    {
-        id: 324857,
-        title: "Spider-Man: Into the Spider-Verse",
-        overview: "Miles Morales becomes the Spider-Man of his universe and joins other Spider-People from other dimensions.",
-        release_date: "2018-12-06",
-        vote_average: 8.4,
-        media_type: "movie",
-        runtime: 117,
-        genres: ["Animation", "Action", "Adventure"],
-        views: "89.5M",
-        quality: "4K",
-        tmdb_rating: 8.4
-    },
-    {
-        id: 454626,
-        title: "Sonic the Hedgehog",
-        overview: "Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world's speediest hedgehog.",
-        release_date: "2020-02-12",
-        vote_average: 7.3,
-        media_type: "movie",
-        runtime: 99,
-        genres: ["Action", "Science Fiction", "Comedy"],
-        views: "63.2M",
-        quality: "4K",
-        tmdb_rating: 7.3
-    },
-    {
-        id: 181812,
-        title: "Star Wars: The Rise of Skywalker",
-        overview: "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues.",
-        release_date: "2019-12-18",
-        vote_average: 6.4,
-        media_type: "movie",
-        runtime: 142,
-        genres: ["Science Fiction", "Action", "Adventure"],
-        views: "77.8M",
-        quality: "4K",
-        tmdb_rating: 6.4
-    }
+{
+id: 278,
+title: "The Shawshank Redemption",
+overview: "Two imprisoned men bond over a number of years, finding solace and eventual redemption.",
+release_date: "1994-09-23",
+vote_average: 9.3,
+media_type: "movie",
+runtime: 142,
+genres: ["Drama", "Crime"],
+views: "58.7M",
+quality: "HD",
+tmdb_rating: 9.3
+},
+{
+id: 238,
+title: "The Godfather",
+overview: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
+release_date: "1972-03-14",
+vote_average: 9.2,
+media_type: "movie",
+runtime: 175,
+genres: ["Crime", "Drama"],
+views: "61.4M",
+quality: "HD",
+tmdb_rating: 9.2
+},
+{
+id: 424,
+title: "Schindler's List",
+overview: "In German-occupied Poland during World War II, industrialist Oskar Schindler becomes concerned for his Jewish workforce.",
+release_date: "1993-11-30",
+vote_average: 9.0,
+media_type: "movie",
+runtime: 195,
+genres: ["Drama", "History", "War"],
+views: "49.6M",
+quality: "HD",
+tmdb_rating: 9.0
+},
+{
+id: 389,
+title: "12 Angry Men",
+overview: "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
+release_date: "1957-04-10",
+vote_average: 8.9,
+media_type: "movie",
+runtime: 96,
+genres: ["Drama"],
+views: "38.3M",
+quality: "HD",
+tmdb_rating: 8.9
+},
+{
+id: 507089,
+title: "Five Nights at Freddy's",
+overview: "A troubled security guard begins working at Freddy Fazbear's Pizza.",
+release_date: "2023-10-25",
+vote_average: 7.5,
+media_type: "movie",
+runtime: 110,
+genres: ["Horror", "Thriller", "Mystery"],
+views: "42.9M",
+quality: "4K",
+tmdb_rating: 7.5
+},
+{
+id: 678512,
+title: "Sound of Freedom",
+overview: "The story of Tim Ballard, a former US government agent.",
+release_date: "2023-07-04",
+vote_average: 8.0,
+media_type: "movie",
+runtime: 131,
+genres: ["Action", "Drama", "Thriller"],
+views: "30.1M",
+quality: "4K",
+tmdb_rating: 8.0
+},
+{
+id: 298618,
+title: "The Flash",
+overview: "Barry Allen uses his super speed to change the past.",
+release_date: "2023-06-13",
+vote_average: 6.8,
+media_type: "movie",
+runtime: 144,
+genres: ["Action", "Adventure", "Science Fiction"],
+views: "69.4M",
+quality: "4K",
+tmdb_rating: 6.8
+},
+{
+id: 447365,
+title: "Guardians of the Galaxy Vol. 3",
+overview: "Peter Quill must rally his team around him to defend the universe.",
+release_date: "2023-05-03",
+vote_average: 8.1,
+media_type: "movie",
+runtime: 150,
+genres: ["Action", "Adventure", "Science Fiction"],
+views: "87.6M",
+quality: "4K",
+tmdb_rating: 8.1
+},
+{
+id: 502356,
+title: "The Super Mario Bros. Movie",
+overview: "A plumber named Mario travels through an underground labyrinth.",
+release_date: "2023-04-05",
+vote_average: 7.3,
+media_type: "movie",
+runtime: 92,
+genres: ["Animation", "Adventure", "Comedy"],
+views: "54.2M",
+quality: "4K",
+tmdb_rating: 7.3
+},
+{
+id: 1399,
+name: "Game of Thrones",
+overview: "Seven noble families fight for control of the mythical land of Westeros.",
+first_air_date: "2011-04-17",
+vote_average: 9.3,
+media_type: "tv",
+seasons: 8,
+episodes: 73,
+genres: ["Drama", "Fantasy"],
+views: "102.5M",
+quality: "HD",
+tmdb_rating: 9.3
+},
+{
+id: 1396,
+name: "Breaking Bad",
+overview: "A high school chemistry teacher turned methamphetamine producer.",
+first_air_date: "2008-01-20",
+vote_average: 9.5,
+media_type: "tv",
+seasons: 5,
+episodes: 62,
+genres: ["Crime", "Drama", "Thriller"],
+views: "89.7M",
+quality: "HD",
+tmdb_rating: 9.5
+},
+{
+id: 2316,
+name: "The Office",
+overview: "A mockumentary on a group of typical office workers.",
+first_air_date: "2005-03-24",
+vote_average: 8.9,
+media_type: "tv",
+seasons: 9,
+episodes: 201,
+genres: ["Comedy"],
+views: "65.1M",
+quality: "HD",
+tmdb_rating: 8.9
+},
+{
+id: 1418,
+name: "The Big Bang Theory",
+overview: "A comedy about brilliant physicists and their social awkwardness.",
+first_air_date: "2007-09-24",
+vote_average: 8.2,
+media_type: "tv",
+seasons: 12,
+episodes: 279,
+genres: ["Comedy"],
+views: "70.3M",
+quality: "HD",
+tmdb_rating: 8.2
+},
+{
+id: 19885,
+name: "Sherlock",
+overview: "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
+first_air_date: "2010-07-25",
+vote_average: 9.1,
+media_type: "tv",
+seasons: 4,
+episodes: 13,
+genres: ["Crime", "Drama", "Mystery"],
+views: "50.8M",
+quality: "HD",
+tmdb_rating: 9.1
+}
 );
-movieDatabase.push(
-    {
-        id: 278,
-        title: "The Shawshank Redemption",
-        overview: "Two imprisoned men bond over a number of years, finding solace and eventual redemption.",
-        release_date: "1994-09-23",
-        vote_average: 9.3,
-        media_type: "movie",
-        runtime: 142,
-        genres: ["Drama", "Crime"],
-        views: "58.7M",
-        quality: "HD",
-        tmdb_rating: 9.3
-    },
-    {
-        id: 238,
-        title: "The Godfather",
-        overview: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
-        release_date: "1972-03-14",
-        vote_average: 9.2,
-        media_type: "movie",
-        runtime: 175,
-        genres: ["Crime", "Drama"],
-        views: "61.4M",
-        quality: "HD",
-        tmdb_rating: 9.2
-    },
-    {
-        id: 424,
-        title: "Schindler's List",
-        overview: "In German-occupied Poland during World War II, industrialist Oskar Schindler becomes concerned for his Jewish workforce.",
-        release_date: "1993-11-30",
-        vote_average: 9.0,
-        media_type: "movie",
-        runtime: 195,
-        genres: ["Drama", "History", "War"],
-        views: "49.6M",
-        quality: "HD",
-        tmdb_rating: 9.0
-    },
-    {
-        id: 389,
-        title: "12 Angry Men",
-        overview: "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
-        release_date: "1957-04-10",
-        vote_average: 8.9,
-        media_type: "movie",
-        runtime: 96,
-        genres: ["Drama"],
-        views: "38.3M",
-        quality: "HD",
-        tmdb_rating: 8.9
-    },
-    {
-        id: 507089,
-        title: "Five Nights at Freddy's",
-        overview: "A troubled security guard begins working at Freddy Fazbear's Pizza.",
-        release_date: "2023-10-25",
-        vote_average: 7.5,
-        media_type: "movie",
-        runtime: 110,
-        genres: ["Horror", "Thriller", "Mystery"],
-        views: "42.9M",
-        quality: "4K",
-        tmdb_rating: 7.5
-    },
-    {
-        id: 678512,
-        title: "Sound of Freedom",
-        overview: "The story of Tim Ballard, a former US government agent.",
-        release_date: "2023-07-04",
-        vote_average: 8.0,
-        media_type: "movie",
-        runtime: 131,
-        genres: ["Action", "Drama", "Thriller"],
-        views: "30.1M",
-        quality: "4K",
-        tmdb_rating: 8.0
-    },
-    {
-        id: 298618,
-        title: "The Flash",
-        overview: "Barry Allen uses his super speed to change the past.",
-        release_date: "2023-06-13",
-        vote_average: 6.8,
-        media_type: "movie",
-        runtime: 144,
-        genres: ["Action", "Adventure", "Science Fiction"],
-        views: "69.4M",
-        quality: "4K",
-        tmdb_rating: 6.8
-    },
-    {
-        id: 447365,
-        title: "Guardians of the Galaxy Vol. 3",
-        overview: "Peter Quill must rally his team around him to defend the universe.",
-        release_date: "2023-05-03",
-        vote_average: 8.1,
-        media_type: "movie",
-        runtime: 150,
-        genres: ["Action", "Adventure", "Science Fiction"],
-        views: "87.6M",
-        quality: "4K",
-        tmdb_rating: 8.1
-    },
-    {
-        id: 502356,
-        title: "The Super Mario Bros. Movie",
-        overview: "A plumber named Mario travels through an underground labyrinth.",
-        release_date: "2023-04-05",
-        vote_average: 7.3,
-        media_type: "movie",
-        runtime: 92,
-        genres: ["Animation", "Adventure", "Comedy"],
-        views: "54.2M",
-        quality: "4K",
-        tmdb_rating: 7.3
-    },
-    {
-        id: 1399,
-        name: "Game of Thrones",
-        overview: "Seven noble families fight for control of the mythical land of Westeros.",
-        first_air_date: "2011-04-17",
-        vote_average: 9.3,
-        media_type: "tv",
-        seasons: 8,
-        episodes: 73,
-        genres: ["Drama", "Fantasy"],
-        views: "102.5M",
-        quality: "HD",
-        tmdb_rating: 9.3
-    },
-    {
-        id: 1396,
-        name: "Breaking Bad",
-        overview: "A high school chemistry teacher turned methamphetamine producer.",
-        first_air_date: "2008-01-20",
-        vote_average: 9.5,
-        media_type: "tv",
-        seasons: 5,
-        episodes: 62,
-        genres: ["Crime", "Drama", "Thriller"],
-        views: "89.7M",
-        quality: "HD",
-        tmdb_rating: 9.5
-    },
-    {
-        id: 2316,
-        name: "The Office",
-        overview: "A mockumentary on a group of typical office workers.",
-        first_air_date: "2005-03-24",
-        vote_average: 8.9,
-        media_type: "tv",
-        seasons: 9,
-        episodes: 201,
-        genres: ["Comedy"],
-        views: "65.1M",
-        quality: "HD",
-        tmdb_rating: 8.9
-    },
-    {
-        id: 1418,
-        name: "The Big Bang Theory",
-        overview: "A comedy about brilliant physicists and their social awkwardness.",
-        first_air_date: "2007-09-24",
-        vote_average: 8.2,
-        media_type: "tv",
-        seasons: 12,
-        episodes: 279,
-        genres: ["Comedy"],
-        views: "70.3M",
-        quality: "HD",
-        tmdb_rating: 8.2
-    },
-    {
-        id: 19885,
-        name: "Sherlock",
-        overview: "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
-        first_air_date: "2010-07-25",
-        vote_average: 9.1,
-        media_type: "tv",
-        seasons: 4,
-        episodes: 13,
-        genres: ["Crime", "Drama", "Mystery"],
-        views: "50.8M",
-        quality: "HD",
-        tmdb_rating: 9.1
-    }
-);
+
+
+
    </script>
 </body>
-                    </html>
+</html>
