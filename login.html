@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon - PikuFlix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+      * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #121212 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .logo {
+      font-size: 48px;
+      font-weight: 700;
+      color: #e50914;
+      margin-bottom: 30px;
+    }
+    .coming-soon {
+      font-size: 32px;
+      font-weight: 500;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    .subtext {
+      font-size: 16px;
+      color: #aaa;
+      margin: 20px 0 40px;
+      max-width: 500px;
+    }
+    .notify-form button {
+      padding: 12px 16px;
+      font-size: 16px;
+      background-color: #e50914;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .notify-form button:hover {
+      background-color: #b20710;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">PikuFlix</div>
+    <div class="coming-soon">Coming Soon</div>
+    <p class="subtext">A new premium streaming experience is on its way. Tap below to get notified when we launch.</p>
+
+    <div class="notify-form">
+      <button id="notifyBtn">Enable Notification</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 PikuFlix. All rights reserved.
+  </footer>
+
+  <script>
+    const notifyBtn = document.getElementById("notifyBtn");
+
+    notifyBtn.addEventListener("click", () => {
+      if (!("Notification" in window)) {
+        alert("This browser does not support notifications.");
+        return;
+      }
+
+      if (Notification.permission === "granted") {
+        sendNotification();
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            sendNotification();
+          } else {
+            alert("Notification permission denied.");
+          }
+        });
+      } else {
+        alert("You have blocked notifications. Please allow them in your browser settings.");
+      }
+    });
+
+    function sendNotification() {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        if (reg) {
+          reg.showNotification("You're subscribed!", {
+            body: "We'll notify you when PikuFlix launches.",
+            icon: "https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg"
+          });
+        } else {
+          new Notification("You're subscribed!", {
+            body: "We'll notify you when PikuFlix launches.",
+            icon: "https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg"
+          });
+        }
+      });
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => {
+        console.error("Service Worker registration failed:", err);
+      });
+    }
+  </script>
+</body>
+</html>
