@@ -1317,7 +1317,16 @@ button:focus {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
+ .login-icon {
+      position: fixed;
+      top: 20px;
+      left: 70px;
+      cursor: pointer;
+      padding: 0px;
+      border-radius: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+ }
     </style>
 </head>
 
@@ -1347,6 +1356,10 @@ button:focus {
 
 
     <div class="social-buttons">
+        <div class="login-icon" onclick="location.href='login.html'">
+  <i class="fas fa-user"></i>
+  <div class="tooltip">
+  </div>
         <div class="overlay-top-left">
             <a href="guide-book.html" class="overlay-top-left" title="Open Guide Book">
                 <i class="fas fa-book"></i>
