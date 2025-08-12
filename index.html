@@ -489,7 +489,6 @@ button:focus {
             margin-bottom: 15px;
         }
 
-        /* NEW ENHANCED FEATURES */
         .card-stats {
             display: flex;
             justify-content: space-between;
@@ -1205,7 +1204,6 @@ button:focus {
             border-bottom-right-radius: 8px;
         }
 
-        /* Enhanced Toast Notifications */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -1232,7 +1230,7 @@ button:focus {
         .toast.info {
             background: rgba(59,130,246,0.95);
         }
-        /* Floating Report Button */
+
 .report-btn {
     position: fixed;
     bottom: 20px;
@@ -1255,7 +1253,6 @@ button:focus {
     transform: scale(1.1);
 }
 
-/* Popup Styling */
 .report-popup {
     display: none;
     position: fixed;
@@ -1327,19 +1324,318 @@ button:focus {
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       transition: background 0.3s;
     }
+radius: 8px;
+}
+.main-content {
+            padding: 2rem;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
+        .assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
 
+            border: none;
+            border-radius: 50%;
+            cursor: grab;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .assistant-btn:active {
+            cursor: grabbing;
+            transform: scale(0.95);
+        }
+
+        .assistant-btn.dragging {
+            cursor: grabbing;
+            transform: scale(1.05);
+            z-index: 1001;
+        }
+.assistant-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.assistant-icon i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  color: #fff; 
+}
+        .assistant-btn:hover .assistant-icon {
+            transform: rotate(15deg);
+        }
+
+        .assistant-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 90%;
+            max-width: 450px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            z-index: 2001;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+        }
+
+        .popup.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-header {
+            padding: 2rem 2rem 1rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+
+        .popup-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            clip-path: ellipse(100% 100% at 50% 0%);
+        }
+
+        .popup-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 18px;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .popup-content {
+            padding: 2rem;
+            padding-top: 1rem;
+        }
+
+        .action-buttons {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+        }
+
+        .action-btn:hover::before {
+            left: 100%;
+        }
+
+        .action-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-text {
+            flex: 1;
+        }
+
+        .btn-arrow {
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover .btn-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .popup {
+                width: 95%;
+                margin: 0 10px;
+            }
+
+            .assistant-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .assistant-icon::before {
+                font-size: 24px;
+            }
+
+            .pulse-ring {
+                width: 60px;
+                height: 60px;
+            }
+        }
 
     </style>
 </head>
 
 <body>
-    <!-- Floating Report Button -->
+
 <div class="report-btn" onclick="toggleReport()">
     <i class="fas fa-flag"></i>
 </div>
 
-<!-- Report Form Popup -->
 <div class="report-popup" id="reportForm">
     <div class="report-content">
         <h3><i class="fas fa-flag"></i> Report Issue</h3>
@@ -1350,13 +1646,25 @@ button:focus {
     </div>
 </div>
 
+    <button class="assistant-btn" id="assistantBtn">
+        <div class="pulse-ring"></div>
+        <div class="assistant-icon">
+  <i class="fa fa-question-circle"></i>
+</div>
+    </button>
 
-
-
-
-<!-- Font Awesome -->
-
-
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <button class="close-btn" id="closeBtn">×</button>
+            <h2 class="popup-title">AI Assistant</h2>
+            <p class="popup-subtitle">How can I help you today?</p>
+        </div>
+        <div class="popup-content">
+            <p style="font-size:20px; text-align:center; padding:20px; color: black;">Coming Soon</p>
+        </div>
+    </div>
+</div>
 
     <div class="social-buttons">
         <div class="login-icon" onclick="location.href='login.html'">
@@ -1369,6 +1677,7 @@ button:focus {
                 <i class="fas fa-book"></i>
             </a>
         </div>
+
         <a href="https://discord.gg/zMwSVESyFA" target="_blank" class="discord">
             <i class="fab fa-discord"></i>
         </a>
@@ -1377,13 +1686,11 @@ button:focus {
         </a>
     </div>
 
-    <!-- Swipe Settings Button -->
     <div class="settings-swipe-area"></div>
     <div class="settings-button" id="settingsBtn">
         <i class="fa-solid fa-gear"></i>
     </div>
 
-    <!-- Settings Panel -->
     <div id="settingsPanel" class="settings-panel">
         <div class="panel-header">Settings</div>
         <ul class="panel-options">
@@ -1399,11 +1706,10 @@ button:focus {
         </ul>
     </div>
 
-    <!-- Stream Settings Overlay -->
     <div id="streamSettingsPanel" class="stream-settings-overlay">
         <div class="panel-header">
             Stream Settings
-            <button id="closeStreamSettings" style="float: right;">✖</button>
+            <button id="closeStreamSettings" style="float: right;"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="panel-body">
             <p>(Placeholder for stream settings like quality, subtitles, etc.)</p>
@@ -1413,7 +1719,7 @@ button:focus {
     <header class="header" id="header">
         <nav class="nav">
             <div class="nav-top">
-                <div class="logo">PikuFlix</div>
+                <div class="logo">PIKUFLIX</div>
                 <div class="nav-links">
                     <a href="#" class="nav-link active" data-category="trending">Trending</a>
                     <a href="#" class="nav-link" data-category="movies">Movies</a>
@@ -1422,7 +1728,8 @@ button:focus {
             </div>
             <div class="search-container">
                 <input type="text" class="search-input" id="searchInput" placeholder="Search movies and TV shows...">
-                <button class="search-btn" id="searchBtn">🔍</button>
+                <button class="search-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i>
+</button>
             </div>
         </nav>
     </header>
@@ -1446,10 +1753,10 @@ button:focus {
         <h2 class="section-title">Popular Content</h2>
 
         <div class="category-tabs">
-            <button class="tab-btn active" data-type="trending">🔥 Trending</button>
-            <button class="tab-btn" data-type="popular-movies">🎬 Popular Movies</button>
-            <button class="tab-btn" data-type="popular-tv">📺 Popular TV</button>
-            <button class="tab-btn" data-type="top-rated">⭐ Top Rated</button>
+            <button class="tab-btn active" data-type="trending"><i class="fa-solid fa-fire"></i> Trending</button>
+            <button class="tab-btn" data-type="popular-movies"><i class="fa-solid fa-film"></i> Popular Movies</button>
+            <button class="tab-btn" data-type="popular-tv"><i class="fa-solid fa-tv"></i> Popular TV</button>
+            <button class="tab-btn" data-type="top-rated"><i class="fa-solid fa-star"></i> Top Rated</button>
         </div>
 
         <div class="loading" id="loading">
@@ -1460,7 +1767,6 @@ button:focus {
         <div class="content-grid" id="contentGrid"></div>
     </main>
 
-    <!-- Modal for video player -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1469,7 +1775,7 @@ button:focus {
             </div>
             <div class="video-container" id="videoContainer">
                 <div style="text-align: right; margin-top: 10px;">
-                    <button id="nextEpisodeBtn" style="padding: 8px 16px; font-size: 16px;">⏭️ Next Episode</button>
+                    <button id="nextEpisodeBtn" style="padding: 8px 16px; font-size: 16px;"><i class="fa-solid fa-forward"></i> Next Episode</button>
                 </div>
                 <div class="loading">
                     <div class="spinner"></div>
@@ -1479,7 +1785,6 @@ button:focus {
         </div>
     </div>
 
-    <!-- Toast Notification Container -->
     <div id="toastContainer"></div>
 
     <footer>
@@ -1487,17 +1792,236 @@ button:focus {
             <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
         </a>
         <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
-    <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge"> 
-<img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0"  alt="DMCA.com Protection Status" /></a>
-<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-
     </footer>
 
     <script>
-        
-        // Enhanced features storage
+        class DraggableAssistant {
+            constructor() {
+                this.assistantBtn = document.getElementById('assistantBtn');
+                this.popup = document.getElementById('popup');
+                this.popupOverlay = document.getElementById('popupOverlay');
+                this.closeBtn = document.getElementById('closeBtn');
+
+                this.isDragging = false;
+                this.dragStarted = false;
+                this.initialX = 0;
+                this.initialY = 0;
+                this.offsetX = 0;
+                this.offsetY = 0;
+                this.dragThreshold = 8;
+                this.totalDragDistance = 0;
+
+                this.init();
+            }
+
+            init() {
+
+                this.assistantBtn.addEventListener('mousedown', this.handleStart.bind(this));
+                document.addEventListener('mousemove', this.handleMove.bind(this));
+                document.addEventListener('mouseup', this.handleEnd.bind(this));
+
+                this.assistantBtn.addEventListener('touchstart', this.handleStart.bind(this), { passive: false });
+                document.addEventListener('touchmove', this.handleMove.bind(this), { passive: false });
+                document.addEventListener('touchend', this.handleEnd.bind(this));
+
+                this.assistantBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+                this.closeBtn.addEventListener('click', this.closePopup.bind(this));
+                this.popupOverlay.addEventListener('click', (e) => {
+                    if (e.target === this.popupOverlay) {
+                        this.closePopup();
+                    }
+                });
+
+                document.querySelectorAll('.action-btn').forEach(btn => {
+                    btn.addEventListener('click', this.handleActionClick.bind(this));
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closePopup();
+                    }
+                });
+
+                document.addEventListener('selectstart', (e) => {
+                    if (this.isDragging) e.preventDefault();
+                });
+            }
+
+            getPointerPosition(e) {
+                return e.touches ? { x: e.touches[0].clientX, y: e.touches[0].clientY } 
+                                : { x: e.clientX, y: e.clientY };
+            }
+
+            handleStart(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const pointer = this.getPointerPosition(e);
+                const rect = this.assistantBtn.getBoundingClientRect();
+
+                this.isDragging = true;
+                this.dragStarted = false;
+                this.totalDragDistance = 0;
+
+                this.offsetX = pointer.x - rect.left;
+                this.offsetY = pointer.y - rect.top;
+
+                this.initialX = pointer.x;
+                this.initialY = pointer.y;
+
+                this.assistantBtn.style.position = 'fixed';
+                this.assistantBtn.style.left = rect.left + 'px';
+                this.assistantBtn.style.top = rect.top + 'px';
+                this.assistantBtn.style.right = 'auto';
+                this.assistantBtn.style.bottom = 'auto';
+
+                this.assistantBtn.style.zIndex = '1001';
+            }
+
+            handleMove(e) {
+                if (!this.isDragging) return;
+
+                const pointer = this.getPointerPosition(e);
+
+                const deltaX = pointer.x - this.initialX;
+                const deltaY = pointer.y - this.initialY;
+                this.totalDragDistance = Math.abs(deltaX) + Math.abs(deltaY);
+
+                if (this.totalDragDistance > this.dragThreshold && !this.dragStarted) {
+                    this.dragStarted = true;
+                    this.assistantBtn.classList.add('dragging');
+                    document.body.style.userSelect = 'none';
+                    e.preventDefault();
+                }
+
+                if (this.dragStarted) {
+                    e.preventDefault();
+                    const newX = pointer.x - this.offsetX;
+                    const newY = pointer.y - this.offsetY;
+
+                    const constrainedPos = this.constrainPosition(newX, newY);
+                    this.updatePosition(constrainedPos.x, constrainedPos.y);
+                }
+            }
+
+            handleEnd(e) {
+                if (!this.isDragging) return;
+
+                this.isDragging = false;
+                this.assistantBtn.classList.remove('dragging');
+                this.assistantBtn.style.zIndex = '1000';
+                document.body.style.userSelect = '';
+
+                if (this.totalDragDistance <= this.dragThreshold) {
+                    this.openPopup();
+                }
+
+                this.dragStarted = false;
+            }
+
+            constrainPosition(x, y) {
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                const btnWidth = this.assistantBtn.offsetWidth;
+                const btnHeight = this.assistantBtn.offsetHeight;
+
+                return {
+                    x: Math.max(0, Math.min(x, viewportWidth - btnWidth)),
+                    y: Math.max(0, Math.min(y, viewportHeight - btnHeight))
+                };
+            }
+
+            updatePosition(x, y) {
+                this.assistantBtn.style.left = x + 'px';
+                this.assistantBtn.style.top = y + 'px';
+            }
+
+            openPopup() {
+                this.popupOverlay.classList.add('active');
+                this.popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            closePopup() {
+                this.popupOverlay.classList.remove('active');
+                this.popup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            handleActionClick(e) {
+                const action = e.currentTarget.getAttribute('data-action');
+
+                e.currentTarget.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.currentTarget.style.transform = '';
+                }, 150);
+
+                this.performAction(action);
+
+                setTimeout(() => {
+                    this.closePopup();
+                }, 300);
+            }
+
+            performAction(action) {
+                switch(action) {
+                    case 'request-movie':
+                        console.log('Opening movie request form...');
+                        alert('🎬 Movie Request: This would open a movie request form!');
+                        break;
+                    case 'open-ticket':
+                        console.log('Opening support ticket...');
+                        alert('🎫 Support Ticket: This would open a new support ticket!');
+                        break;
+                    case 'report-problem':
+                        console.log('Opening problem report...');
+                        alert('⚠️ Report Problem: This would open a problem report form!');
+                        break;
+                    case 'customize-site':
+                        console.log('Opening site customization...');
+                        alert('⚙️ Customize Site: This would open site customization options!');
+                        break;
+                    case 'get-help':
+                        console.log('Opening help center...');
+                        alert('❓ Get Help: This would open the help center!');
+                        break;
+                    case 'feedback':
+                        console.log('Opening feedback form...');
+                        alert('💬 Send Feedback: This would open a feedback form!');
+                        break;
+                    default:
+                        console.log('Unknown action:', action);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new DraggableAssistant();
+        });
+
+        window.addEventListener('resize', () => {
+            const assistantBtn = document.getElementById('assistantBtn');
+            if (!assistantBtn) return;
+
+            const rect = assistantBtn.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            if (rect.right > viewportWidth || rect.bottom > viewportHeight || rect.left < 0 || rect.top < 0) {
+                let x = Math.max(0, Math.min(rect.left, viewportWidth - rect.width));
+                let y = Math.max(0, Math.min(rect.top, viewportHeight - rect.height));
+
+                assistantBtn.style.position = 'fixed';
+                assistantBtn.style.left = x + 'px';
+                assistantBtn.style.top = y + 'px';
+                assistantBtn.style.right = 'auto';
+                assistantBtn.style.bottom = 'auto';
+            }
+        });
+
         let userInteractions = JSON.parse(localStorage.getItem('pikuflix_interactions') || '{}');
-        
+
         function saveUserInteraction(itemId, type, value) {
             if (!userInteractions[itemId]) {
                 userInteractions[itemId] = {};
@@ -1505,7 +2029,7 @@ button:focus {
             userInteractions[itemId][type] = value;
             localStorage.setItem('pikuflix_interactions', JSON.stringify(userInteractions));
         }
-        
+
         function getUserInteraction(itemId, type) {
             return userInteractions[itemId]?.[type] || false;
         }
@@ -1514,9 +2038,9 @@ button:focus {
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'info' ? 'info' : 'exclamation'}"></i> ${message}`;
-            
+
             document.body.appendChild(toast);
-            
+
             setTimeout(() => toast.classList.add('show'), 100);
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1529,43 +2053,156 @@ button:focus {
         const historyItems = document.getElementById('historyItems');
 
         function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
+            const history = getStorageHistory();
             historyItems.innerHTML = "";
 
             if (history.length === 0) {
-                historyItems.innerHTML = "<li>No history available.</li>";
+                historyItems.innerHTML = '<div class="no-history">No viewing history available.<br>Start watching to build your history!</div>';
                 return;
             }
 
             history.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.title} - ${item.time}`;
-                historyItems.appendChild(li);
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+
+                historyItem.innerHTML = `
+                    <div style="position: relative;">
+                        <img src="${item.poster_path}" 
+                             alt="${item.title}" 
+                             class="item-poster"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQ1MCIgdmlld0JveD0iMCAwIDMwMCA0NTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDUwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjI1IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2Ij5ObyBJbWFnZTwvdGV4dD4KPC9zdmc+'">
+                        <div class="quality-badge">${item.quality || 'HD'}</div>
+                        <div class="media-type-badge">${item.media_type || 'movie'}</div>
+                    </div>
+
+                    <div class="item-content">
+                        <div class="item-header">
+                            <h3 class="item-title">${item.title}</h3>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="item-year">${extractYear(item.release_date)}</span>
+                                <div class="item-rating">
+                                    <span class="star-icon"></span>
+                                    <span>${item.tmdb_rating || item.vote_average || 'N/A'}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        ${item.genres && item.genres.length > 0 ? `
+                            <div class="item-genres">
+                                ${item.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
+                            </div>
+                        ` : ''}
+
+                        <p class="item-overview">${item.overview || 'No description available.'}</p>
+
+                        <div class="item-meta">
+                            <div class="meta-left">
+                                ${item.runtime ? `
+                                    <div class="meta-item">
+                                        <span>🕐</span>
+                                        <span>${formatRuntime(item.runtime)}</span>
+                                    </div>
+                                ` : ''}
+                                ${item.views ? `
+                                    <div class="meta-item">
+                                        <span>👁</span>
+                                        <span>${item.views}</span>
+                                    </div>
+                                ` : ''}
+                                <div class="watch-time">Watched: ${item.watchedAt}</div>
+                            </div>
+                            <button class="rewatch-btn" onclick="rewatchItem(${item.id})">
+                                ▶ Watch Again
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                historyItems.appendChild(historyItem);
             });
         }
 
-        function saveToHistory(title) {
+        function saveToHistory(mediaData) {
             const now = new Date();
             const formattedTime = now.toLocaleString();
-            const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
+            const history = getStorageHistory();
 
-            history.unshift({ title, time: formattedTime });
+            const historyEntry = {
+                id: mediaData.id,
+                title: mediaData.title,
+                overview: mediaData.overview,
+                release_date: mediaData.release_date,
+                vote_average: mediaData.vote_average,
+                poster_path: mediaData.poster_path,
+                media_type: mediaData.media_type || 'movie',
+                runtime: mediaData.runtime,
+                genres: mediaData.genres || [],
+                views: mediaData.views,
+                quality: mediaData.quality || 'HD',
+                tmdb_rating: mediaData.tmdb_rating || mediaData.vote_average,
+                watchedAt: formattedTime,
+                timestamp: now.getTime()
+            };
 
-            if (history.length > 50) history.pop();
+            const existingIndex = history.findIndex(item => item.id === mediaData.id);
+            if (existingIndex !== -1) {
+                history.splice(existingIndex, 1);
+            }
 
-            localStorage.setItem('watchHistory', JSON.stringify(history));
+            history.unshift(historyEntry);
+
+            if (history.length > 50) {
+                history.splice(50);
+            }
+
+            setStorageHistory(history);
 
             if (historyToggle.checked) {
                 loadHistory();
             }
         }
 
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear your viewing history?')) {
+                setStorageHistory([]);
+                loadHistory();
+            }
+        }
+
+        function rewatchItem(itemId) {
+            console.log(`Rewatching item with ID: ${itemId}`);
+
+            alert(`Rewatching movie/show with ID: ${itemId}`);
+        }
+
+        function extractYear(dateString) {
+            if (!dateString) return 'Unknown';
+            return new Date(dateString).getFullYear() || 'Unknown';
+        }
+
+        function formatRuntime(minutes) {
+            if (!minutes) return 'Unknown';
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+        }
+
+        let watchHistoryData = [];
+
+        function getStorageHistory() {
+            return watchHistoryData;
+        }
+
+        function setStorageHistory(data) {
+            watchHistoryData = data;
+        }
+
         historyToggle.addEventListener('change', () => {
             if (historyToggle.checked) {
-                historyList.style.display = 'block';
+                historyList.classList.add('active');
                 loadHistory();
             } else {
-                historyList.style.display = 'none';
+                historyList.classList.remove('active');
             }
         });
 
@@ -1716,7 +2353,6 @@ button:focus {
             }
         }, true);
 
-        
         const movieDatabase = [
     {
         id: 299534,
@@ -1889,13 +2525,12 @@ button:focus {
             }
 
             contentGrid.innerHTML = items.map(item => createContentCard(item)).join('');
-            
-            // Add event listeners for new interactive elements
+
             addCardEventListeners();
         }
 
         function addCardEventListeners() {
-            // Like buttons
+
             document.querySelectorAll('.like-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1903,7 +2538,6 @@ button:focus {
                 });
             });
 
-            // Favorite buttons
             document.querySelectorAll('.favorite-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1911,7 +2545,6 @@ button:focus {
                 });
             });
 
-            // Share buttons
             document.querySelectorAll('.share-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1965,7 +2598,7 @@ button:focus {
                     url: window.location.href
                 });
             } else {
-                // Fallback to copy URL
+
                 navigator.clipboard.writeText(window.location.href);
                 showToast('Link copied to clipboard!', 'success');
             }
@@ -1986,18 +2619,16 @@ button:focus {
     const rating = item.vote_average?.toFixed(1) || 'N/A';
     const isLiked = getUserInteraction(item.id, 'liked');
     const isFavorited = getUserInteraction(item.id, 'favorited');
-    
-    // Generate random counts for demo
+
     const likeCount = Math.floor(Math.random() * 10000);
     const shareCount = Math.floor(Math.random() * 5000);
 
-    // Fix for poster image display
     let cardImageContent;
     if (item.poster_path) {
-        // If poster_path exists, use it as an image
+
         cardImageContent = `<img src="${item.poster_path}" alt="${title}" />`;
     } else {
-        // If no poster, show the icon as fallback
+
         cardImageContent = `<i class="fas fa-${item.media_type === 'movie' ? 'film' : 'tv'}"></i>`;
     }
 
@@ -2039,11 +2670,11 @@ button:focus {
                             <i class="fas fa-heart"></i>
                         </button>
                         <span class="like-count">${formatCount(likeCount)}</span>
-                        
+
                         <button class="action-btn favorite-btn ${isFavorited ? 'favorited' : ''}" data-item-id="${item.id}" title="Add to Favorites">
                             <i class="fas fa-bookmark"></i>
                         </button>
-                        
+
                         <button class="action-btn share-btn" data-item-id="${item.id}" data-title="${title}" title="Share">
                             <i class="fas fa-share"></i>
                         </button>
@@ -2112,7 +2743,6 @@ button:focus {
            modal.style.display = 'block';
            document.body.style.overflow = 'hidden';
 
-           // Enhanced video loading with better user experience
            videoContainer.innerHTML = `
                <div class="loading">
                    <div class="spinner"></div>
@@ -2135,8 +2765,7 @@ button:focus {
                        </button>
                    </div>
                `;
-               
-               // Add next episode functionality
+
                const nextBtn = document.getElementById('nextEpisodeBtn');
                if (nextBtn && mediaType === 'tv') {
                    nextBtn.addEventListener('click', () => {
@@ -2159,17 +2788,16 @@ button:focus {
            `;
        }
 
-       // Enhanced keyboard shortcuts
        document.addEventListener('keydown', (e) => {
            if (e.key === 'Escape' && modal.style.display === 'block') {
                closeModal();
            }
-           
+
            if (e.key === 'F11' && modal.style.display === 'block') {
                e.preventDefault();
                toggleFullscreen();
            }
-           
+
            if (e.ctrlKey && e.key === 'k') {
                e.preventDefault();
                searchInput.focus();
@@ -2186,7 +2814,6 @@ button:focus {
            }
        }
 
-       // Enhanced search suggestions
        let searchSuggestions = [];
        function updateSearchSuggestions() {
            const query = searchInput.value.toLowerCase().trim();
@@ -2197,7 +2824,6 @@ button:focus {
                .slice(0, 5);
        }
 
-       // Performance optimization - debounced scroll handler
        let scrollTimeout;
        window.addEventListener('scroll', () => {
            if (scrollTimeout) return;
@@ -2211,36 +2837,32 @@ button:focus {
            }, 10);
        });
 
-       // Enhanced error handling
        window.addEventListener('error', (e) => {
            console.error('Runtime error:', e.error);
            showToast('Something went wrong. Please try again.', 'error');
        });
 
-       // Service worker registration for PWA features
        if ('serviceWorker' in navigator) {
            navigator.serviceWorker.register('/sw.js').catch(err => {
                console.log('Service Worker registration failed:', err);
            });
        }
 
-       // Enhanced accessibility features
        document.addEventListener('DOMContentLoaded', () => {
-           // Add focus indicators for keyboard navigation
+
            const focusableElements = document.querySelectorAll('button, input, a, [tabindex]');
            focusableElements.forEach(el => {
                el.addEventListener('focus', (e) => {
                    e.target.style.outline = '2px solid #e50914';
                    e.target.style.outlineOffset = '2px';
                });
-               
+
                el.addEventListener('blur', (e) => {
                    e.target.style.outline = 'none';
                });
            });
        });
 
-       // Enhanced user preferences
        const userPreferences = JSON.parse(localStorage.getItem('pikuflix_preferences') || '{}');
 
        function savePreference(key, value) {
@@ -2252,23 +2874,19 @@ button:focus {
            return userPreferences[key] !== undefined ? userPreferences[key] : defaultValue;
        }
 
-       // Initialize app with user preferences
        function initializeApp() {
-           // Apply saved theme if any
+
            const savedTheme = getPreference('theme', 'dark');
            document.body.setAttribute('data-theme', savedTheme);
-           
-           // Apply saved quality preference
+
            const savedQuality = getPreference('quality', 'auto');
            console.log('Using quality setting:', savedQuality);
-           
-           showToast('Welcome to PikuFlix! 🎬', 'success');
+
+           showToast('Welcome to PikuFlix!\t<i class="fa-solid fa-tv"></i>', 'success');
        }
 
-       // Call initialization when page loads
        window.addEventListener('load', initializeApp);
 
-       // Enhanced performance monitoring
        let performanceMetrics = {
            contentLoadTime: 0,
            searchResponseTime: 0,
@@ -2279,13 +2897,12 @@ button:focus {
            const endTime = performance.now();
            const duration = endTime - startTime;
            performanceMetrics[action] = duration;
-           
+
            if (duration > 1000) {
                console.warn(`Slow performance detected for ${action}: ${duration.toFixed(2)}ms`);
            }
        }
 
-       // Add performance tracking to key functions
        const originalLoadTrending = loadTrendingContent;
        loadTrendingContent = function() {
            const startTime = performance.now();
@@ -2294,7 +2911,6 @@ button:focus {
            });
        };
 
-       // Enhanced analytics (privacy-focused, no external services)
        let sessionMetrics = {
            startTime: Date.now(),
            contentViewed: 0,
@@ -2308,20 +2924,17 @@ button:focus {
                timestamp: Date.now(),
                data: data
            };
-           
-           // Store locally for privacy
+
            const events = JSON.parse(localStorage.getItem('pikuflix_analytics') || '[]');
            events.push(event);
-           
-           // Keep only last 100 events
+
            if (events.length > 100) {
                events.shift();
            }
-           
+
            localStorage.setItem('pikuflix_analytics', JSON.stringify(events));
        }
 
-       // Track page visibility for time spent calculation
        document.addEventListener('visibilitychange', () => {
            if (document.visibilityState === 'hidden') {
                sessionMetrics.timeSpent += Date.now() - sessionMetrics.startTime;
@@ -2332,7 +2945,6 @@ button:focus {
            }
        });
 
-       // Enhanced error boundaries for better UX
        function withErrorBoundary(fn, fallback) {
            return function(...args) {
                try {
@@ -2345,7 +2957,6 @@ button:focus {
            };
        }
 
-       // Wrap critical functions with error boundaries
        playContent = withErrorBoundary(playContent, (error) => {
            console.error('Error playing content:', error);
        });
@@ -2767,8 +3378,8 @@ quality: "HD",
 tmdb_rating: null
 },
 
-// …(more entries like Madea films, etc. can be added similarly)
 );
+
 movieDatabase.push(
 {
 id: 1405,
@@ -2808,6 +3419,20 @@ views: "3M",
 quality: "HD",
 tmdb_rating: 6.6,
 poster_path: "https://image.tmdb.org/t/p/original/jmbtI8hhNkw5Hpksr34x3gCCmjS.jpg"
+},
+{
+  id: 93405,
+  title: "Squid Game",
+  overview: "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits — with deadly high stakes.",
+  release_date: "2021-09-17",
+  vote_average: 7.8,
+  poster_path: "https://image.tmdb.org/t/p/original/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
+  media_type: "tv",
+  runtime: null,
+  genres: ["Action & Adventure", "Drama", "Mystery"],
+  views: "42.7M",
+  quality: "4K",
+  tmdb_rating: 7.8
 },
 {
 id: 259909,
@@ -3182,20 +3807,6 @@ views: "70.3M",
 quality: "HD",
 tmdb_rating: 8.2
 },
-    {
-  id: 93405,
-  title: "Squid Game",
-  overview: "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits — with deadly high stakes.",
-  release_date: "2021-09-17",
-  vote_average: 7.8,
-  poster_path: "https://image.tmdb.org/t/p/original/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
-  media_type: "tv",
-  runtime: null,
-  genres: ["Action & Adventure", "Drama", "Mystery"],
-  views: "42.7M",
-  quality: "4K",
-  tmdb_rating: 7.8
-    },
 {
 id: 19885,
 name: "Sherlock",
@@ -3212,160 +3823,6 @@ tmdb_rating: 9.1
 }
 );
 
-movieDatabase.push(
-  {
-    id: 346364,
-    title: "It",
-    overview: "In a small town, children face their deepest fears when confronting a shape-shifting evil entity known as Pennywise.",
-    release_date: "2017-09-05",
-    vote_average: 7.2,
-    poster_path: "https://image.tmdb.org/t/p/original/r9JoDnbbU2TXAXltnD0cEz7FJgM.jpg",
-    media_type: "movie",
-    runtime: 135,
-    genres: ["Horror", "Thriller"],
-    views: "100M",
-    quality: "4K",
-    tmdb_rating: 7.2,
-    box_office: "701M"
-  },
-  {
-    id: 346365,
-    title: "It Chapter Two",
-    overview: "The Losers’ Club reunites decades later to confront Pennywise once more and end his reign of terror.",
-    release_date: "2019-09-06",
-    vote_average: 6.6,
-    poster_path: "https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg",
-    media_type: "movie",
-    runtime: 169,
-    genres: ["Horror", "Thriller"],
-    views: "75M",
-    quality: "4K",
-    tmdb_rating: 6.6,
-    box_office: "473M"
-  },
-  {
-    id: 378064,
-    title: "The Nun",
-    overview: "A priest and a novice investigate a death in a Romanian abbey and confront a demonic force in the form of a nun.",
-    release_date: "2018-09-07",
-    vote_average: 5.3,
-    poster_path: "https://image.tmdb.org/t/p/original/gxXe3vY9Xt6CIRHNs1GC01HUnN3.jpg",
-    media_type: "movie",
-    runtime: 96,
-    genres: ["Horror", "Mystery"],
-    views: "65M",
-    quality: "4K",
-    tmdb_rating: 5.3,
-    box_office: "365M"
-  },
-  {
-    id: 260513,
-    title: "Insidious: Chapter 2",
-    overview: "The Lambert family continues to be stalked by malevolent spirits from the Further—thrill rises with dark revelations.",
-    release_date: "2013-09-13",
-    vote_average: 6.3,
-    poster_path: "https://image.tmdb.org/t/p/original/uz0GmWLife9u7AVdcFuwlArtKN.jpg",
-    media_type: "movie",
-    runtime: 106,
-    genres: ["Horror", "Thriller"],
-    views: "60M",
-    quality: "HD",
-    tmdb_rating: 6.3,
-    box_office: "161M"
-  },
-  {
-    id: 806,
-    title: "The Conjuring",
-    overview: "Paranormal investigators Ed and Lorraine Warren help a family terrorized by a dark presence in an old farmhouse.",
-    release_date: "2013-07-19",
-    vote_average: 7.5,
-    poster_path: "https://image.tmdb.org/t/p/original/4YbOQ4oZRFpsM1NWQ8u1AdOe0nR.jpg",
-    media_type: "movie",
-    runtime: 112,
-    genres: ["Horror", "Mystery", "Thriller"],
-    views: "85M",
-    quality: "4K",
-    tmdb_rating: 7.5,
-    box_office: "319M"
-  },
-  {
-    id: 105596,
-    title: "The Conjuring 2",
-    overview: "Ed and Lorraine Warren travel to England to assist a family haunting in Enfield. Spirits of fear, faith, and war collide.",
-    release_date: "2016-06-10",
-    vote_average: 7.3,
-    poster_path: "https://image.tmdb.org/t/p/original/hUcJSKfcAw0M8UaF6tSqks8gN1k.jpg",
-    media_type: "movie",
-    runtime: 134,
-    genres: ["Horror", "Mystery", "Thriller"],
-    views: "60M",
-    quality: "4K",
-    tmdb_rating: 7.3,
-    box_office: "320M"
-  },
-  {
-    id: 105894,
-    title: "Annabelle",
-    overview: "A dollmaker and his wife suffer a violent attack and confront a demonic force possessing their daughter's doll.",
-    release_date: "2014-10-03",
-    vote_average: 5.4,
-    poster_path: "https://image.tmdb.org/t/p/original/pKEpSL4nrQ2IvjSm3xrQdyzaRhj.jpg",
-    media_type: "movie",
-    runtime: 98,
-    genres: ["Horror", "Mystery"],
-    views: "45M",
-    quality: "4K",
-    tmdb_rating: 5.4,
-    box_office: "257M"
-  },
-  {
-    id: 87101,
-    title: "Annabelle: Creation",
-    overview: "A dollmaker and his wife open their home to a nun and several orphaned girls, only to become the target of the possessed doll, Annabelle.",
-    release_date: "2017-08-10",
-    vote_average: 6.2,
-    poster_path: "https://image.tmdb.org/t/p/original/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
-    media_type: "movie",
-    runtime: 109,
-    genres: ["Horror", "Mystery"],
-    views: "40M",
-    quality: "4K",
-    tmdb_rating: 6.2,
-    box_office: "306M"
-  },
-  {
-    id: 568620,
-    title: "A Quiet Place",
-    overview: "A family must live life in silence to avoid blind creatures with acute hearing that hunt by sound.",
-    release_date: "2018-04-06",
-    vote_average: 7.5,
-    poster_path: "https://image.tmdb.org/t/p/original/nAU74GmpUk7t5iklEp3bufwDq4n.jpg",
-    media_type: "movie",
-    runtime: 90,
-    genres: ["Horror", "Drama", "Science Fiction"],
-    views: "70M",
-    quality: "4K",
-    tmdb_rating: 7.5,
-    box_office: "340M"
-  },
-  {
-    id: 894651,
-    title: "Terrifier 2",
-    overview: "Art the Clown returns—christmas cheer turns into terror when Art stalks and brutally terrorizes a small group in one night.",
-    release_date: "2022-10-06",
-    vote_average: 6.1,
-    poster_path: "https://image.tmdb.org/t/p/original/7zYilBjRWZ0zmER8MWLyMOZcExh.jpg",
-    media_type: "movie",
-    runtime: 142,
-    genres: ["Horror", "Slasher"],
-    views: "20M",
-    quality: "HD",
-    tmdb_rating: 6.1,
-    box_office: "82M"
-  }
-);
-
-  
    </script>
 </body>
 </html>
