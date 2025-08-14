@@ -78,12 +78,13 @@ button:focus {
             gap: 20px;
         }
 
-           .nav-top {
+        .nav-top {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-           }
+        }
+
         .logo {
             font-size: 32px;
             font-weight: bold;
@@ -290,7 +291,12 @@ button:focus {
             position: relative;
         }
 
-        .hero h1 {
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(229,9,20,0.6)); }
+        }
+     .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 20px;
             background: linear-gradient(45deg, #ffffff, #e50914, #ffd700);
@@ -300,12 +306,6 @@ button:focus {
             text-shadow: 0 0 40px rgba(255,255,255,0.3);
             animation: glow 3s ease-in-out infinite alternate;
         }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
-            to { filter: drop-shadow(0 0 20px rgba(229,9,20,0.6)); }
-        }
-
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 40px;
@@ -1782,7 +1782,7 @@ radius: 8px;
   border-color: #3b3b3b;
   box-shadow: 0 0 0 2px rgba(111,138,215,0.35);
 }
-        .x9a {
+.x9a {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -1800,6 +1800,7 @@ radius: 8px;
     min-width: 240px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     animation: r7s 0.4s ease forwards;
+    font-family: sans-serif;
   }
 
   .m2l {
@@ -1851,11 +1852,66 @@ radius: 8px;
   @keyframes k6p {
     to { opacity: 0; transform: translateX(100%); }
   }
-    </style>
-</head>
 
+  
+body.comfort-mode {
+  background: #000000; 
+  colour: #2596be; 
+}
+
+body.comfort-mode .content {
+  background: #000000;
+  border: 1px solid #000000;
+}
+
+body.comfort-mode h1 {
+  color: #f5f5f5;  
+}
+body.comfort-mode .hero{
+      background: linear-gradient(135deg, #000000, #1a1a1a),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23333333;stop-opacity:1"/><stop offset="100%" style="stop-color:%23000000;stop-opacity:1"/></radialGradient></defs><rect fill="url(%23grad1)" width="1200" height="800"/><circle fill="%23111111" cx="200" cy="200" r="100" opacity="1"/><circle fill="%23222222" cx="800" cy="400" r="150" opacity="1"/><circle fill="%23333333" cx="1000" cy="600" r="80" opacity="1"/></svg>');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    body.comfort-mode::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+                    #000000 0%, 
+                    #1a1a1a 25%, 
+                    #000000 50%, 
+                    #0d0d0d 75%, 
+                    #000000 100%);
+      animation: shimmer 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+ 
+    </style>
+ 
+
+
+</head>
+<div class="x9a" id="c1r"></div>
 <body>
-    <div class="x9a" id="c1r"></div>
 <div class="report-btn" onclick="toggleReport()">
     <i class="fas fa-flag"></i>
 </div>
@@ -2040,14 +2096,19 @@ radius: 8px;
     <div id="toastContainer"></div>
 
     <footer>
+        <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
+            <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
+        </a>
+        <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
         <a href="//www.dmca.com/Protection/Status.aspx?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0" title="DMCA.com Protection Status" class="dmca-badge"> 
 <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0"  alt="DMCA.com Protection Status" /></a>
 <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
 
     </footer>
-<script src="main-script.js"></script>
+
     <script>
-         function u9h() {
+        
+       function u9h() {
   const a = document.getElementById("c1r");
 
   const b = document.createElement("div");
@@ -2085,7 +2146,11 @@ radius: 8px;
       progressBar.style.width = progress + "%";
       if (progress >= 100) {
         clearInterval(interval);
-        b.innerHTML = '<i class="fa-solid fa-check chk"></i> Installation Complete!';
+
+      
+        document.body.classList.add("comfort-mode");
+
+        b.innerHTML = '<i class="fa-solid fa-check" style="color:#4CAF50;margin-right:6px;"></i> Installation Complete!';
         setTimeout(() => {
           b.style.animation = "k6p 0.4s forwards";
           setTimeout(() => b.remove(), 400);
@@ -2094,7 +2159,6 @@ radius: 8px;
     }, 200);
   });
 }
-
 
 const delay = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000;
 setTimeout(u9h, delay);
@@ -2800,45 +2864,6 @@ function sendReport() {
         quality: "4K",
         tmdb_rating: 8.8
     },
-            {
-  "id": null,
-  "name": "Suits",
-  "overview": "A clever college-aged law school fraudster, Mike Ross, becomes a lawyer at a top New York firm under smooth attorney Harvey Specter, while his secret—that he never attended law school—threatens to unravel his career.",
-  "first_air_date": "2011-06-23",
-  "vote_average": null,
-  "poster_path": "https://image.tmdb.org/t/p/original/vQiryp6LioFxQThywxbC6TuoDjy.jpg",
-  "media_type": "tv",
-  "genres": ["Legal drama", "Comedy-drama"],
-  "views": null,
-  "quality": null,
-  "tmdb_rating": null
-},
-{
-  "id": null,
-  "name": "Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle – Part 1: Akaza Returns",
-  "overview": "Tanjiro and the Hashira descend into Muzan Kibutsuji’s maze-like stronghold—infinity Castle—to battle Upper-Rank demons amid the climactic final arc of the Demon Slayer saga.",
-  "first_air_date": "2025-07-18",
-  "vote_average": null,
-  "poster_path": "https://image.tmdb.org/t/p/original/aFRDH3P7TX61FVGpaLhKr6QiOC1.jpg",
-  "media_type": "film",
-  "genres": ["Fantasy", "Adventure", "Action", "Anime"],
-  "views": null,
-  "quality": null,
-  "tmdb_rating": null
-},
-            {
-  "id": 327,
-  "name": "City of God",
-  "overview": "In the poverty-stricken favelas of Rio de Janeiro between the 1960s and early 1980s, a budding photographer and his friend—who becomes a ruthless drug lord—take diverging paths that frame a raw, fast-paced chronicle of crime, survival, and ambition.",
-  "first_air_date": "2002-08-30",
-  "vote_average": 8.4,
-  "poster_path": "https://image.tmdb.org/t/p/original/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg",
-  "media_type": "film",
-  "genres": ["Crime", "Drama"],
-  "views": null,
-  "quality": null,
-  "tmdb_rating": null
-            },
     {
         id: 1399,
         name: "Game of Thrones",
@@ -2865,6 +2890,32 @@ function sendReport() {
         quality: "HD",
         tmdb_rating: 9.5
     },
+    {
+  "id": null,
+  "name": "Suits",
+  "overview": "A clever college-aged law school fraudster, Mike Ross, becomes a lawyer at a top New York firm under smooth attorney Harvey Specter, while his secret—that he never attended law school—threatens to unravel his career.",
+  "first_air_date": "2011-06-23",
+  "vote_average": null,
+  "poster_path": "https://image.tmdb.org/t/p/original/vQiryp6LioFxQThywxbC6TuoDjy.jpg",
+  "media_type": "tv",
+  "genres": ["Legal drama", "Comedy-drama"],
+  "views": null,
+  "quality": null,
+  "tmdb_rating": null
+},
+{
+  "id": null,
+  "name": "Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle – Part 1: Akaza Returns",
+  "overview": "Tanjiro and the Hashira descend into Muzan Kibutsuji’s maze-like stronghold—infinity Castle—to battle Upper-Rank demons amid the climactic final arc of the Demon Slayer saga.",
+  "first_air_date": "2025-07-18",
+  "vote_average": null,
+  "poster_path": "https://image.tmdb.org/t/p/original/aFRDH3P7TX61FVGpaLhKr6QiOC1.jpg",
+  "media_type": "film",
+  "genres": ["Fantasy", "Adventure", "Action", "Anime"],
+  "views": null,
+  "quality": null,
+  "tmdb_rating": null
+},
     {
         id: 80752,
         name: "Stranger Things",
@@ -4210,7 +4261,7 @@ function sendReport() {
     "quality": "4K",
     "tmdb_rating": 7.3
   },
-  {
+    {
     "id": 181812, // ✅ CORRECT
     "title": "Star Wars: The Rise of Skywalker",
     "overview": "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues.",
@@ -4568,3 +4619,4 @@ function sendReport() {
    </script>
 </body>
 </html>
+   
