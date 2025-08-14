@@ -1782,10 +1782,80 @@ radius: 8px;
   border-color: #3b3b3b;
   box-shadow: 0 0 0 2px rgba(111,138,215,0.35);
 }
+        .x9a {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .p1q {
+    background: black;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 8px;
+    min-width: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: r7s 0.4s ease forwards;
+  }
+
+  .m2l {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .t0f {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .z3b {
+    background: white;
+    color: black;
+  }
+
+  .y8n {
+    background: #777;
+    color: white;
+  }
+
+  .q4u {
+    margin-top: 10px;
+    width: 100%;
+    height: 6px;
+    background: #777;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .w5v {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.2s linear;
+  }
+
+  @keyframes r7s {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes k6p {
+    to { opacity: 0; transform: translateX(100%); }
+  }
     </style>
 </head>
 
 <body>
+    <div class="x9a" id="c1r"></div>
 <div class="report-btn" onclick="toggleReport()">
     <i class="fas fa-flag"></i>
 </div>
@@ -1977,6 +2047,57 @@ radius: 8px;
     </footer>
 <script src="main-script.js"></script>
     <script>
+         function u9h() {
+  const a = document.getElementById("c1r");
+
+  const b = document.createElement("div");
+  b.className = "p1q";
+  b.innerHTML = `
+    Install PikuFlix Comfort
+    <div class="m2l">
+      <button class="t0f z3b">Install</button>
+      <button class="t0f y8n">Maybe Later</button>
+    </div>
+  `;
+
+  a.appendChild(b);
+
+  const installBtn = b.querySelector(".z3b");
+  const laterBtn = b.querySelector(".y8n");
+
+  laterBtn.addEventListener("click", () => {
+    b.style.animation = "k6p 0.4s forwards";
+    setTimeout(() => b.remove(), 400);
+  });
+
+  installBtn.addEventListener("click", () => {
+    b.innerHTML = `
+      Installing PikuFlix Comfort...
+      <div class="q4u">
+        <div class="w5v"></div>
+      </div>
+    `;
+
+    const progressBar = b.querySelector(".w5v");
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 5;
+      progressBar.style.width = progress + "%";
+      if (progress >= 100) {
+        clearInterval(interval);
+        b.innerHTML = '<i class="fa-solid fa-check chk"></i> Installation Complete!';
+        setTimeout(() => {
+          b.style.animation = "k6p 0.4s forwards";
+          setTimeout(() => b.remove(), 400);
+        }, 1500);
+      }
+    }, 200);
+  });
+}
+
+
+const delay = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000;
+setTimeout(u9h, delay);
        const reportForm = document.getElementById("reportForm");
 const reportType = document.getElementById("reportType");
 const idIssueSection = document.getElementById("idIssueSection");
