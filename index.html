@@ -1903,13 +1903,80 @@ body.comfort-mode .hero{
       0%, 100% { opacity: 0; }
       50% { opacity: 1; }
     }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+    .popup {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: #181818;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        z-index: 1000;
+        text-align: center;
+        width: 300px;
+        opacity: 0;
+        animation: popupIn 0.3s forwards;
+    }
+
+    .popup h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .popup p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: #ccc;
+    }
+
+    .popup a {
+        color: #e50914;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .popup a:hover {
+        text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+    @keyframes popupIn {
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
  
     </style>
  
 
 
 </head>
+    
+<h2 style="color:#e50914;">Shake your phone to open menu</h2>
+
+<div class="overlay"></div>
+
+<div class="popup">
+    <h3>Can't find your movies?</h3>
+    <p>Watch them for yourself at:</p>
+    <a href="https://pikuflix.vercel.app/user-movies.html" target="_blank">https://pikuflix.vercel.app/user-movies.html</a>
+</div>
 <div class="x9a" id="c1r"></div>
 <body>
 <div class="report-btn" onclick="toggleReport()">
@@ -2107,7 +2174,42 @@ body.comfort-mode .hero{
     </footer>
 
     <script>
-        
+        let lastX = null, lastY = null, lastZ = null;
+let shakeThreshold = 30;
+let lastShakeTime = 0;
+let shakeDelay = 100;
+window.addEventListener('devicemotion', function(event) {
+    let acc = event.accelerationIncludingGravity;
+    let currentTime = new Date().getTime();
+
+    if (lastX !== null) {
+        let deltaX = Math.abs(lastX - acc.x);
+        let deltaY = Math.abs(lastY - acc.y);
+        let deltaZ = Math.abs(lastZ - acc.z);
+
+        let speed = deltaX + deltaY + deltaZ;
+
+        if (speed > shakeThreshold && (currentTime - lastShakeTime) > shakeDelay) {
+            lastShakeTime = currentTime;
+            openMenu();
+        }
+    }
+    lastX = acc.x;
+    lastY = acc.y;
+    lastZ = acc.z;
+});
+
+
+function openMenu() {
+    document.querySelector('.overlay').style.display = 'block';
+    document.querySelector('.popup').style.display = 'block';
+}
+
+
+document.querySelector('.overlay').addEventListener('click', function() {
+    document.querySelector('.overlay').style.display = 'none';
+    document.querySelector('.popup').style.display = 'none';
+});
        function u9h() {
   const a = document.getElementById("c1r");
 
