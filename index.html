@@ -1,757 +1,237 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PikuFlix — We'll be back soon</title>
-  <meta name="description" content="PikuFlix is undergoing scheduled maintenance. We'll be back shortly." />
-  <style>
-         * {
-  -webkit-tap-highlight-color: transparent;
-}
+    <meta name='dmca-site-verification' content='RHZyeDVRRURvV2dubFpWWitWZjV1b2lxUUxXTEpDL29QbmFENlN1cTk2dz01' />
+    <link rel="icon" href="pikuflix.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+    <meta name="google-site-verification" content="CbnaXhXSocnoRUQhZE76JrryNmu2-blhLCPUBnHcTrA" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PikuFlix - Your Entertainment Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="stylesheet" href="style.css">
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-    :root{
-      --bg1:#0a0a0a; --bg2:#1a1a1a; --accent:#e50914; --accent-hover:#ff1e2d; --muted:#9aa0a6; 
-      --glass: rgba(255,255,255,0.06);
-      --card: rgba(255,255,255,0.04);
-      --card-hover: rgba(255,255,255,0.08);
-      --radius: 20px;
-      --maxw:1200px;
-      --shadow: 0 20px 60px rgba(0,0,0,0.8);
-      --text: #f8f9fa;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: 
-        radial-gradient(ellipse at top left, rgba(229,9,20,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(229,9,20,0.04) 0%, transparent 50%),
-        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
-      color: var(--text); 
-      -webkit-font-smoothing: antialiased;
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 20px;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    .animated-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .floating-particles {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.1;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
-      50% { transform: translateY(-100px) rotate(180deg); opacity: 0.3; }
-    }
-
-    .wrap{
-      width: 100%; 
-      max-width: var(--maxw);
-      position: relative;
-      z-index: 1;
-    }
-
-    .card{
-      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border-radius: var(--radius);
-      padding: 40px; 
-      display: grid; 
-      grid-template-columns: 1fr 420px; 
-      gap: 40px; 
-      align-items: start;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px) saturate(120%);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 25px 80px rgba(0,0,0,0.9);
-    }
-
-    @media (max-width: 960px){
-      .card { grid-template-columns: 1fr; padding: 30px; gap: 30px; }
-    }
-
-    .brand{
-      display: flex; 
-      align-items: center; 
-      gap: 18px;
-      margin-bottom: 24px;
-    }
-
-    .logo{
-      width: 90px; 
-      height: 56px; 
-      border-radius: 12px; 
-      display: grid; 
-      place-items: center; 
-      font-weight: 800; 
-      font-size: 22px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); 
-      letter-spacing: 1.5px; 
-      color: white; 
-      box-shadow: 0 8px 24px rgba(0,0,0,0.8) inset, 0 2px 8px rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .brand-info h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #fff, #ccc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .brand-tagline {
-      color: var(--muted);
-      margin-top: 4px;
-      font-size: 14px;
-    }
-
-    .hero h1{
-      margin: 0; 
-      font-size: 48px; 
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #fff, #ddd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.1;
-    }
-
-    .hero p{
-      margin: 16px 0 0; 
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .glass-box{
-      background: var(--card); 
-      padding: 24px; 
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: background 0.3s ease;
-    }
-
-    .glass-box:hover {
-      background: var(--card-hover);
-    }
-
-    .status{
-      display: flex; 
-      gap: 14px; 
-      align-items: center;
-      margin: 24px 0;
-      padding: 16px;
-      background: rgba(229,9,20,0.1);
-      border-radius: 12px;
-      border: 1px solid rgba(229,9,20,0.2);
-    }
-
-    .dot{
-      width: 16px;
-      height: 16px;
-      border-radius: 50%; 
-      background: var(--accent); 
-      box-shadow: 0 0 20px rgba(229,9,20,0.6);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.1); }
-    }
-
-    .status-text {
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .meta{
-      color: var(--muted); 
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
-    .countdown{
-      display: flex; 
-      gap: 12px; 
-      margin-top: 24px;
-      justify-content: center;
-    }
-
-    .countdown .unit{
-      background: rgba(0,0,0,0.4); 
-      padding: 20px 16px; 
-      border-radius: 12px; 
-      min-width: 80px; 
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .countdown .unit:hover {
-      transform: translateY(-2px);
-      background: rgba(0,0,0,0.6);
-    }
-
-    .countdown .num{
-      font-weight: 700; 
-      font-size: 28px;
-      background: linear-gradient(135deg, #fff, #ccc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .countdown .label{
-      font-size: 12px; 
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 4px;
-    }
-
-    .right{
-      display: flex; 
-      flex-direction: column; 
-      gap: 20px;
-    }
-
-    .progress{
-      height: 16px; 
-      background: rgba(255,255,255,0.05); 
-      border-radius: 10px; 
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress > i{
-      display: block; 
-      height: 100%; 
-      width: 0%; 
-      background: linear-gradient(90deg, var(--accent), #ff6b6b, var(--accent)); 
-      transition: width 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-      background-size: 200% 100%;
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    form{
-      display: flex; 
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    input[type=email]{
-      flex: 1; 
-      padding: 14px 16px; 
-      border-radius: 12px; 
-      border: 1px solid rgba(255,255,255,0.08); 
-      background: rgba(0,0,0,0.3); 
-      color: inherit;
-      font-size: 14px;
-      transition: border-color 0.3s ease, background 0.3s ease;
-    }
-
-    input[type=email]:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: rgba(0,0,0,0.5);
-    }
-
-    input[type=email]::placeholder {
-      color: var(--muted);
-    }
-
-    button{
-      padding: 14px 20px; 
-      border-radius: 12px; 
-      border: 0; 
-      background: var(--accent); 
-      color: white; 
-      font-weight: 600; 
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s ease, transform 0.2s ease;
-      white-space: nowrap;
-    }
-
-    button:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
-    }
-
-    .links{
-      display: flex; 
-      gap: 16px; 
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-
-    .links a{
-      color: var(--muted); 
-      font-size: 14px; 
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: color 0.3s ease, background 0.3s ease;
-    }
-
-    .links a:hover {
-      color: var(--accent);
-      background: rgba(229,9,20,0.1);
-    }
-
-    .redirect-section {
-      background: linear-gradient(135deg, rgba(229,9,20,0.08), rgba(229,9,20,0.04));
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid rgba(229,9,20,0.2);
-      margin-top: 16px;
-    }
-
-    .redirect-title {
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-
-    .redirect-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .redirect-link {
-      display: block;
-      padding: 12px 16px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 10px;
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-
-    .redirect-link:hover {
-      background: rgba(0,0,0,0.5);
-      border-color: var(--accent);
-      transform: translateX(4px);
-    }
-
-    .redirect-link .link-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .redirect-link .link-desc {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .social{
-      display: flex; 
-      gap: 12px;
-    }
-
-    .social a{
-      display: inline-grid; 
-      place-items: center; 
-      width: 42px; 
-      height: 42px; 
-      border-radius: 10px; 
-      background: rgba(255,255,255,0.04); 
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .social a:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .cta a{
-      color: white; 
-      text-decoration: none; 
-      background: transparent; 
-      border: 2px solid rgba(255,255,255,0.1); 
-      padding: 10px 16px; 
-      border-radius: 10px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .cta a:hover {
-      border-color: var(--accent);
-      background: rgba(229,9,20,0.1);
-    }
-
-    .support-section {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .support-section a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .support-section a:hover {
-      text-decoration: underline;
-    }
-
-    footer.small{
-      margin-top: 16px; 
-      font-size: 12px; 
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 12px;
-    }
-
-    .foot {
-      margin-top: 24px;
-      padding: 16px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .foot a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .foot a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 36px; }
-      .countdown { flex-wrap: wrap; justify-content: center; }
-      .countdown .unit { min-width: 70px; padding: 16px 12px; }
-      .countdown .num { font-size: 24px; }
-      .card { padding: 24px; }
-      .brand { flex-direction: column; text-align: center; gap: 12px; }
-      form { flex-direction: column; }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 28px; }
-      .countdown .unit { min-width: 60px; padding: 12px 8px; }
-      .countdown .num { font-size: 20px; }
-    }
-  </style>
 </head>
+<h2 style="color:#e50914;">Shake your phone to open menu</h2>
+
+<div class="overlay"></div>
+
+<div class="popup">
+    <h3>Can't find your movies?</h3>
+    <p>Watch them for yourself at:</p>
+    <a href="https://pikuflix.vercel.app/user-movies.html" target="_blank">https://pikuflix.vercel.app/user-movies.html</a>
+</div>
+<div class="x9a" id="c1r"></div>
 <body>
-  <div class="animated-bg">
-    <div class="floating-particles" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
-    <div class="floating-particles" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
-    <div class="floating-particles" style="top: 60%; left: 20%; animation-delay: 4s;"></div>
-    <div class="floating-particles" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
-  </div>
+<div class="report-btn" onclick="toggleReport()">
+    <i class="fas fa-flag"></i>
+</div>
 
-  <div class="wrap">
-    <div class="card" role="main" aria-labelledby="title">
-      <div>
-        <div class="brand">
-          <div class="logo" aria-hidden="true">PIKU</div>
-          <div class="brand-info">
-            <h2 id="title">PikuFlix</h2>
-            <div class="brand-tagline">Entertainment, your way</div>
-            <p class="meta" style="margin-top: 8px;">Scheduled maintenance in progress. We're polishing things up so your streaming experience is smoother than ever.</p>
-          </div>
+<div class="report-popup" id="reportForm">
+    <div class="report-content">
+        <h3><i class="fas fa-flag"></i> Report Issue</h3>
+        <p>Found a problem? Let us know.</p>
+
+        
+        <label for="reportType">Report Type:</label>
+        <select id="reportType">
+            <option value="">Select Type</option>
+            <option value="bug">Bug</option>
+            <option value="ui">UI Issue</option>
+            <option value="id-issue">Movie/Series ID issue</option>
+            <option value="other">Other</option>
+        </select>
+
+      
+<div id="idIssueSection" style="display:none;">
+    <label for="correctName">Movie/Series Name:</label>
+    <input type="text" id="correctName" placeholder="Enter movie or series name">
+
+    <label for="correctId">Correct TMDb ID:</label>
+    <input type="text" id="correctId" placeholder="Enter TMDb ID">
+
+    <button id="verifyIdBtn">Verify ID</button>
+    <p id="verifyResult"></p>
+</div>
+
+        
+        <textarea placeholder="Describe the issue..." id="reportText"></textarea>
+
+       
+        <div class="report-buttons">
+            <button class="submit-btn" onclick="sendReport()">Submit Report</button>
+            <button class="close-btn" onclick="toggleReport()">Close</button>
         </div>
-
-        <section class="hero">
-          <h1>We'll be back soon.</h1>
-          <p>Sorry for the inconvenience — the PikuFlix service is temporarily offline for maintenance. Thank you for your patience while we enhance your viewing experience.</p>
-
-          <div class="status">
-            <div class="dot" aria-hidden="true"></div>
-            <div>
-              <div class="status-text">Maintenance in progress</div>
-              <div class="meta">System upgrades and performance improvements</div>
-            </div>
-          </div>
-
-          <div class="countdown" aria-live="polite" aria-atomic="true">
-            <div class="unit">
-              <div class="num" id="days">0</div>
-              <div class="label">Days</div>
-            </div>
-            <div class="unit">
-              <div class="num" id="hours">0</div>
-              <div class="label">Hours</div>
-            </div>
-            <div class="unit">
-              <div class="num" id="minutes">0</div>
-              <div class="label">Minutes</div>
-            </div>
-            <div class="unit">
-              <div class="num" id="seconds">0</div>
-              <div class="label">Seconds</div>
-            </div>
-          </div>
-
-          <div class="foot">
-            <strong>Need entertainment right now?</strong> Check out our alternative streaming options below or visit our main site: 
-            <a href="#" id="author-link">kavyant420.github.io/pikuflix</a>
-          </div>
-        </section>
-      </div>
-
-      <aside class="right">
-        <div class="glass-box">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
-            <div style="font-weight:700; font-size: 16px;">Maintenance Progress</div>
-            <div class="meta">Updated: <span id="last-up">just now</span></div>
-          </div>
-          
-          <div class="progress" aria-label="Maintenance progress">
-            <i id="prog"></i>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <div style="font-weight: 600; margin-bottom: 8px;">Get notified when we're back</div>
-            <form id="emailForm" onsubmit="return false;">
-              <input id="email" type="email" placeholder="Enter your email address" aria-label="Email address" required>
-              <button id="notify">Notify me</button>
-            </form>
-            <div id="msg" style="margin-top:10px;font-size:13px;color:var(--muted)"></div>
-          </div>
-
-          <div style="margin-top: 20px; display:flex; justify-content:space-between; align-items:center;">
-            <div class="social" aria-label="Social media">
-              <a href="#" title="Twitter">𝕏</a>
-              <a href="#" title="Instagram">📷</a>
-              <a href="#" title="YouTube">▶</a>
-            </div>
-            <div class="cta"><a href="#">Status Page</a></div>
-          </div>
-        </div>
-
-        <div class="redirect-section">
-          <div class="redirect-title">🍿 Still want to watch something?</div>
-          <div class="redirect-links">
-            <a href="https://pikuflix.vercel.app/user-movies.html" class="redirect-link" target="_blank">
-              <div class="link-title">🎬 Watch with TMDB ID</div>
-              <div class="link-desc">Enter any TMDB movie/series ID to stream instantly</div>
-            </a>
-            <a href="https://kavyant420.github.io/pikuflix" class="redirect-link" target="_blank">
-              <div class="link-title">🏠 Main PikuFlix Site</div>
-              <div class="link-desc">Browse our full collection of movies and series</div>
-            </a>
-          </div>
-        </div>
-
-        <div class="support-section">
-          <strong>Need help?</strong>
-          <div style="margin-top:10px;">
-            For immediate assistance, contact us at 
-            <a href="mailto:support@pikuflix.example">support@pikuflix.example</a>
-          </div>
-          <footer class="small">© 2024 PikuFlix — All rights reserved</footer>
-        </div>
-      </aside>
     </div>
-  </div>
+</div>
 
-  <script>
-    // ====== CONFIG ======
-    const estimatedReturn = new Date();
-    estimatedReturn.setHours(estimatedReturn.getHours() + 6);
+    <button class="assistant-btn" id="assistantBtn">
+        <div class="pulse-ring"></div>
+        <div class="assistant-icon">
+  <i class="fa fa-question-circle"></i>
+</div>
+    </button>
 
-    let progress = 28; // starting progress
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <button class="close-btn" id="closeBtn">×</button>
+            <h2 class="popup-title">AI Assistant</h2>
+            <p class="popup-subtitle">How can I help you today?</p>
+        </div>
+        <div class="popup-content">
+            <p style="font-size:20px; text-align:center; padding:20px; color: black;">Coming Soon</p>
+        </div>
+    </div>
+</div>
 
-    const $ = id => document.getElementById(id);
+    <div class="social-buttons">
+        <div class="login-icon" onclick="location.href='login.html'">
+  <i class="fas fa-user"></i>
+  <div class="tooltip">
+      </div>
+</div>
+        <div class="overlay-top-left">
+            <a href="guide-book.html" class="overlay-top-left" title="Open Guide Book">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>
 
-    function updateCountdown(){
-      const now = new Date();
-      let diff = Math.max(0, estimatedReturn - now);
-      const days = Math.floor(diff / (1000*60*60*24));
-      diff -= days * (1000*60*60*24);
-      const hours = Math.floor(diff / (1000*60*60));
-      diff -= hours * (1000*60*60);
-      const minutes = Math.floor(diff / (1000*60));
-      diff -= minutes * (1000*60);
-      const seconds = Math.floor(diff / 1000);
+        <a href="https://discord.gg/zMwSVESyFA" target="_blank" class="discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://instagram.com/kavyant1" target="_blank" class="instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
 
-      $('days').textContent = days;
-      $('hours').textContent = hours.toString().padStart(2,'0');
-      $('minutes').textContent = minutes.toString().padStart(2,'0');
-      $('seconds').textContent = seconds.toString().padStart(2,'0');
+    <div class="settings-swipe-area"></div>
+    <div class="settings-button" id="settingsBtn">
+        <i class="fa-solid fa-gear"></i>
+    </div>
 
-      // Enhanced progress calculation
-      const totalDuration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
-      const startTime = estimatedReturn - totalDuration;
-      const elapsed = now - startTime;
-      let calculatedProgress = Math.min(95, Math.max(15, Math.floor((elapsed / totalDuration) * 100)));
-      
-      // Smooth progress animation
-      progress += (calculatedProgress - progress) * 0.08;
-      $('prog').style.width = Math.round(progress) + '%';
+    <div id="settingsPanel" class="settings-panel">
+        <div class="panel-header">Settings</div>
+        <ul class="panel-options">
+            <li>Account: Guest <span id="guestId"></span></li>
+            <li><button id="openStreamSettings">Stream Settings</button></li>
+            <li>
+                Show History: 
+                <label class="switch">
+                    <input type="checkbox" id="historyToggle">
+                    <span class="slider round"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
 
-      if(hours === 0 && minutes === 0 && seconds === 0){
-        document.title = 'PikuFlix — Back online!';
-        $('msg').innerHTML = '🎉 Maintenance complete — <strong>try refreshing the page</strong>';
-        progress = 100;
-        $('prog').style.width = '100%';
-      }
-    }
+    <div id="streamSettingsPanel" class="stream-settings-overlay">
+        <div class="panel-header">
+            Stream Settings
+            <button id="closeStreamSettings" style="float: right;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="panel-body">
+            <p>(Placeholder for stream settings like quality, subtitles, etc.)</p>
+        </div>
+    </div>
 
-    // Email form functionality
-    $('notify').addEventListener('click', () => {
-      const email = $('email').value.trim();
-      if(!email || !email.includes('@')){ 
-        $('msg').innerHTML = '⚠️ Please enter a valid email address.'; 
-        return; 
-      }
-      $('msg').innerHTML = `✅ Thanks! We'll notify you at <strong>${email}</strong> when we're back online.`;
-      $('email').value = '';
-      
-      // Simulate storing email (in real implementation, send to server)
-      setTimeout(() => {
-        $('msg').innerHTML = '📧 Notification preferences saved successfully.';
-      }, 2000);
-    });
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-top">
+                <div class="logo">PIKUFLIX</div>
+                <div></div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-category="trending">Trending</a>
+                    <a href="#" class="nav-link" data-category="movies">Movies</a>
+                    <a href="#" class="nav-link" data-category="tv">TV Shows</a>
+                </div>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search movies and TV shows...">
+                <button class="search-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i>
+</button>
+            </div>
+        </nav>
+    </header>
 
-    // Enhanced author link functionality
-    $('author-link').addEventListener('click', (ev) => {
-      ev.preventDefault();
-      window.open('https://kavyant420.github.io/pikuflix', '_blank');
-    });
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlimited Entertainment</h1>
+            <p>Stream thousands of movies and TV shows in HD quality</p>
+            <button class="cta-button" onclick="document.getElementById('content').scrollIntoView({behavior: 'smooth'})">
+                Start Watching
+            </button>
+        </div>
+    </section>
 
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape'){
-        $('msg').textContent = '';
-      }
-      if(e.key === 'Enter' && e.ctrlKey){
-        $('notify').click();
-      }
-    });
+    <div id="historyList" class="history-list" style="display: none; margin-top: 20px;">
+        <h3>Watch History</h3>
+        <ul id="historyItems"></ul>
+    </div>
 
-    // Update last-updated timestamp
-    function updateTimestamp() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-      $('last-up').textContent = timeString;
-    }
+    <main class="content" id="content">
+        <h2 class="section-title">Popular Content</h2>
 
-    // Add some random progress fluctuation for realism
-    function simulateProgressActivity() {
-      if (progress < 90) {
-        const fluctuation = (Math.random() - 0.5) * 0.5;
-        progress = Math.max(15, Math.min(95, progress + fluctuation));
-      }
-    }
+        <div class="category-tabs">
+            <button class="tab-btn active" data-type="trending"><i class="fa-solid fa-fire"></i> Trending</button>
+            <button class="tab-btn" data-type="popular-movies"><i class="fa-solid fa-film"></i> Popular Movies</button>
+            <button class="tab-btn" data-type="popular-tv"><i class="fa-solid fa-tv"></i> Popular TV</button>
+            <button class="tab-btn" data-type="top-rated"><i class="fa-solid fa-star"></i> Top Rated</button>
+        </div>
 
-    // Initialize
-    setInterval(updateCountdown, 1000);
-    setInterval(updateTimestamp, 30000);
-    setInterval(simulateProgressActivity, 5000);
-    
-    updateCountdown();
-    updateTimestamp();
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            Loading content...
+        </div>
 
-    // Add some visual enhancements
-    document.addEventListener('DOMContentLoaded', () => {
-      // Animate elements on load
-      const card = document.querySelector('.card');
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      
-      setTimeout(() => {
-        card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 100);
+        <div class="content-grid" id="contentGrid"></div>
+    </main>
 
-      // Create more floating particles dynamically
-      const bg = document.querySelector('.animated-bg');
-      for(let i = 0; i < 8; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'floating-particles';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-        bg.appendChild(particle);
-      }
-    });
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Loading...</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="video-container" id="videoContainer">
+                <div style="text-align: right; margin-top: 10px;">
+                    <button id="nextEpisodeBtn" style="padding: 8px 16px; font-size: 16px;"><i class="fa-solid fa-forward"></i> Next Episode</button>
+                </div>
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading video...
+                </div>
+            </div>
+        </div>
+    </div>
 
-    // Add click tracking for analytics (placeholder)
-    document.querySelectorAll('a[href]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        console.log('Link clicked:', e.target.href || e.target.textContent);
-      });
-    });
-  </script>
+    <div id="toastContainer"></div>
+
+    <footer>
+        <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
+            <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
+        </a>
+        <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+        <a href="//www.dmca.com/Protection/Status.aspx?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0" title="DMCA.com Protection Status" class="dmca-badge"> 
+<img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0"  alt="DMCA.com Protection Status" /></a>
+<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+<script src="script.js"></script>
+    </footer>
 </body>
-    </html>
+  </html>
