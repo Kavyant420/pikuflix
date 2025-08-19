@@ -1350,6 +1350,10 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.report-content{
+  position: relative;
+}
+
 .report-content h3 {
     margin: 0 0 5px 0;
     color: #e50914;
@@ -1359,6 +1363,7 @@ body {
     font-size: 13px;
     color: #ccc;
     margin-bottom: 8px;
+    
 }
 
 .report-content textarea {
@@ -1387,9 +1392,11 @@ body {
 }
 
 .report-content .close-btn {
+    position: absolute;
     background: #444;
     color: white;
-    margin-left: 5px;
+    top:10px;
+    right:10px;
 }
 
 @keyframes fadeIn {
@@ -1415,7 +1422,7 @@ radius: 8px;
             margin: 0 auto;
         }
 
-        .assistant-btn {
+        /* .assistant-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -1476,7 +1483,7 @@ radius: 8px;
             transform: translate(-50%, -50%);
             font-size: 28px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
+        } */
 
         .pulse-ring {
             position: absolute;
