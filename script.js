@@ -1373,3 +1373,19 @@ function sendReport() {
        });
 
        console.log('PikuFlix initialized successfully! 🚀');
+const apiKey = "8d18cc3ec326ca4282a7ab5a651c7f7b";
+fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+  .then(res => res.json())
+  .then(data => {
+    data.results.forEach(movie => {
+      movieDatabase.push({
+        id: movie.id,
+        title: movie.title,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average,
+        poster_path: "https://image.tmdb.org/t/p/original" + movie.poster_path,
+        media_type: "movie"
+      });
+    });
+  });
