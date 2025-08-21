@@ -1374,18 +1374,32 @@ function sendReport() {
 
        console.log('PikuFlix initialized successfully! 🚀');
 const apiKey = "8d18cc3ec326ca4282a7ab5a651c7f7b";
-fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-  .then(res => res.json())
-  .then(data => {
-    data.results.forEach(movie => {
-      movieDatabase.push({
-        id: movie.id,
-        title: movie.title,
-        overview: movie.overview,
-        release_date: movie.release_date,
-        vote_average: movie.vote_average,
-        poster_path: "https://image.tmdb.org/t/p/original" + movie.poster_path,
-        media_type: "movie"
-      });
+
+Promise.all([
+  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`).then(r => r.json()),
+  fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&page=1`).then(r => r.json())
+])
+.then(([movies, tv]) => {
+  movies.results.forEach(m => {
+    movieDatabase.push({
+      id: m.id,
+      title: m.title,
+      overview: m.overview,
+      release_date: m.release_date,
+      vote_average: m.vote_average,
+      poster_path: "https://image.tmdb.org/t/p/original" + m.poster_path,
+      media_type: "movie"
     });
   });
+  tv.results.forEach(s => {
+    movieDatabase.push({
+      id: s.id,
+      title: s.name,
+      overview: s.overview,
+      release_date: s.first_air_date,
+      vote_average: s.vote_average,
+      poster_path: "https://image.tmdb.org/t/p/original" + s.poster_path,
+      media_type: "tv"
+    });
+  });
+});
