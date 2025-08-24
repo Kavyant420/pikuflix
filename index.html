@@ -28,205 +28,222 @@
     <link rel="stylesheet" href="style.css">
 <meta name='dmca-site-verification' content='SGdKRXNxZ3ovV3FJTzc4U2VhVkFwOFhGb0VCK1M5MG5FcDFuKzg5L2h1ST01' />
 </head>
-<h2 style="color:#e50914;">Shake your phone to open menu</h2>
-
-<div class="overlay"></div>
-
-<div class="popup">
-    <h3>Can't find your movies?</h3>
-    <p>Watch them for yourself at:</p>
-    <a href="https://pikuflix.vercel.app/user-movies.html" target="_blank">https://pikuflix.vercel.app/user-movies.html</a>
-</div>
-<div class="x9a" id="c1r"></div>
 <body>
-<div class="report-btn" onclick="toggleReport()">
-    <i class="fas fa-flag"></i>
-</div>
-
-<div class="report-popup" id="reportForm">
-    <div class="report-content">
-        <h3><i class="fas fa-flag"></i> Report Issue</h3>
-        <p>Found a problem? Let us know.</p>
-
-        
-        <label for="reportType">Report Type:</label>
-        <select id="reportType">
-            <option value="">Select Type</option>
-            <option value="bug">Bug</option>
-            <option value="ui">UI Issue</option>
-            <option value="id-issue">Movie/Series ID issue</option>
-            <option value="other">Other</option>
-        </select>
-
-      
-<div id="idIssueSection" style="display:none;">
-    <label for="correctName">Movie/Series Name:</label>
-    <input type="text" id="correctName" placeholder="Enter movie or series name">
-
-    <label for="correctId">Correct TMDb ID:</label>
-    <input type="text" id="correctId" placeholder="Enter TMDb ID">
-
-    <button id="verifyIdBtn">Verify ID</button>
-    <p id="verifyResult"></p>
-</div>
-
-        
-        <textarea placeholder="Describe the issue..." id="reportText"></textarea>
-
-       
-        <div class="report-buttons">
-            <button class="submit-btn" onclick="sendReport()">Submit Report</button>
-            <button class="close-btn" onclick="toggleReport()">Close</button>
-        </div>
-    </div>
-</div>
-
-    <button class="assistant-btn" id="assistantBtn">
-        <div class="pulse-ring"></div>
-        <div class="assistant-icon">
-  <i class="fa fa-question-circle"></i>
-</div>
-    </button>
-
-<div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popup">
-        <div class="popup-header">
-            <button class="close-btn" id="closeBtn">×</button>
-            <h2 class="popup-title">AI Assistant</h2>
-            <p class="popup-subtitle">How can I help you today?</p>
-        </div>
-        <div class="popup-content">
-            <p style="font-size:20px; text-align:center; padding:20px; color: black;">Coming Soon</p>
-        </div>
-    </div>
-</div>
-
-    <div class="social-buttons">
-        <div class="login-icon" onclick="location.href='login.html'">
-  <i class="fas fa-user"></i>
-  <div class="tooltip">
-      </div>
-</div>
-        <div class="overlay-top-left">
-            <a href="guide-book.html" class="overlay-top-left" title="Open Guide Book">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>
-
-    </div>
-
-    <div class="settings-swipe-area"></div>
-    <div class="settings-button" id="settingsBtn">
-        <i class="fa-solid fa-gear"></i>
-    </div>
-
-    <div id="settingsPanel" class="settings-panel">
-        <div class="panel-header">Settings</div>
-        <ul class="panel-options">
-            <li>Account: Guest <span id="guestId"></span></li>
-            <li><button id="openStreamSettings">Stream Settings</button></li>
-            <li>
-                Show History: 
-                <label class="switch">
-                    <input type="checkbox" id="historyToggle">
-                    <span class="slider round"></span>
-                </label>
-            </li>
-        </ul>
-    </div>
-
-    <div id="streamSettingsPanel" class="stream-settings-overlay">
-        <div class="panel-header">
-            Stream Settings
-            <button id="closeStreamSettings" style="float: right;"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="panel-body">
-            <p>(Placeholder for stream settings like quality, subtitles, etc.)</p>
-        </div>
-    </div>
-
-    <header class="header" id="header">
-        <nav class="nav">
-            <div class="nav-top">
-                <div class="logo">PIKUFLIX</div>
-                <div></div>
-                <div class="nav-links">
-                    
-                    <a href="#" class="nav-link" data-category="movies">Movies</a>
-                    <a href="#" class="nav-link" data-category="tv">TV Shows</a>
-                </div>
+    <header class="header">
+        <div class="logo">PIKUFLIX</div>
+        <div class="header-right">
+            <svg class="search-icon" onclick="showPage('search')" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <div class="notification-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                </svg>
+                <div class="notification-dot"></div>
             </div>
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search movies and TV shows...">
-                <button class="search-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i>
-</button>
-            </div>
-        </nav>
+            <button class="profile-btn">
+                <svg fill="white" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </button>
+            <svg class="dropdown-arrow" onclick="showPage('footer')" viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z"/>
+            </svg>
+        </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Unlimited Entertainment</h1>
-            <p>Stream thousands of movies and TV shows in HD quality</p>
-            <button class="cta-button" onclick="document.getElementById('content').scrollIntoView({behavior: 'smooth'})">
-                Start Watching
-            </button>
-        </div>
-    </section>
+    <nav class="nav-bar">
+        <a href="#" class="nav-item active" onclick="showPage('home', this)">Home</a>
+        <a href="#" class="nav-item" onclick="showPage('tv-shows', this)">TV Shows</a>
+        <a href="#" class="nav-item" onclick="showPage('movies', this)">Movies</a>
+        <a href="#" class="nav-item" onclick="showPage('new-popular', this)">New & Popular</a>
+        <a href="#" class="nav-item" onclick="showPage('my-list', this)">My List</a>
+    </nav>
 
-    <div id="historyList" class="history-list" style="display: none; margin-top: 20px;">
-        <h3>Watch History</h3>
-        <ul id="historyItems"></ul>
-    </div>
-
-    <main class="content" id="content">
-        <h2 class="section-title">Popular Content</h2>
-
-        <div class="category-tabs">
-            <button class="tab-btn active" data-type="trending"><i class="fa-solid fa-fire"></i> Trending</button>
-            <button class="tab-btn" data-type="popular-movies"><i class="fa-solid fa-film"></i> Popular Movies</button>
-            <button class="tab-btn" data-type="popular-tv"><i class="fa-solid fa-tv"></i> Popular TV</button>
-            <button class="tab-btn" data-type="top-rated"><i class="fa-solid fa-star"></i> Top Rated</button>
-        </div>
-
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            Loading content...
-        </div>
-
-        <div class="content-grid" id="contentGrid"></div>
-    </main>
-
-    <div class="modal" id="videoModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">Loading...</h3>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="video-container" id="videoContainer">
-                <div style="text-align: right; margin-top: 10px;">
-                    <button id="nextEpisodeBtn" style="padding: 8px 16px; font-size: 16px;"><i class="fa-solid fa-forward"></i> Next Episode</button>
+    
+    <div id="home" class="page active">
+        <section class="hero-section" id="heroSection">
+            <div class="hero-content">
+                <h1 class="hero-title" id="heroTitle">Stranger Things</h1>
+                <div class="hero-meta" id="heroMeta">
+                    <span class="rating" id="heroRating">TV-14</span>
+                    <span class="year" id="heroYear">2016</span>
+                    <span class="seasons" id="heroSeasons">4 Seasons</span>
+                    <span class="genres" id="heroGenres">Sci-Fi • Horror • Drama</span>
                 </div>
+                <p class="hero-description" id="heroDescription">
+                    When a young boy disappears, his mother, a police chief and his friends must confront terrifying supernatural forces in order to get him back.
+                </p>
+                <div class="hero-buttons">
+                    <button class="play-btn" id="heroPlayBtn">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Play
+                    </button>
+                    <button class="info-btn">
+                        <svg class="info-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                        </svg>
+                        More Info
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Trending Now</h2>
+                <a href="#" class="explore-all">Explore All ></a>
+            </div>
+            <div class="content-row" id="trendingRow">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Loading video...
+                    Loading content...
                 </div>
             </div>
-        </div>
+
+            <div class="section-header">
+                <h2 class="section-title">Popular Movies</h2>
+                <a href="#" class="explore-all">Explore All ></a>
+            </div>
+            <div class="content-row" id="moviesRow">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading content...
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2 class="section-title">TV Shows</h2>
+                <a href="#" class="explore-all">Explore All ></a>
+            </div>
+            <div class="content-row" id="tvShowsRow">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading content...
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div id="toastContainer"></div>
+    
+    <div id="search" class="page">
+        <section class="search-page">
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Titles, people, genres">
+            </div>
+            <div class="content-section">
+                <div class="content-row" id="searchResults">
+                    
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <footer>
-        <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
-            <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
-        </a>
-        <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
-        <a href="//www.dmca.com/Protection/Status.aspx?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0" title="DMCA.com Protection Status" class="dmca-badge"> 
-<img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=07c493d8-b01b-4210-9938-4ce9a2b0fdb0"  alt="DMCA.com Protection Status" /></a>
-<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-<script src="script.js"></script>
-        
-    </footer>
+    
+    <div id="movies" class="page">
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">All Movies</h2>
+            </div>
+            <div class="content-row" id="allMoviesRow">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading movies...
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    <div id="tv-shows" class="page">
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">All TV Shows</h2>
+            </div>
+            <div class="content-row" id="allTVRow">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading TV shows...
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    <div id="new-popular" class="page">
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">New & Popular</h2>
+            </div>
+            <div class="content-row" id="newPopularRow">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading content...
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="my-list" class="page">
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">My List</h2>
+            </div>
+            <div class="content-row" id="myListRow">
+                <div class="content-item">
+                    <div class="icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="title">Your list is empty</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    <div id="footer" class="page">
+        <section class="footer-page">
+            <div class="footer-container">
+                <div class="footer-logo">PIKUFLIX</div>
+                <div class="footer-contact">Questions? Contact us</div>
+                
+                <div class="footer-sections">
+                    <div>
+                        <h3 class="footer-section-title">Company</h3>
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Jobs</a>
+                        <a href="#" class="footer-link">Press</a>
+                        <a href="#" class="footer-link">Blog</a>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-section-title">Support</h3>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Terms of Use</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Cookie Preferences</a>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-section-title">Connect</h3>
+                        <a href="#" class="footer-link">Gift Cards</a>
+                        <a href="#" class="footer-link">Media Center</a>
+                        <a href="#" class="footer-link">Investor Relations</a>
+                        <a href="#" class="footer-link">Careers</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+     
+    <div class="video-player" id="videoPlayer">
+        <button class="close-video" onclick="closeVideo()">✕ Close</button>
+        <iframe id="videoFrame" src="" allowfullscreen></iframe>
+
+  
+    
+    </div>
 </body>
-  </html>
+</html>
