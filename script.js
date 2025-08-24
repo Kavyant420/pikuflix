@@ -1403,3 +1403,21 @@ Promise.all([
     });
   });
 });
+movieDatabase.push(
+  {
+    id: 253372,
+    title: "The Institute",
+    overview: "When 14-year-old genius Luke Ellis is kidnapped and awakens at a secret facility filled with children who each possess unusual telepathic or telekinetic abilities, he uncovers the sinister intentions behind the Institute while a former cop, Tim Jamieson, becomes drawn into the mystery.",
+    first_air_date: "2025-07-13",
+    vote_average: 7.3,
+    poster_path: "https://image.tmdb.org/t/p/original/7JXZdWifaa6wL0XLRi0GJOlOA8y.jpg",
+    media_type: "tv",
+    number_of_seasons: 1,
+    number_of_episodes: 8,
+    genres: ["Horror", "Thriller", "Sci-Fi"],
+    views: "TBD",
+    quality: "HD",
+    tmdb_rating: 7.3,
+    popularity: "High"
+  }
+);
