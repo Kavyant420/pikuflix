@@ -8,6 +8,7 @@ class PikuFlix {
         this.cache = new Map();
         this.searchCache = new Map();
         this.debounceTimer = null;
+        this.currentHeroItem = null;
         
         this.currentData = {
             trending: [],
@@ -20,9 +21,8 @@ class PikuFlix {
         this.init();
     }
 
-
     async init() {
-        console.log('🎬 Initializing PikuFlix...');
+        console.log('Initializing PikuFlix...');
         
         this.setupEventListeners();
         this.setupPopupBlocker();
@@ -32,20 +32,19 @@ class PikuFlix {
             await this.loadInitialContent();
             this.setupHeroRotation();
             this.updateMyListDisplay();
-            console.log('✅ PikuFlix initialized successfully');
+            console.log('PikuFlix initialized successfully');
         } catch (error) {
-            console.error('❌ Error initializing app:', error);
+            console.error('Error initializing app:', error);
             this.showToast('Error loading content. Please refresh the page.', 'error');
         }
     }
-
     
     async fetchFromTMDB(endpoint, useCache = true) {
         const cacheKey = endpoint;
         
         if (useCache && this.cache.has(cacheKey)) {
             const cached = this.cache.get(cacheKey);
-            if (Date.now() - cached.timestamp < 300000) { 
+            if (Date.now() - cached.timestamp < 300000) {
                 return cached.data;
             }
         }
@@ -53,10 +52,13 @@ class PikuFlix {
         let retries = 3;
         while (retries > 0) {
             try {
-                const response = await fetch(`${this.BASE_URL}${endpoint}?api_key=${this.API_KEY}`, {
+                const separator = endpoint.includes('?') ? '&' : '?';
+                const url = `${this.BASE_URL}${endpoint}${separator}api_key=${this.API_KEY}`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
                     headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Accept': 'application/json'
                     }
                 });
                 
@@ -80,11 +82,10 @@ class PikuFlix {
                     console.error(`API Error for ${endpoint}:`, error);
                     return { results: [] };
                 }
-                await this.sleep(1000); 
+                await this.sleep(1000);
             }
         }
     }
-
      
     async searchContent(query) {
         if (!query || query.trim().length < 2) {
@@ -93,7 +94,6 @@ class PikuFlix {
 
         const normalizedQuery = query.trim().toLowerCase();
         
-    
         if (this.searchCache.has(normalizedQuery)) {
             const cached = this.searchCache.get(normalizedQuery);
             if (Date.now() - cached.timestamp < 300000) {
@@ -104,18 +104,16 @@ class PikuFlix {
         try {
             const data = await this.fetchFromTMDB(`/search/multi?query=${encodeURIComponent(query)}&include_adult=false`, false);
             
-            
             if (data.results) {
                 data.results = data.results
                     .filter(item => {
                         return (item.poster_path || item.backdrop_path) && 
                                (item.media_type === 'movie' || item.media_type === 'tv') &&
-                               item.vote_count > 0; // Filter out items with no votes
+                               item.vote_count > 0;
                     })
                     .sort((a, b) => b.popularity - a.popularity);
             }
 
-            
             this.searchCache.set(normalizedQuery, {
                 data: data,
                 timestamp: Date.now()
@@ -128,15 +126,11 @@ class PikuFlix {
         }
     }
 
-   
     setupSearch() {
         const searchInput = document.getElementById('searchInput');
         if (!searchInput) return;
 
-        searchInput.removeEventListener('input', this.handleSearchInput);
-        searchInput.removeEventListener('keydown', this.handleSearchKeydown);
-
-        this.handleSearchInput = (e) => {
+        const handleSearchInput = (e) => {
             const query = e.target.value;
             
             if (this.debounceTimer) {
@@ -148,7 +142,7 @@ class PikuFlix {
             }, 300);
         };
 
-        this.handleSearchKeydown = (e) => {
+        const handleSearchKeydown = (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 if (this.debounceTimer) {
@@ -161,13 +155,10 @@ class PikuFlix {
             }
         };
 
-        searchInput.addEventListener('input', this.handleSearchInput);
-        searchInput.addEventListener('keydown', this.handleSearchKeydown);
-
-       
+        searchInput.addEventListener('input', handleSearchInput);
+        searchInput.addEventListener('keydown', handleSearchKeydown);
         this.setupSearchSuggestions(searchInput);
     }
-
     
     async performSearch(query) {
         const searchResults = document.getElementById('searchResults');
@@ -195,7 +186,6 @@ class PikuFlix {
             this.showToast('Search failed. Please try again.', 'error');
         }
     }
-
     
     setupSearchSuggestions(searchInput) {
         const suggestions = ['Stranger Things', 'The Avengers', 'Breaking Bad', 'Game of Thrones', 'Spider-Man', 'The Office', 'Friends', 'Marvel', 'DC', 'Horror'];
@@ -214,7 +204,6 @@ class PikuFlix {
         });
     }
 
-   
     createContentItem(item) {
         const contentItem = document.createElement('div');
         contentItem.className = 'content-item';
@@ -229,7 +218,6 @@ class PikuFlix {
             img.style.opacity = '0';
             img.style.transition = 'opacity 0.3s ease';
             
-           
             this.observeImage(img);
             
             contentItem.appendChild(img);
@@ -252,7 +240,6 @@ class PikuFlix {
             overlay.appendChild(meta);
             contentItem.appendChild(overlay);
 
-        
             contentItem.addEventListener('mouseenter', () => {
                 contentItem.style.transform = 'scale(1.05)';
                 contentItem.style.zIndex = '10';
@@ -270,13 +257,11 @@ class PikuFlix {
             `;
         }
         
-        
         contentItem.addEventListener('click', (e) => {
             e.preventDefault();
             this.handleContentClick(item, contentItem);
         });
 
-        
         contentItem.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             this.showContextMenu(e, item);
@@ -285,10 +270,7 @@ class PikuFlix {
         return contentItem;
     }
 
-   
     async handleContentClick(item, element) {
-        
-        const originalContent = element.innerHTML;
         element.style.opacity = '0.7';
         element.style.pointerEvents = 'none';
 
@@ -296,15 +278,11 @@ class PikuFlix {
             await this.updateHeroSection(item);
             this.showPage('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-          
             this.trackContentInteraction(item, 'view');
-            
         } catch (error) {
             console.error('Error handling content click:', error);
             this.showToast('Failed to load content details', 'error');
         } finally {
-            // Restore element state
             setTimeout(() => {
                 element.style.opacity = '1';
                 element.style.pointerEvents = 'auto';
@@ -312,7 +290,6 @@ class PikuFlix {
         }
     }
 
-  
     showContextMenu(event, item) {
         const contextMenu = document.createElement('div');
         contextMenu.className = 'context-menu';
@@ -367,7 +344,7 @@ class PikuFlix {
         });
 
         document.body.appendChild(contextMenu);
-      setTimeout(() => {
+        setTimeout(() => {
             const removeMenu = (e) => {
                 if (!contextMenu.contains(e.target)) {
                     if (document.body.contains(contextMenu)) {
@@ -380,7 +357,6 @@ class PikuFlix {
         }, 10);
     }
 
-   
     observeImage(img) {
         if (!this.imageObserver) {
             this.imageObserver = new IntersectionObserver((entries) => {
@@ -402,13 +378,11 @@ class PikuFlix {
         }
         this.imageObserver.observe(img);
     }
-
     
     renderContentRow(containerId, items) {
         const container = document.getElementById(containerId);
         if (!container) return;
         
-    
         const fragment = document.createDocumentFragment();
         
         if (!items || items.length === 0) {
@@ -428,7 +402,6 @@ class PikuFlix {
         container.appendChild(fragment);
     }
 
-   
     async updateHeroSection(item) {
         const heroSection = document.getElementById('heroSection');
         const heroTitle = document.getElementById('heroTitle');
@@ -443,7 +416,8 @@ class PikuFlix {
         if (!item || !heroSection) return;
         
         try {
-      
+            this.currentHeroItem = item;
+
             if (item.backdrop_path) {
                 const img = new Image();
                 img.onload = () => {
@@ -465,7 +439,8 @@ class PikuFlix {
             } else {
                 heroSeasons.textContent = 'Movie';
             }
-               const genreText = await this.getGenresText(item);
+               
+            const genreText = await this.getGenresText(item);
             heroGenres.textContent = genreText;
             
             heroDescription.textContent = this.truncateText(
@@ -473,7 +448,6 @@ class PikuFlix {
                 200
             );
             
-         
             heroPlayBtn.onclick = () => this.playContent(item);
             
         } catch (error) {
@@ -482,13 +456,11 @@ class PikuFlix {
         }
     }
 
-
     getContentRating(item) {
         if (item.adult) return 'R';
         if (item.media_type === 'tv' || item.first_air_date) return 'TV-14';
         return 'TV-14';
     }
-
     
     async getGenresText(item) {
         try {
@@ -504,7 +476,7 @@ class PikuFlix {
         return 'Entertainment';
     }
 
-      playContent(item) {
+    playContent(item) {
         const videoPlayer = document.getElementById('videoPlayer');
         const videoFrame = document.getElementById('videoFrame');
         
@@ -519,11 +491,9 @@ class PikuFlix {
         
         console.log('Playing:', item.title || item.name, 'Type:', mediaType);
         
-   
         videoPlayer.style.display = 'block';
         videoFrame.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:18px;">Loading video...</div>';
         
-   
         setTimeout(() => {
             videoFrame.src = videoUrl;
             videoFrame.onload = () => {
@@ -536,17 +506,14 @@ class PikuFlix {
             };
         }, 500);
     }
-
     
     setupPopupBlocker() {
-       
         const originalOpen = window.open;
         window.open = function(...args) {
             console.log('Blocked popup attempt:', args);
             return null;
         };
 
- 
         document.addEventListener('click', (e) => {
             const target = e.target.closest('a');
             if (target && target.target === '_blank') {
@@ -559,7 +526,6 @@ class PikuFlix {
             }
         });
 
-  
         let navigationCount = 0;
         window.addEventListener('beforeunload', () => {
             navigationCount++;
@@ -569,7 +535,6 @@ class PikuFlix {
         });
     }
 
- 
     isTrustedDomain(url) {
         const trustedDomains = [
             'themoviedb.org',
@@ -586,9 +551,7 @@ class PikuFlix {
         }
     }
 
-
     showPage(pageId, navElement = null) {
-       
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
         });
@@ -598,7 +561,6 @@ class PikuFlix {
             targetPage.classList.add('active');
         }
         
- 
         document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('active');
         });
@@ -607,11 +569,9 @@ class PikuFlix {
             navElement.classList.add('active');
         }
         
-    
         this.handlePageLoad(pageId);
     }
 
- 
     async handlePageLoad(pageId) {
         switch(pageId) {
             case 'movies':
@@ -633,6 +593,7 @@ class PikuFlix {
                 this.updateMyListDisplay();
                 break;
             case 'search':
+                this.setupSearch();
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) {
                     setTimeout(() => searchInput.focus(), 100);
@@ -641,7 +602,6 @@ class PikuFlix {
         }
     }
 
-   
     async loadInitialContent() {
         const loadingPromises = [
             this.loadTrendingContent(),
@@ -651,14 +611,13 @@ class PikuFlix {
 
         try {
             await Promise.allSettled(loadingPromises);
-            console.log('✅ Initial content loaded');
+            console.log('Initial content loaded');
         } catch (error) {
             console.error('Error loading initial content:', error);
             this.showToast('Some content failed to load', 'warning');
         }
     }
 
-    // Enhanced content loading functions
     async loadTrendingContent() {
         try {
             const data = await this.fetchFromTMDB('/trending/all/week');
@@ -685,56 +644,105 @@ class PikuFlix {
         }
     }
 
-    async loadPopularTVShows() {
-        try {
-            const data = await this.fetchFromTMDB('/tv/popular');
-            this.currentData.tvShows = data.results || [];
-            this.renderContentRow('tvShowsRow', this.currentData.tvShows);
-        } catch (error) {
-            console.error('Error loading TV shows:', error);
-            document.getElementById('tvShowsRow').innerHTML = this.createEmptyStateHTML('Failed to load TV shows', '<i class="fas fa-exclamation-triangle"></i>');
+    
+    
+async loadPopularTVShows() {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=8d18cc3ec326ca4282a7ab5a651c7f7b`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        this.currentData.tvShows = data.results || [];
+        this.renderContentRow('tvShowsRow', this.currentData.tvShows);
+        
+    } catch (error) {
+        console.error('Error loading TV shows:', error);
+        const tvShowsRow = document.getElementById('tvShowsRow');
+        if (tvShowsRow) {
+            tvShowsRow.innerHTML = this.createEmptyStateHTML('Failed to load TV shows', '<i class="fas fa-exclamation-triangle"></i>');
         }
     }
+}
 
-    async loadAllMovies() {
-        try {
-            const data = await this.fetchFromTMDB('/discover/movie?sort_by=popularity.desc&page=1');
-            this.renderContentRow('allMoviesRow', data.results || []);
-        } catch (error) {
-            console.error('Error loading all movies:', error);
-            document.getElementById('allMoviesRow').innerHTML = this.createEmptyStateHTML('Failed to load movies', '<i class="fas fa-exclamation-triangle"></i>');
+
+async loadTrendingContent() {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=8d18cc3ec326ca4282a7ab5a651c7f7b`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        this.currentData.trending = data.results || [];
+        this.renderContentRow('trendingRow', this.currentData.trending);
+        
+        if (this.currentData.trending.length > 0) {
+            await this.updateHeroSection(this.currentData.trending[0]);
+        }
+    } catch (error) {
+        console.error('Error loading trending content:', error);
+        const trendingRow = document.getElementById('trendingRow');
+        if (trendingRow) {
+            trendingRow.innerHTML = this.createEmptyStateHTML('Failed to load trending content', '<i class="fas fa-exclamation-triangle"></i>');
         }
     }
+}
 
-    async loadAllTVShows() {
-        try {
-            const data = await this.fetchFromTMDB('/discover/tv');
-            this.renderContentRow('allTVRow', data.results || []);
-        } catch (error) {
-            console.error('Error loading all TV shows:', error);
-            document.getElementById('allTVRow').innerHTML = this.createEmptyStateHTML('Failed to load TV shows', '<i class="fas fa-exclamation-triangle"></i>');
+async loadPopularMovies() {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=8d18cc3ec326ca4282a7ab5a651c7f7b`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        this.currentData.movies = data.results || [];
+        this.renderContentRow('moviesRow', this.currentData.movies);
+        
+    } catch (error) {
+        console.error('Error loading movies:', error);
+        const moviesRow = document.getElementById('moviesRow');
+        if (moviesRow) {
+            moviesRow.innerHTML = this.createEmptyStateHTML('Failed to load movies', '<i class="fas fa-exclamation-triangle"></i>');
         }
     }
+}
 
-    async loadNewAndPopular() {
-        try {
-            const [newMovies, newTV] = await Promise.all([
-                this.fetchFromTMDB('/movie/now_playing'),
-                this.fetchFromTMDB('/tv/on_the_air')
-            ]);
-            
-            const combined = [...(newMovies.results || []), ...(newTV.results || [])]
+async searchContent(query) {
+    if (!query || query.trim().length < 2) {
+        return { results: [] };
+    }
+
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&include_adult=false&api_key=8d18cc3ec326ca4282a7ab5a651c7f7b`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.results) {
+            data.results = data.results
+                .filter(item => {
+                    return (item.poster_path || item.backdrop_path) && 
+                           (item.media_type === 'movie' || item.media_type === 'tv') &&
+                           item.vote_count > 0;
+                })
                 .sort((a, b) => b.popularity - a.popularity);
-            
-            this.currentData.newPopular = combined;
-            this.renderContentRow('newPopularRow', combined);
-        } catch (error) {
-            console.error('Error loading new and popular:', error);
-            document.getElementById('newPopularRow').innerHTML = this.createEmptyStateHTML('Failed to load content', '<i class="fas fa-exclamation-triangle"></i>');
         }
-    }
 
-     handling
+        return data;
+    } catch (error) {
+        console.error('Search error:', error);
+        return { results: [] };
+    }
+}
     getFromStorage(key) {
         try {
             const data = localStorage.getItem(key) || sessionStorage.getItem(key);
@@ -757,16 +765,16 @@ class PikuFlix {
             }
         }
     }
-
     
     addToMyList(item) {
         try {
             let myList = this.getFromStorage('pikuflix_mylist');
             
             if (!myList.find(existing => existing.id === item.id)) {
-                myList.unshift(item); 
+                myList.unshift(item);
                 if (myList.length > 100) {
-                    myList = myList.slice(0, 100);           }
+                    myList = myList.slice(0, 100);
+                }
                 this.saveToStorage('pikuflix_mylist', myList);
                 this.showToast('Added to My List', 'success');
                 this.updateMyListDisplay();
@@ -808,7 +816,6 @@ class PikuFlix {
         } else {
             this.renderContentRow('myListRow', myList);
             
-        
             setTimeout(() => {
                 const myListItems = container.querySelectorAll('.content-item');
                 myListItems.forEach((item, index) => {
@@ -852,8 +859,7 @@ class PikuFlix {
             }, 100);
         }
     }
-
-
+    
     showContentDetails(item) {
         const modal = document.createElement('div');
         modal.className = 'content-details-modal';
@@ -964,7 +970,6 @@ class PikuFlix {
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
 
-      
         modal.querySelector('.modal-close-btn').addEventListener('click', () => {
             document.body.removeChild(modal);
         });
@@ -978,14 +983,12 @@ class PikuFlix {
             this.addToMyList(item);
         });
 
-  
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 document.body.removeChild(modal);
             }
         });
 
- 
         const handleEscape = (e) => {
             if (e.key === 'Escape') {
                 if (document.body.contains(modal)) {
@@ -998,7 +1001,6 @@ class PikuFlix {
     }
 
     setupEventListeners() {
-       
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1007,16 +1009,13 @@ class PikuFlix {
             });
         });
 
-        
         this.setupSearch();
 
-       
         const closeVideoBtn = document.querySelector('.close-video');
         if (closeVideoBtn) {
             closeVideoBtn.addEventListener('click', () => this.closeVideo());
         }
 
-        
         const searchIcon = document.querySelector('.search-icon');
         if (searchIcon) {
             searchIcon.addEventListener('click', () => {
@@ -1033,12 +1032,10 @@ class PikuFlix {
             dropdownArrow.addEventListener('click', () => this.showPage('footer'));
         }
 
-    
         const infoBtn = document.querySelector('.info-btn');
         if (infoBtn) {
             infoBtn.addEventListener('click', () => {
-                const heroTitle = document.getElementById('heroTitle');
-                if (heroTitle && this.currentHeroItem) {
+                if (this.currentHeroItem) {
                     this.showContentDetails(this.currentHeroItem);
                 } else {
                     this.showToast('More info feature coming soon!', 'info');
@@ -1046,17 +1043,14 @@ class PikuFlix {
             });
         }
 
-        
         this.setupKeyboardShortcuts();
 
-        
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 this.closeVideo();
             }
         });
 
- 
         window.addEventListener('resize', this.debounce(() => {
             this.handleWindowResize();
         }, 250));
@@ -1073,10 +1067,8 @@ class PikuFlix {
         return mapping[text] || 'home';
     }
 
- 
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
-    
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
                 if (e.key === 'Escape') {
                     e.target.blur();
@@ -1087,7 +1079,6 @@ class PikuFlix {
             switch(e.key) {
                 case 'Escape':
                     this.closeVideo();
-               
                     document.querySelectorAll('.content-details-modal, .context-menu').forEach(modal => {
                         if (modal.parentNode) modal.parentNode.removeChild(modal);
                     });
@@ -1121,12 +1112,10 @@ class PikuFlix {
                     }
                     break;
                 case ' ':
-                    
                     const videoFrame = document.getElementById('videoFrame');
                     const videoPlayer = document.getElementById('videoPlayer');
                     if (videoPlayer && videoPlayer.style.display === 'block') {
                         e.preventDefault();
-                      
                         this.showToast('Video controls in development', 'info');
                     }
                     break;
@@ -1134,12 +1123,10 @@ class PikuFlix {
         });
     }
 
-   
     handleWindowResize() {
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-            
             document.querySelectorAll('.content-row').forEach(row => {
                 row.scrollLeft = 0;
             });
@@ -1150,7 +1137,6 @@ class PikuFlix {
             heroSection.style.padding = '40px 4% 60px';
         }
     }
-
 
     setupHeroRotation() {
         let rotationInterval;
@@ -1167,7 +1153,6 @@ class PikuFlix {
             }, 15000);
         };
 
-     
         const heroSection = document.getElementById('heroSection');
         if (heroSection) {
             heroSection.addEventListener('mouseenter', () => {
@@ -1181,7 +1166,6 @@ class PikuFlix {
 
         startRotation();
 
-      
         this.heroRotation = {
             start: startRotation,
             stop: () => {
@@ -1195,9 +1179,7 @@ class PikuFlix {
         };
     }
 
-
     showToast(message, type = 'info') {
-   
         const existingToasts = document.querySelectorAll('.toast-notification');
         existingToasts.forEach(toast => toast.remove());
 
@@ -1213,9 +1195,9 @@ class PikuFlix {
 
         const icons = {
             success: '✓',
-            error: '<i class="fa-solid fa-circle-xmark"></i>',
-            warning: '<i class="fas fa-exclamation-triangle"></i>',
-            info: '<i class="fas fa-info-circle"></i>'
+            error: '✕',
+            warning: '⚠',
+            info: 'ℹ'
         };
 
         toast.innerHTML = `
@@ -1242,13 +1224,11 @@ class PikuFlix {
 
         document.body.appendChild(toast);
 
-       
         setTimeout(() => {
             toast.style.transform = 'translateX(0)';
             toast.style.opacity = '1';
         }, 10);
 
-      
         setTimeout(() => {
             toast.style.transform = 'translateX(400px)';
             toast.style.opacity = '0';
@@ -1259,7 +1239,6 @@ class PikuFlix {
             }, 300);
         }, 3000);
 
-    
         toast.addEventListener('click', () => {
             toast.style.transform = 'translateX(400px)';
             toast.style.opacity = '0';
@@ -1271,7 +1250,6 @@ class PikuFlix {
         });
     }
 
-  
     trackContentInteraction(item, action) {
         const interaction = {
             id: item.id,
@@ -1285,7 +1263,6 @@ class PikuFlix {
             let interactions = this.getFromStorage('pikuflix_interactions');
             interactions.unshift(interaction);
             
-    
             if (interactions.length > 100) {
                 interactions = interactions.slice(0, 100);
             }
@@ -1297,6 +1274,22 @@ class PikuFlix {
         }
     }
 
+    addToWatchHistory(item) {
+        try {
+            let history = this.getFromStorage('pikuflix_history');
+            
+            history = history.filter(existingItem => existingItem.id !== item.id);
+            history.unshift(item);
+            
+            if (history.length > 50) {
+                history = history.slice(0, 50);
+            }
+            
+            this.saveToStorage('pikuflix_history', history);
+        } catch (error) {
+            console.warn('Failed to save watch history:', error);
+        }
+    }
 
     truncateText(text, maxLength) {
         if (!text) return '';
@@ -1306,7 +1299,6 @@ class PikuFlix {
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
 
     debounce(func, wait) {
         let timeout;
@@ -1320,7 +1312,6 @@ class PikuFlix {
         };
     }
 
- 
     createLoadingHTML(message = 'Loading...') {
         return `
             <div class="loading" style="display: flex; align-items: center; justify-content: center; 
@@ -1333,7 +1324,6 @@ class PikuFlix {
         `;
     }
 
- 
     createEmptyStateHTML(message, icon = '📺') {
         return `
             <div class="content-item" style="min-width: 300px; text-align: center; 
@@ -1344,7 +1334,6 @@ class PikuFlix {
         `;
     }
 
-  
     closeVideo() {
         const videoPlayer = document.getElementById('videoPlayer');
         const videoFrame = document.getElementById('videoFrame');
@@ -1357,7 +1346,6 @@ class PikuFlix {
             videoFrame.src = '';
         }
         
-        
         if (this.videoTimeout) {
             clearTimeout(this.videoTimeout);
         }
@@ -1365,92 +1353,19 @@ class PikuFlix {
         this.showToast('Video closed', 'info');
     }
 
-   
-    getUserRecommendations() {
-        const watchHistory = this.getFromStorage('pikuflix_history');
-        const myList = this.getFromStorage('pikuflix_mylist');
-        
-       
-        const userContent = [...watchHistory, ...myList];
-        const genres = new Set();
-        
-        userContent.forEach(item => {
-            if (item.genre_ids) {
-                item.genre_ids.forEach(id => genres.add(id));
-            }
-        });
-        
-        return Array.from(genres);
-    }
-
-    
-    async loadRecommendations() {
-        const userGenres = this.getUserRecommendations();
-        
-        if (userGenres.length > 0) {
-            try {
-                const randomGenre = userGenres[Math.floor(Math.random() * userGenres.length)];
-                const data = await this.fetchFromTMDB(`/discover/movie?with_genres=${randomGenre}&sort_by=vote_average.desc&vote_count.gte=1000`);
-                
-                if (data.results && data.results.length > 0) {
-                  
-                    this.addRecommendationSection(data.results.slice(0, 10));
-                }
-            } catch (error) {
-                console.log('Could not load recommendations:', error);
-            }
-        }
-    }
-
-  
-    addRecommendationSection(recommendations) {
-        const homeContent = document.querySelector('#home .content-section');
-        if (!homeContent || !recommendations.length) return;
-
-        const recommendationSection = document.createElement('div');
-        recommendationSection.innerHTML = `
-            <div class="section-header">
-                <h2 class="section-title">Recommended for You</h2>
-                <a href="#" class="explore-all">Explore All ></a>
-            </div>
-            <div class="content-row" id="recommendationRow"></div>
-        `;
-
-     
-        const tvSection = homeContent.children[2];
-        if (tvSection) {
-            homeContent.insertBefore(recommendationSection, tvSection.nextSibling);
-            this.renderContentRow('recommendationRow', recommendations);
-        }
-    }
-
-    
-    measurePerformance(label, fn) {
-        const start = performance.now();
-        const result = fn();
-        const end = performance.now();
-        console.log(`${label} took ${end - start} milliseconds`);
-        return result;
-    }
-
-    
     cleanup() {
-        
         if (this.heroRotation) {
             this.heroRotation.stop();
         }
 
-      
         if (this.debounceTimer) {
             clearTimeout(this.debounceTimer);
         }
 
-       
         if (this.imageObserver) {
             this.imageObserver.disconnect();
         }
 
-       
         this.cache.clear();
         this.searchCache.clear();
 
@@ -1458,9 +1373,7 @@ class PikuFlix {
     }
 }
 
-
 const pikuFlix = new PikuFlix();
-
 
 window.addEventListener('error', (event) => {
     console.error('Global error:', event.error);
@@ -1468,7 +1381,6 @@ window.addEventListener('error', (event) => {
         pikuFlix.showToast('An unexpected error occurred', 'error');
     }
 });
-
 
 window.addEventListener('unhandledrejection', (event) => {
     console.error('Unhandled promise rejection:', event.reason);
@@ -1483,23 +1395,4 @@ window.closeVideo = () => pikuFlix.closeVideo();
 window.playContent = (item) => pikuFlix.playContent(item);
 window.addToMyList = (item) => pikuFlix.addToMyList(item);
 
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    
-    .context-menu {
-        animation: fadeIn 0.2s ease;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
-`;
-document.head.appendChild(style);
-
-console.log('🎬 Enhanced PikuFlix JavaScript loaded successfully!');
+console.log('Enhanced PikuFlix JavaScript loaded successfully!');
