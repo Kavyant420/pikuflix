@@ -922,7 +922,7 @@ class PikuFlix {
         
         // Fixed: Proper media type detection
         const mediaType = this.getMediaType(item);
-        const videoUrl = `https://vidsrc.to/embed/${mediaType}/${item.id}`;
+        const videoUrl = `https://vidsrc.xyz/embed/${mediaType}/${item.id}`;
         
         console.log('Playing:', item.title || item.name, 'Type:', mediaType, 'URL:', videoUrl);
         
@@ -1730,7 +1730,7 @@ document.addEventListener('click', function(e) {
         }
         
         const mediaType = item.media_type || (item.first_air_date ? 'tv' : 'movie');
-        const videoUrl = `https://vidsrc.to/embed/${mediaType}/${item.id}`;
+        const videoUrl = `https://vidsrc.xyz/embed/${mediaType}/${item.id}`;
         
         console.log('Playing:', item.title || item.name, 'Type:', mediaType);
         
@@ -1781,7 +1781,7 @@ document.addEventListener('click', function(e) {
     isTrustedDomain(url) {
         const trustedDomains = [
             'themoviedb.org',
-            'vidsrc.to',
+            'vidsrc.xyz',
             'api.themoviedb.org',
             'image.tmdb.org'
         ];
