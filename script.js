@@ -1719,37 +1719,43 @@ document.addEventListener('click', function(e) {
         return 'Entertainment';
     }
 
-    playContent(item) {
-        const videoPlayer = document.getElementById('videoPlayer');
-        const videoFrame = document.getElementById('videoFrame');
-        
-        if (!videoPlayer || !videoFrame) {
-            console.error('Video player elements not found');
-            this.showToast('Video player not available', 'error');
-            return;
-        }
-        
-        const mediaType = item.media_type || (item.first_air_date ? 'tv' : 'movie');
-        const videoUrl = `https://vidsrc.xyz/embed/${mediaType}/${item.id}`;
-        
-        console.log('Playing:', item.title || item.name, 'Type:', mediaType);
-        
-        videoPlayer.style.display = 'block';
-        videoFrame.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:18px;">Loading video...</div>';
-        
-        setTimeout(() => {
-            videoFrame.src = videoUrl;
-            videoFrame.onload = () => {
-                this.trackContentInteraction(item, 'play');
-                this.addToWatchHistory(item);
-            };
-            videoFrame.onerror = () => {
-                this.showToast('Failed to load video. Please try again.', 'error');
-                this.closeVideo();
-            };
-        }, 500);
-    }
+playContent(item) {
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoFrame = document.getElementById('videoFrame');
     
+    if (!videoPlayer || !videoFrame) {
+        console.error('Video player elements not found');
+        this.showToast('Video player not available', 'error');
+        return;
+    }
+
+
+    const mediaType = this.getMediaType(item);
+    const videoUrl = `https://vidsrc.xyz/embed/${mediaType}/${item.id}`;
+
+    console.log('Playing:', item.title || item.name, 'Type:', mediaType);
+
+    localStorage.setItem("pikuflix_lastVideo", JSON.stringify({
+        id: item.id,
+        media_type: mediaType,
+        title: item.title || item.name
+    }));
+
+    videoPlayer.style.display = 'block';
+    videoFrame.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:18px;">Loading video...</div>';
+
+    setTimeout(() => {
+        videoFrame.src = videoUrl;
+        videoFrame.onload = () => {
+            this.trackContentInteraction(item, 'play');
+            this.addToWatchHistory(item);
+        };
+        videoFrame.onerror = () => {
+            this.showToast('Failed to load video. Please try again.', 'error');
+            this.closeVideo();
+        };
+    }, 500);
+}
     setupPopupBlocker() {
         const originalOpen = window.open;
         window.open = function(...args) {
@@ -2612,7 +2618,17 @@ window.addEventListener('unhandledrejection', (event) => {
         pikuFlix.showToast('Network error occurred', 'error');
     }
 });
+pikuFlix.closeVideo = function() {
 
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoFrame = document.getElementById("videoFrame");
+
+    if (videoFrame) videoFrame.src = "";
+    if (videoPlayer) videoPlayer.style.display = "none";
+
+    
+    
+};
 window.pikuFlix = pikuFlix;
 window.showPage = (pageId, navElement) => pikuFlix.showPage(pageId, navElement);
 window.closeVideo = () => pikuFlix.closeVideo();
