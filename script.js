@@ -2618,18 +2618,7 @@ window.addEventListener('unhandledrejection', (event) => {
         pikuFlix.showToast('Network error occurred', 'error');
     }
 });
-pikuFlix.closeVideo = function() {
 
-    const videoPlayer = document.getElementById("videoPlayer");
-    const videoFrame = document.getElementById("videoFrame");
-
-    if (videoFrame) videoFrame.src = "";
-    if (videoPlayer) videoPlayer.style.display = "none";
-
-    
-    
-};
-window.pikuFlix = pikuFlix;
 window.showPage = (pageId, navElement) => pikuFlix.showPage(pageId, navElement);
 window.closeVideo = () => pikuFlix.closeVideo();
 window.playContent = (item) => pikuFlix.playContent(item);
