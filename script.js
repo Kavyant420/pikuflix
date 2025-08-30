@@ -1719,41 +1719,47 @@ document.addEventListener('click', function(e) {
         return 'Entertainment';
     }
 
-playContent(item) {
+async playContent(item) {
     const videoPlayer = document.getElementById('videoPlayer');
     const videoFrame = document.getElementById('videoFrame');
-    
+
     if (!videoPlayer || !videoFrame) {
         console.error('Video player elements not found');
-        this.showToast('Video player not available', 'error');
         return;
     }
-
 
     const mediaType = this.getMediaType(item);
     const videoUrl = `https://vidsrc.xyz/embed/${mediaType}/${item.id}`;
 
-    console.log('Playing:', item.title || item.name, 'Type:', mediaType);
-
-    localStorage.setItem("pikuflix_lastVideo", JSON.stringify({
-        id: item.id,
-        media_type: mediaType,
-        title: item.title || item.name
-    }));
-
+    // Show player
     videoPlayer.style.display = 'block';
-    videoFrame.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:18px;">Loading video...</div>';
+    videoFrame.src = ""; // reset
 
+    try {
+       
+        const res = await fetch(`https://api.themoviedb.org/3/${mediaType}/${item.id}?api_key=${this.API_KEY}&append_to_response=credits`);
+        const details = await res.json();
+
+     
+        document.getElementById("metaTitle").textContent = details.title || details.name || "Unknown";
+        document.getElementById("metaFacts").textContent =
+            `${details.release_date || details.first_air_date || "N/A"} • ` +
+            `${details.runtime ? details.runtime + " min" : "TV Show"} • ★ ${details.vote_average?.toFixed(1) || "N/A"}`;
+        document.getElementById("metaGenres").textContent = details.genres?.map(g => g.name).join(", ") || "N/A";
+        document.getElementById("metaOverview").textContent = details.overview || "No description available.";
+        document.getElementById("metaDirector").textContent =
+            details.credits?.crew?.find(c => c.job === "Director")?.name || "Unknown";
+        document.getElementById("metaWriters").textContent =
+            details.credits?.crew?.filter(c => c.department === "Writing").map(c => c.name).join(", ") || "Unknown";
+        document.getElementById("metaCast").textContent =
+            details.credits?.cast?.slice(0, 6).map(c => c.name).join(", ") || "Unknown";
+    } catch (err) {
+        console.error("Failed to load metadata:", err);
+    }
+
+    
     setTimeout(() => {
         videoFrame.src = videoUrl;
-        videoFrame.onload = () => {
-            this.trackContentInteraction(item, 'play');
-            this.addToWatchHistory(item);
-        };
-        videoFrame.onerror = () => {
-            this.showToast('Failed to load video. Please try again.', 'error');
-            this.closeVideo();
-        };
     }, 500);
 }
     setupPopupBlocker() {
