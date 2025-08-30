@@ -239,12 +239,36 @@
 
     
      
-    <div class="video-player" id="videoPlayer">
-        <button class="close-video" onclick="closeVideo()">✕ Close</button>
-        <iframe id="videoFrame" src="" allowfullscreen></iframe>
+         
+    <div class="video-player" id="videoPlayer" style="display:none;">
+  <button class="close-video" onclick="closeVideo()">Close</button>
 
-  
-    
+  <div class="video-layout">
+
+    <div class="video-frame-container">
+      <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    </div>
+
+
+    <div class="video-meta">
+      <h1 id="metaTitle">Movie Title</h1>
+      <div class="meta-facts" id="metaFacts">2025 • 120 min • <i class="fa-solid fa-star"></i> 7.8</div>
+      <div class="meta-genres" id="metaGenres">Action, Drama</div>
+      <p class="meta-overview" id="metaOverview">
+        Overview goes here...
+      </p>
+      <div class="meta-credits">
+        <p><b>Director:</b> <span id="metaDirector">Unknown</span></p>
+        <p><b>Writers:</b> <span id="metaWriters">Unknown</span></p>
+        <p><b>Cast:</b> <span id="metaCast">Unknown</span></p>
+      </div>
+      <div class="video-buttons">
+        <button class="btn btn-primary" id="metaPlay"><i class="fa-solid fa-play"></i> Play</button>
+        <button class="btn btn-secondary" id="metaAdd"><i class="fa-solid fa-plus"></i> My List</button>
+        <button class="btn btn-trailer" id="metaTrailer"><i class="fa-solid fa-clapperboard"></i> Trailer</button>
+      </div>
+    </div>
+  </div>
     </div>
     <footer>
         <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
