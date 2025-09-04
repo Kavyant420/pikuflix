@@ -29,60 +29,65 @@
     <link rel="stylesheet" href="style.css">
 <meta name='dmca-site-verification' content='SGdKRXNxZ3ovV3FJTzc4U2VhVkFwOFhGb0VCK1M5MG5FcDFuKzg5L2h1ST01' />
 </head>
-<body>
-    <header class="header">
-        <div class="logo">PIKUFLIX</div>
+    
+            <body>
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <div class="logo" onclick="showPage('home')">PIKUFLIX</div>
         <div class="header-right">
-            <svg class="search-icon" onclick="showPage('search')" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <div class="notification-icon">
+            
+            <button class="header-icon notification-icon" onclick="showNotifications(event)" aria-label="Notifications">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
                 </svg>
                 <div class="notification-dot"></div>
-            </div>
-            <button class="profile-btn">
-                <svg fill="white" viewBox="0 0 24 24" width="16" height="16">
+            </button>
+            <button class="profile-btn" onclick="showProfileMenu(event)" aria-label="Profile">
+                <svg viewBox="0 0 24 24">
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                 </svg>
             </button>
-            <svg class="dropdown-arrow" onclick="showPage('footer')" viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z"/>
-            </svg>
+            <button class="dropdown-arrow" onclick="showPage('footer')" aria-label="More">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                </svg>
+            </button>
         </div>
     </header>
 
+    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="#" class="nav-item active" onclick="showPage('home', this)">Home</a>
-        <a href="#" class="nav-item" onclick="showPage('tv-shows', this)">TV Shows</a>
-        <a href="#" class="nav-item" onclick="showPage('movies', this)">Movies</a>
-        <a href="#" class="nav-item" onclick="showPage('new-popular', this)">New & Popular</a>
-        <a href="#" class="nav-item" onclick="showPage('my-list', this)">My List</a>
+        <a href="#" class="nav-item active" onclick="showPage('home', this)" data-page="home">Home</a>
+        <a href="#" class="nav-item" onclick="showPage('tv-shows', this)" data-page="tv-shows">TV Shows</a>
+        <a href="#" class="nav-item" onclick="showPage('movies', this)" data-page="movies">Movies</a>
+        <a href="#" class="nav-item" onclick="showPage('new-popular', this)" data-page="new-popular">New & Popular</a>
+        <a href="#" class="nav-item" onclick="showPage('my-list', this)" data-page="my-list">My List</a>
     </nav>
 
-    
+    <!-- Home Page -->
     <div id="home" class="page active">
+        <!-- Hero Section -->
         <section class="hero-section" id="heroSection">
+            <div class="hero-background-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title" id="heroTitle">Stranger Things</h1>
-                <div class="hero-meta" id="heroMeta">
-                    <span class="rating" id="heroRating">TV-14</span>
-                    <span class="year" id="heroYear">2016</span>
-                    <span class="seasons" id="heroSeasons">4 Seasons</span>
-                    <span class="genres" id="heroGenres">Sci-Fi • Horror • Drama</span>
+                <h1 class="hero-title" id="heroTitle">Discover Amazing Content</h1>
+                <div class="hero-meta">
+                    <span class="hero-rating" id="heroRating">TV-14</span>
+                    <span class="hero-year" id="heroYear">2024</span>
+                    <span class="hero-seasons" id="heroSeasons">Movie</span>
+                    <span class="hero-genres" id="heroGenres">Entertainment</span>
                 </div>
                 <p class="hero-description" id="heroDescription">
-                    When a young boy disappears, his mother, a police chief and his friends must confront terrifying supernatural forces in order to get him back.
+                    Welcome to your ultimate entertainment destination. Discover movies, TV shows, and trending content from around the world.
                 </p>
                 <div class="hero-buttons">
-                    <button class="play-btn" id="heroPlayBtn">
+                    <button class="hero-btn play-btn" id="heroPlayBtn">
                         <svg class="play-icon" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
                         Play
                     </button>
-                    <button class="info-btn">
+                    <button class="hero-btn info-btn" id="heroInfoBtn">
                         <svg class="info-icon" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
                         </svg>
@@ -92,121 +97,124 @@
             </div>
         </section>
 
+        <!-- Content Sections -->
         <section class="content-section">
+            <!-- Trending Content -->
             <div class="section-header">
                 <h2 class="section-title">Trending Now</h2>
-                <a href="#" class="explore-all">Explore All ></a>
+                <a href="#" class="explore-all">Explore All</a>
             </div>
             <div class="content-row" id="trendingRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading content...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading trending content...</div>
                 </div>
             </div>
 
+            <!-- Popular Movies -->
             <div class="section-header">
                 <h2 class="section-title">Popular Movies</h2>
-                <a href="#" class="explore-all">Explore All ></a>
+                <a href="#" class="explore-all">Explore All</a>
             </div>
             <div class="content-row" id="moviesRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading content...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading movies...</div>
                 </div>
             </div>
 
+            <!-- TV Shows -->
             <div class="section-header">
-                <h2 class="section-title">TV Shows</h2>
-                <a href="#" class="explore-all">Explore All ></a>
+                <h2 class="section-title">Popular TV Shows</h2>
+                <a href="#" class="explore-all">Explore All</a>
             </div>
             <div class="content-row" id="tvShowsRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading content...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading TV shows...</div>
                 </div>
             </div>
         </section>
     </div>
 
-    
+    <!-- Search Page -->
     <div id="search" class="page">
         <section class="search-page">
             <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Titles, people, genres">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search movies, TV shows, actors..." autocomplete="off">
             </div>
-            <div class="content-section">
-                <div class="content-row" id="searchResults">
-                    
-                </div>
+            <div class="search-results-container">
+                <div class="content-row" id="searchResults"></div>
             </div>
         </section>
     </div>
 
-    
+    <!-- Movies Page -->
     <div id="movies" class="page">
         <section class="content-section">
             <div class="section-header">
-                <h2 class="section-title">All Movies</h2>
+                <h2 class="section-title">Popular Movies</h2>
             </div>
             <div class="content-row" id="allMoviesRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading movies...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading movies...</div>
                 </div>
             </div>
         </section>
     </div>
 
-    
+    <!-- TV Shows Page -->
     <div id="tv-shows" class="page">
         <section class="content-section">
             <div class="section-header">
-                <h2 class="section-title">All TV Shows</h2>
+                <h2 class="section-title">Popular TV Shows</h2>
             </div>
             <div class="content-row" id="allTVRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading TV shows...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading TV shows...</div>
                 </div>
             </div>
         </section>
     </div>
 
-    
+    <!-- New & Popular Page -->
     <div id="new-popular" class="page">
         <section class="content-section">
             <div class="section-header">
                 <h2 class="section-title">New & Popular</h2>
             </div>
             <div class="content-row" id="newPopularRow">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading content...
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading content...</div>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- My List Page -->
     <div id="my-list" class="page">
         <section class="content-section">
             <div class="section-header">
                 <h2 class="section-title">My List</h2>
             </div>
             <div class="content-row" id="myListRow">
-                <div class="content-item">
-                    <div class="icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="content-item empty">
+                    <div class="icon"><i class="fas fa-heart"></i></div>
                     <div class="title">Your list is empty</div>
                 </div>
             </div>
         </section>
     </div>
 
-    
+    <!-- Footer Page -->
     <div id="footer" class="page">
         <section class="footer-page">
             <div class="footer-container">
                 <div class="footer-logo">PIKUFLIX</div>
-                <div class="footer-contact">Questions? Contact us</div>
+                <div class="footer-contact">Questions? Contact us.</div>
                 
                 <div class="footer-sections">
                     <div>
@@ -221,12 +229,12 @@
                         <h3 class="footer-section-title">Support</h3>
                         <a href="#" class="footer-link">Help Center</a>
                         <a href="#" class="footer-link">Terms of Use</a>
-                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
                         <a href="#" class="footer-link">Cookie Preferences</a>
                     </div>
                     
                     <div>
-                        <h3 class="footer-section-title">Connect</h3>
+                        <h3 class="footer-section-title">Features</h3>
                         <a href="#" class="footer-link">Gift Cards</a>
                         <a href="#" class="footer-link">Media Center</a>
                         <a href="#" class="footer-link">Investor Relations</a>
@@ -237,39 +245,84 @@
         </section>
     </div>
 
-    
-     
-         
-    <div class="video-player" id="videoPlayer" style="display:none;">
-  <button class="close-video" onclick="closeVideo()">Close</button>
+    <!-- Video Player Modal -->
+    <div class="video-player" id="videoPlayer">
+        <button class="close-video" onclick="closeVideo()" aria-label="Close video">
+            <i class="fas fa-times"></i> Close
+        </button>
 
-  <div class="video-layout">
+        <div class="video-layout">
+            <!-- Video Frame -->
+            <div class="video-frame-container" id="videoFrameContainer">
+                <div class="video-loading" id="videoLoading">
+                    <div class="spinner"></div>
+                    <div>Loading video...</div>
+                </div>
+                <iframe id="videoFrame" src="" allowfullscreen style="display: none;"></iframe>
+            </div>
 
-    <div class="video-frame-container">
-      <iframe id="videoFrame" src="" allowfullscreen></iframe>
+            <!-- Video Metadata -->
+            <div class="video-meta">
+                <h1 class="meta-title" id="metaTitle">Loading...</h1>
+                <div class="meta-facts" id="metaFacts">
+                    <span><i class="fas fa-calendar"></i> <span id="metaYear">----</span></span>
+                    <span><i class="fas fa-clock"></i> <span id="metaDuration">-- min</span></span>
+                    <span><i class="fas fa-star"></i> <span id="metaRating">-.--</span></span>
+                </div>
+                <div class="meta-genres" id="metaGenres"></div>
+                <p class="meta-overview" id="metaOverview">Loading description...</p>
+                <div class="meta-credits">
+                    <p><strong>Director:</strong> <span id="metaDirector">Loading...</span></p>
+                    <p><strong>Writers:</strong> <span id="metaWriters">Loading...</span></p>
+                    <p><strong>Cast:</strong> <span id="metaCast">Loading...</span></p>
+                </div>
+                <div class="video-buttons">
+                    <button class="video-btn btn-primary" id="metaPlayBtn">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                    <button class="video-btn btn-secondary" id="metaAddBtn">
+                        <i class="fas fa-plus"></i> My List
+                    </button>
+                    <button class="video-btn btn-trailer" id="metaTrailerBtn">
+                        <i class="fas fa-film"></i> Trailer
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
+  
+    <nav class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="#" class="mobile-nav-item active" onclick="showPage('home', this)" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="mobile-nav-item" onclick="showPage('search', this)" data-page="search">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="#" class="mobile-nav-item" onclick="showPage('movies', this)" data-page="movies">
+                <i class="fas fa-film"></i>
+                <span>Movies</span>
+            </a>
+            <a href="#" class="mobile-nav-item" onclick="showPage('tv-shows', this)" data-page="tv-shows">
+                <i class="fas fa-tv"></i>
+                <span>TV Shows</span>
+            </a>
+            <a href="#" class="mobile-nav-item" onclick="showPage('my-list', this)" data-page="my-list">
+                <i class="fas fa-heart"></i>
+                <span>My List</span>
+            </a>
+        </div>
+    </nav>
 
-    <div class="video-meta">
-      <h1 id="metaTitle">Movie Title</h1>
-      <div class="meta-facts" id="metaFacts">2025 • 120 min • <i class="fa-solid fa-star"></i> 7.8</div>
-      <div class="meta-genres" id="metaGenres">Action, Drama</div>
-      <p class="meta-overview" id="metaOverview">
-        Overview goes here...
-      </p>
-      <div class="meta-credits">
-        <p><b>Director:</b> <span id="metaDirector">Unknown</span></p>
-        <p><b>Writers:</b> <span id="metaWriters">Unknown</span></p>
-        <p><b>Cast:</b> <span id="metaCast">Unknown</span></p>
-      </div>
-      <div class="video-buttons">
-        <button class="btn btn-primary" id="metaPlay"><i class="fa-solid fa-play"></i> Play</button>
-        <button class="btn btn-secondary" id="metaAdd"><i class="fa-solid fa-plus"></i> My List</button>
-        <button class="btn btn-trailer" id="metaTrailer"><i class="fa-solid fa-clapperboard"></i> Trailer</button>
-      </div>
+
+    <div class="network-status" id="networkStatus">
+        <i class="fas fa-wifi"></i>
+        <span id="networkStatusText">Offline</span>
     </div>
-  </div>
-    </div>
+
     <footer>
         <a href="//www.dmca.com/Protection/Status.aspx?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" title="DMCA.com Protection Status" class="dmca-badge">
             <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=38e473b3-0fc8-4e66-8d69-254a25e25ec0" alt="DMCA.com Protection Status" />
