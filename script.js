@@ -1,3 +1,12 @@
+window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('popup_abc123').style.display = 'flex';
+      }, 3000);
+    }
+
+    function closePopup6969() {
+      document.getElementById('popup_abc123').style.display = 'none';
+    }
 class Pikuflix {
     constructor() {
         this.API_KEY = "8d18cc3ec326ca4282a7ab5a651c7f7b";
