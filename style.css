@@ -1,3 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Popup background overlay */
+    .popup-overlay-abc123 {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Popup box */
+    .popup-box-xyz789 {
+      background: linear-gradient(145deg, #ffffff, #f9f9f9);
+      padding: 30px 25px;
+      border-radius: 20px;
+      text-align: center;
+      width: 380px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      position: relative;
+      animation: popIn 0.4s ease-in-out;
+    }
+
+    .popup-box-xyz789 h2 {
+      margin-bottom: 10px;
+      color: #222;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .popup-box-xyz789 p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    /* Close button (cross) */
+    .close-btn-rst456 {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .close-btn-rst456:hover {
+      color: #333;
+    }
+
+    /* PayPal button */
+    .paypal-btn-mno555 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: #ffc439;
+      color: #111;
+      font-weight: 600;
+      padding: 14px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .paypal-btn-mno555:hover {
+      background: #ffb347;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .paypal-btn-mno555 img {
+      height: 20px;
+    }
+
+    /* Animation */
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 * {
     margin: 0;
     padding: 0;
