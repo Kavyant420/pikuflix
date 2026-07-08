@@ -377,9 +377,10 @@ class Pikuflix {
             
             // Use appropriate vidsrc URL based on media type
             if (mediaType === 'tv') {
-                videoUrl = `https://vidsrc.cc/v2/embed/tv/${item.id}?autoPlay=true`;
+                videoUrl = `https://vidsrc.sbs/embed/tv/${item.id}?autoPlay=true`;
             } else {
-                videoUrl = `https://vidsrc.cc/v2/embed/movie/${item.id}?autoPlay=true`;
+                videoUrl = `https://vidsrc.sbs/embed/movie/${item.id}?autoPlay=true`;
+                
             }
 
             // Add to watch history
