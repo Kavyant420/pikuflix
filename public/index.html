@@ -1,0 +1,311 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#08090c" />
+    <meta
+      name="description"
+      content="PikuFlix — stream movies and TV shows with a beautiful, fast, ad-aware experience and an AI assistant."
+    />
+    <title>PikuFlix — Your Entertainment Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="app">
+      <!-- ============================ HEADER ============================ -->
+      <header class="header" id="header">
+        <div class="header-left">
+          <a class="logo" href="#home" data-nav="home" aria-label="PikuFlix home">
+            <svg class="logo__mark" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm3 4v12l9-6-9-6z" />
+            </svg>
+            <span>PikuFlix</span>
+          </a>
+
+          <nav class="nav" aria-label="Primary">
+            <a class="nav__link" href="#home" data-nav="home" aria-current="page">Home</a>
+            <a class="nav__link" href="#movies" data-nav="movies">Movies</a>
+            <a class="nav__link" href="#tv" data-nav="tv">TV Shows</a>
+            <a class="nav__link" href="#new" data-nav="new">New &amp; Popular</a>
+            <a class="nav__link" href="#mylist" data-nav="mylist">My List</a>
+          </nav>
+        </div>
+
+        <div class="header-right">
+          <button class="icon-btn" id="headerSearch" aria-label="Search">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+          </button>
+          <div class="auth-actions" id="authArea"><!-- rendered by auth.js --></div>
+        </div>
+      </header>
+
+      <!-- Account dropdown (populated/positioned by auth.js) -->
+      <div class="account-menu" id="accountMenu" role="menu" aria-label="Account">
+        <button id="logoutBtn" role="menuitem">Sign out</button>
+      </div>
+
+      <!-- ============================= MAIN ============================= -->
+      <main id="main">
+        <!-- HOME -->
+        <section class="page is-active" id="page-home" aria-label="Home">
+          <div class="hero" id="hero">
+            <div class="hero__bg" id="heroBg"></div>
+            <div class="hero__scrim"></div>
+            <div class="hero__content">
+              <span class="badge badge--brand">Featured</span>
+              <h1 class="hero__title" id="heroTitle">Discover your next obsession</h1>
+              <div class="hero__meta">
+                <span class="hero__match">98% Match</span>
+                <span class="hero__badge" id="heroType">Film</span>
+                <span id="heroYear">2025</span>
+                <span id="heroRating">★ —</span>
+              </div>
+              <p class="hero__desc" id="heroDesc">
+                Thousands of movies and shows, a lightning-fast player, and an AI
+                assistant that actually knows what you'll like. Welcome to PikuFlix.
+              </p>
+              <div class="hero__actions">
+                <button class="btn btn--light" id="heroPlay">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  Play
+                </button>
+                <button class="btn btn--ghost" id="heroInfo">
+                  <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg>
+                  More Info
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rows">
+            <div class="row">
+              <div class="row__head">
+                <h2 class="row__title">Trending Now</h2>
+                <a class="row__more" href="#new" data-nav="new">Explore all ›</a>
+              </div>
+              <div class="row__track" id="row-trending" aria-label="Trending now"></div>
+            </div>
+
+            <div class="row">
+              <div class="row__head">
+                <h2 class="row__title">Popular Movies</h2>
+                <a class="row__more" href="#movies" data-nav="movies">Explore all ›</a>
+              </div>
+              <div class="row__track" id="row-movies" aria-label="Popular movies"></div>
+            </div>
+
+            <div class="row">
+              <div class="row__head">
+                <h2 class="row__title">Popular TV Shows</h2>
+                <a class="row__more" href="#tv" data-nav="tv">Explore all ›</a>
+              </div>
+              <div class="row__track" id="row-tv" aria-label="Popular TV shows"></div>
+            </div>
+
+            <div class="row">
+              <div class="row__head">
+                <h2 class="row__title">Top Rated</h2>
+                <a class="row__more" href="#movies" data-nav="movies">Explore all ›</a>
+              </div>
+              <div class="row__track" id="row-top" aria-label="Top rated"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEARCH -->
+        <section class="page" id="page-search" aria-label="Search">
+          <div class="page__head">
+            <div class="search-bar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+              <label class="sr-only" for="searchInput">Search movies and TV shows</label>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search movies, TV shows, people…"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="row__track" id="searchResults" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- MOVIES -->
+        <section class="page" id="page-movies" aria-label="Movies">
+          <div class="page__head"><h1 class="page__title">Movies</h1></div>
+          <div class="row"><div class="row__track" id="row-movies-page"></div></div>
+        </section>
+
+        <!-- TV -->
+        <section class="page" id="page-tv" aria-label="TV shows">
+          <div class="page__head"><h1 class="page__title">TV Shows</h1></div>
+          <div class="row"><div class="row__track" id="row-tv-page"></div></div>
+        </section>
+
+        <!-- NEW & POPULAR -->
+        <section class="page" id="page-new" aria-label="New and popular">
+          <div class="page__head"><h1 class="page__title">New &amp; Popular</h1></div>
+          <div class="row"><div class="row__track" id="row-new-page"></div></div>
+        </section>
+
+        <!-- MY LIST -->
+        <section class="page" id="page-mylist" aria-label="My list">
+          <div class="page__head"><h1 class="page__title">My List</h1></div>
+          <div class="row"><div class="row__track" id="myListTrack"></div></div>
+        </section>
+      </main>
+
+      <!-- ============================ FOOTER ============================ -->
+      <footer class="site-footer">
+        <div class="site-footer__grid">
+          <div class="site-footer__col">
+            <h4>Company</h4>
+            <a href="#">About</a><a href="#">Jobs</a><a href="#">Press</a>
+          </div>
+          <div class="site-footer__col">
+            <h4>Support</h4>
+            <a href="#">Help Center</a><a href="#">Terms of Use</a><a href="#">Privacy</a>
+          </div>
+          <div class="site-footer__col">
+            <h4>Features</h4>
+            <a href="#mylist" data-nav="mylist">My List</a><a href="#new" data-nav="new">New</a>
+          </div>
+          <div class="site-footer__col">
+            <h4>Legal</h4>
+            <a href="#">DMCA</a><a href="#">Cookies</a>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© <span id="year"></span> PikuFlix. All rights reserved.</span>
+          <span>Built with TMDB · cinesrc.st · Pollinations AI</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ======================= MOBILE BOTTOM NAV ====================== -->
+    <nav class="mobile-nav" aria-label="Mobile">
+      <a class="mobile-nav__item" href="#home" data-nav="home" aria-current="page">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="mobile-nav__item" href="#search" data-nav="search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+        <span>Search</span>
+      </a>
+      <a class="mobile-nav__item" href="#movies" data-nav="movies">
+        <svg viewBox="0 0 24 24"><path d="M18 4v1h-2V4h-2v1h-2V4H8v1H6V4H4v16h16V4zM8 18H6v-2h2zm0-4H6v-2h2zm0-4H6V8h2zm10 8h-2v-2h2zm0-4h-2v-2h2zm0-4h-2V8h2z"/></svg>
+        <span>Movies</span>
+      </a>
+      <a class="mobile-nav__item" href="#tv" data-nav="tv">
+        <svg viewBox="0 0 24 24"><path d="M21 3H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5v2h8v-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 14H3V5h18z"/></svg>
+        <span>TV</span>
+      </a>
+      <a class="mobile-nav__item" href="#mylist" data-nav="mylist">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-8-4.35-8-10a4.5 4.5 0 0 1 8-2.83A4.5 4.5 0 0 1 20 11c0 5.65-8 10-8 10z"/></svg>
+        <span>My List</span>
+      </a>
+    </nav>
+
+    <!-- ========================== AI WIDGET =========================== -->
+    <button class="ai-fab" id="aiFab" aria-label="Open AI assistant" aria-expanded="false" aria-controls="aiPanel">
+      <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h3V4a2 2 0 0 1 2-2zM9 10v2h2v-2zm4 0v2h2v-2z"/></svg>
+    </button>
+    <section class="ai-panel" id="aiPanel" role="dialog" aria-label="Piku AI assistant">
+      <div class="ai-panel__head">
+        <span class="avatar" aria-hidden="true">P</span>
+        <div>
+          <strong>Piku</strong>
+          <div class="text-muted" style="font-size: var(--fs-xs)">AI assistant</div>
+        </div>
+        <button class="icon-btn" id="aiClose" aria-label="Close assistant" style="margin-left:auto">
+          <svg viewBox="0 0 24 24"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>
+        </button>
+      </div>
+      <div class="ai-panel__log" id="aiLog" aria-live="polite"></div>
+      <form class="ai-panel__form" id="aiForm">
+        <label class="sr-only" for="aiInput">Message Piku</label>
+        <input id="aiInput" type="text" placeholder="Ask for a recommendation…" autocomplete="off" />
+        <button class="btn btn--primary btn--icon" type="submit" aria-label="Send">
+          <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- ========================= AUTH MODAL =========================== -->
+    <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" aria-hidden="true">
+      <div class="modal__panel" style="position: relative">
+        <button class="modal__close" data-close-modal="authModal" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>
+        </button>
+        <h2 class="modal__title" id="authTitle">Welcome back</h2>
+        <p class="modal__text" id="authSubtitle">Sign in to continue to PikuFlix.</p>
+
+        <form id="authForm" novalidate>
+          <label class="field hidden" id="usernameField">
+            <span class="field__label">Username</span>
+            <input class="field__input" id="authUsername" type="text" autocomplete="username" placeholder="cinephile" />
+          </label>
+          <label class="field">
+            <span class="field__label">Email</span>
+            <input class="field__input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <label class="field">
+            <span class="field__label">Password</span>
+            <input class="field__input" id="authPassword" type="password" autocomplete="current-password" placeholder="••••••••" required minlength="8" />
+          </label>
+          <p class="field__error" id="authError" role="alert"></p>
+          <button class="btn btn--primary btn--block" id="authSubmit" type="submit">Sign in</button>
+        </form>
+
+        <p class="text-muted" style="margin-top: var(--sp-4); font-size: var(--fs-sm); text-align: center">
+          <span id="authSwitchText">New to PikuFlix?</span>
+          <button class="btn--ghost" id="authSwitchBtn" style="background:none;border:none;color:var(--brand-bright);font-weight:600;cursor:pointer">Create one</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- ======================== DETAIL MODAL ========================== -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle" aria-hidden="true">
+      <div class="modal__panel detail" style="position: relative">
+        <button class="modal__close" data-close-modal="detailModal" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>
+        </button>
+        <div class="detail__hero" id="detailPoster"></div>
+        <div class="detail__body">
+          <h2 class="detail__title" id="detailTitle">Title</h2>
+          <div class="detail__meta" id="detailMeta"></div>
+          <p class="detail__overview" id="detailOverview"></p>
+          <div class="detail__actions">
+            <button class="btn btn--light" id="detailPlay">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play
+            </button>
+            <button class="btn btn--ghost" id="detailAdd">+ My List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/js/app.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
