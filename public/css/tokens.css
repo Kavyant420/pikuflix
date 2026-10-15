@@ -1,0 +1,92 @@
+/* =============================================================================
+   PikuFlix — Design tokens
+   A single source of truth for colour, type, spacing, radius, shadow and motion.
+   Mobile-first. Dark, cinematic, Netflix-inspired.
+   ============================================================================= */
+
+:root {
+  /* --- Brand palette ------------------------------------------------------ */
+  --brand: #e50914;            /* signature red */
+  --brand-bright: #ff2a35;
+  --brand-dark: #b20710;
+  --brand-glow: rgba(229, 9, 20, 0.55);
+
+  /* --- Surfaces (dark theme) --------------------------------------------- */
+  --bg: #08090c;
+  --bg-elevated: #121319;
+  --bg-card: #17181f;
+  --bg-glass: rgba(18, 19, 25, 0.72);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+
+  /* --- Text -------------------------------------------------------------- */
+  --text: #f5f6f8;
+  --text-muted: #a7abb6;
+  --text-dim: #6b7080;
+
+  /* --- Lines & accents --------------------------------------------------- */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --accent: #4f8cff;
+  --success: #2ecc71;
+  --warning: #f5b301;
+  --danger: #ff4d4f;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Bebas Neue', 'Inter', Impact, sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.75rem;
+  --fs-hero: clamp(2rem, 7vw, 4.5rem);
+
+  /* --- Spacing scale (8px base) ------------------------------------------ */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+
+  /* --- Radius ------------------------------------------------------------ */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow-brand: 0 12px 40px var(--brand-glow);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 520ms;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --header-h: 64px;
+  --mobile-nav-h: 60px;
+  --max-w: 1440px;
+  --gutter: clamp(16px, 4vw, 56px);
+
+  /* --- 3D depth (overridden to 0 when GPU/3D is disabled) ---------------- */
+  --depth: 1;
+}
+
+/* When 3D is disabled (mobile / no GPU / reduced-motion / low-power) we zero
+   out the depth multiplier so every transform collapses to a flat, cheap
+   transition. See js/gpu.js for how this class is applied. */
+:root.no-3d {
+  --depth: 0;
+}

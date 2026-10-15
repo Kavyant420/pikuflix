@@ -1,0 +1,169 @@
+/* =============================================================================
+   PikuFlix — Animations
+   Subtle 3D, GPU-accelerated motion. Every 3D transform is multiplied by
+   `--depth`, which becomes 0 when 3D is disabled (mobile / no GPU / reduced
+   motion). That makes the whole system collapse to cheap flat transitions.
+   ============================================================================= */
+
+/* --- Keyframes ------------------------------------------------------------- */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* --- Card 3D hover --------------------------------------------------------- */
+/* The card lifts toward the viewer and tilts slightly. `--depth` gates the
+   rotateX so non-GPU devices get a simple lift only. */
+.card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: perspective(900px) translateY(-8px)
+      rotateX(calc(6deg * var(--depth)))
+      rotateY(calc(var(--tilt, 0deg) * var(--depth)))
+      scale(calc(1 + 0.03 * var(--depth)));
+    box-shadow: var(--shadow-lg);
+    z-index: 5;
+  }
+  .card:hover .card__poster {
+    transform: translateZ(calc(24px * var(--depth)));
+  }
+}
+
+/* --- Hero 3D entrance ------------------------------------------------------ */
+.hero__content {
+  transform-style: preserve-3d;
+  animation: hero-enter 900ms var(--ease-out) both;
+}
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) translateZ(calc(-60px * var(--depth)))
+      translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0) translateY(0);
+  }
+}
+
+/* --- 3D loading spinner (double ring) ------------------------------------- */
+.spinner-3d {
+  width: 46px;
+  height: 46px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spin 1.1s linear infinite;
+}
+.spinner-3d::before,
+.spinner-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+.spinner-3d::before {
+  border-top-color: var(--brand);
+  border-right-color: var(--brand);
+}
+.spinner-3d::after {
+  border-bottom-color: var(--accent);
+  border-left-color: var(--accent);
+  transform: rotateX(calc(70deg * var(--depth)));
+}
+:root.no-3d .spinner-3d::after {
+  transform: none;
+  opacity: 0.5;
+}
+
+/* --- Floating brand orb (decorative, hero) -------------------------------- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+  animation: float-slow 8s var(--ease-in-out) infinite;
+}
+
+/* --- Glass panel with subtle 3D sheen ------------------------------------- */
+.panel-3d {
+  transform-style: preserve-3d;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .panel-3d:hover {
+    transform: perspective(1200px) rotateX(calc(2deg * var(--depth)))
+      rotateY(calc(-2deg * var(--depth)));
+  }
+}
+
+/* --- GPU hint for animated layers ----------------------------------------- */
+.hero__bg,
+.card,
+.orb,
+.ai-fab {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
